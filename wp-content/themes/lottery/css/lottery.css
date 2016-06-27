@@ -1,0 +1,66 @@
+#lottery-outer-c .lottery-top-text-c{
+    padding:0;
+}
+.lottery-outer-c{
+    padding:10px 13px 0 13px;
+}
+a.post-c{
+    display: block;
+    margin: 20px auto;
+    padding: 0;
+    width: 874px;
+}
+#newPost .post-c{
+    margin: 20px auto 0;
+}
+#newPost .lottery-top-text-c{
+    padding: 0 0 20px; 
+}
+.newPost{
+    display: block;
+    padding: 0;
+    width:874px;
+}
+.newPost.active{
+    border: 2px solid green;
+}
+.newPost.noactive{
+    border: 2px solid red;
+}
+.newPost .lottery-top-text{
+    position:absolute;
+    bottom:20px; left:40px;
+    color:#fff;
+}
+#main h2.post-title{
+    font-weight:bold;
+    font-size:28px;
+    line-height:28px;
+}
+.lottery-complete-cnt-c{
+    display:none;
+    margin: 20px 455px 0 0;
+}
+.lottery-corener{
+    position:absolute;
+    background:url("../images/lottery-coreners.png") 0 0 no-repeat scroll transparent;
+    width:66px; height:63px;
+}
+.lottery-corener-noactive{
+    background-position: 0 0;
+    right:-6px; top:-6px;
+}
+.lottery-corener-active{
+    background-position: 0 -65px;
+    right:-6px; top:-7px;
+}
+#lottery-top-text {
+    background-color: rgba(0, 0, 0, 0.7);
+    bottom: 0;
+    left: 0;
+    margin: 0 0 20px 25px;
+    max-height: 168px;
+    padding: 10px;
+    position: absolute;
+    width: 428px;
+}

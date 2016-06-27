@@ -1,5 +1,7 @@
 <?php get_header(); ?>
-
+<div id="main">
+<div class="lottery-outer-c">
+<div class="title-h">розыгрыш</div>
 <?php
 
 $posts = lottery_get_posts();
@@ -24,11 +26,13 @@ else :
 endif;
 
 ?>
-
+</div>
+</div>
 <?php get_footer(); ?>
 <?php
 txt_a($GLOBALS['user_data']);
-txt_a(lottery_get_tasks_data());
+txt_a(lottery_get_posts());
+//txt_a(lottery_get_tasks_data());
 txt_a(lottery_get_tasks_status());
 ?>
 

@@ -1,8 +1,11 @@
 <?php if (isset($t)){ ?>
+<?php
+    $is_user = isset($GLOBALS['user_data']['id']) && $GLOBALS['user_data']['id'];
+?>
     <?php if ($t['task_type']=='social') { ?>
             <li class="task-c task-c-soc" data-task-id="<?php echo $t['id']; ?>" id="soc_task_<?php echo $t['id']; ?>">
                         <div class="img-holder">
-                                <img src="http://wasdclub.com/public/images/soc_tasks/big_<?php echo $t['img']; ?>" alt="<?php echo $t['header']; ?>" />
+                                <img src="<?php echo $GLOBALS['wasd_domain']; ?>/public/images/soc_tasks/big_<?php echo $t['img']; ?>" alt="<?php echo $t['header']; ?>" />
                         </div>
                         <div class="description">
                                 <h2><?php echo $t['header']; ?></h2>
@@ -10,7 +13,7 @@
                         </div>
                                 <div class="row">
                                             <div class="pre-ready lottery-task-btn" id="soc_task_btn_start_<?php echo $t['id']; ?>"<?php if ($is_user){ ?>style="display:none;"<?php } ?>>
-                                                    <a title="Участвовать" href="<?php if ($is_user){ ?>http://wasdclub.com/soctask/user/starttask/id/<?php echo $t['id']; ?><?php } else { ?>#<?php } ?>" target="_blank" <?php if (!$is_user){ ?>onclick="showDemoLogin();return false;"<?php } ?> class="button">
+                                                    <a title="Участвовать" href="<?php if ($is_user){ ?><?php echo $GLOBALS['wasd_domain']; ?>/soctask/user/starttask/id/<?php echo $t['id']; ?><?php } else { ?>#<?php } ?>" target="_blank" <?php if (!$is_user){ ?>onclick="showDemoLogin();return false;"<?php } ?> class="button">
                                                             <div class="ready pc">Участвовать</div>
                                                     </a>
                                                 <!-- {$captcha|default:''} -->
@@ -44,7 +47,7 @@
     <?php } elseif ($t['task_type']=='cpa') { ?>
         <li class="task-c task-c-cpa" data-task-id="<?php echo $t['id']; ?>" id="cpa_task_<?php echo $t['id']; ?>">
                         <div class="img-holder">
-                                <img src="http://wasdclub.com/public/jobs/big_<?php echo $t['img']; ?>" alt="<?php echo $t['header']; ?>">
+                                <img src="<?php echo $GLOBALS['wasd_domain']; ?>/public/jobs/big_<?php echo $t['img']; ?>" alt="<?php echo $t['header']; ?>">
                         <!--        
                         {if $t.pay_variant=='fix'}
                             {if $t.only_apple}
@@ -130,7 +133,7 @@
                                         {/if}
                                     {else}
                                     -->
-                                        <a title="Участвовать" href="http://wasdclub.com/adv/index/jump/link/<?php echo $t['id']; ?>" target="_blank" onclick="<?php if ($is_user){ ?><?php if ($t['captcha']){ ?> showRecaptcha('publickey',startCpaTask,<?php echo $t['id']; ?>,'/adv/index/jump/link/<?php echo $t['id']; ?>'); return false; <?php } else { ?> startCpaTask(<?php echo $t['id']; ?>); <?php } } else { ?>showDemoLogin();return false;<?php } ?>" class="button">
+                                        <a title="Участвовать" href="<?php echo $GLOBALS['wasd_domain']; ?>/adv/index/jump/link/<?php echo $t['id']; ?>" target="_blank" onclick="<?php if ($is_user){ ?><?php if ($t['captcha']){ ?> showRecaptcha('publickey',startCpaTask,<?php echo $t['id']; ?>,'/adv/index/jump/link/<?php echo $t['id']; ?>'); return false; <?php } else { ?> startCpaTask(<?php echo $t['id']; ?>); <?php } } else { ?>showDemoLogin();return false;<?php } ?>" class="button">
                                             <div class="ready pc">Участвовать</div>
                                         </a>
                                     <!-- {/if} -->

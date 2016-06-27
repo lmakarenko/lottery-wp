@@ -79,10 +79,10 @@
 </div>
 
 <script>
-    $(document).ready(function(){
+    /*$(document).ready(function(){
     	updateBalance();
     	$('.tt').tooltip();
-    });
+    });*/
     
     
     /*function openHelp(){
@@ -97,6 +97,30 @@
 <div class="to_top_arrows"></div>
 <div class="to_top_arrows"></div>
 </a>
+
+<script type="text/javascript">
+$(function(){
+    $.ajax({
+      type:'post',
+      url:'/wp-admin/admin-ajax.php',
+      data: {
+          action: 'get_tasks_status',
+          id_adv: '<?php echo lottery_get_adv_ids_s(); ?>'
+      },
+      dataType: 'json',
+      success: function(d){
+          if(d.statuses){
+             console.log(d);
+             var i;
+             for(var k in d.statuses){
+                 
+             }
+          }
+      }
+    });
+});
+</script>
+
 </body>
 </html>
 
