@@ -41,6 +41,10 @@ function lottery_get_adv_ids_s(){
     return lottery()->get_adv_ids_s();
 }
 
+function lottery_get_posts_ids_s(){
+    return lottery()->get_posts_ids_s();
+}
+
 function lottery_print_tasks(){
     lottery()->print_tasks();
 }

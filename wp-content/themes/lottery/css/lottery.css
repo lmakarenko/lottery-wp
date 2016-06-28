@@ -46,11 +46,11 @@ a.post-c{
     background:url("../images/lottery-coreners.png") 0 0 no-repeat scroll transparent;
     width:66px; height:63px;
 }
-.lottery-corener-noactive{
+.lottery-corener.noactive, .newPost.noactive .lottery-corener{
     background-position: 0 0;
     right:-6px; top:-6px;
 }
-.lottery-corener-active{
+.lottery-corener.active, .newPost.active .lottery-corener{
     background-position: 0 -65px;
     right:-6px; top:-7px;
 }

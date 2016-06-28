@@ -355,7 +355,8 @@ class lottery {
             wp_send_json($data);
             return false;
         }
-        $data['statuses'] = $this->load_tasks_status($_SESSION['user_data']['id'], $_POST['id_adv']);
+        $this->load_tasks_status($_SESSION['user_data']['id'], $_POST['id_adv']);
+        $data['statuses'] = $this->tasks_status_data;
         if(!empty($this->error)){
             $data['error'][] = $this->error;
         }
@@ -393,7 +394,7 @@ class lottery {
         }
         $data = array();
         while ($row = pg_fetch_array($result, null, PGSQL_ASSOC)) {
-            $data[ $row['task_id'] ] = $row;
+            $data[ $row['task_type'] ][ $row['camp_id'] ][ $row['task_id'] ] = $row;
         }
         pg_free_result($result);
         $this->tasks_status_data = $data;
@@ -421,6 +422,17 @@ class lottery {
             $adv_ids .= (empty($adv_ids) ? '' : ',') . get_field('id_adv', $post->ID);
         }
         return $adv_ids;
+    }
+    
+    public function get_posts_ids_s(){
+        if(empty($this->posts_data)){
+            return false;
+        }
+        $ids = '';
+        foreach($this->posts_data as $k=>$v){
+            $ids .= (0 == $k ? '' : ',') . $v->ID;
+        }
+        return $ids;
     }
     
     public function get_complete_cnt($post_id, $c = false){
