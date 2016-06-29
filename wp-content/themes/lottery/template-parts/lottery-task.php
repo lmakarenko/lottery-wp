@@ -3,7 +3,7 @@
     $is_user = isset($GLOBALS['user_data']['id']) && $GLOBALS['user_data']['id'];
 ?>
     <?php if ($t['task_type']=='social') { ?>
-            <li class="task-c task-c-soc" data-task-id="<?php echo $t['id']; ?>" id="soc_task_<?php echo $t['id']; ?>">
+            <li class="task-c task-c-soc" data-task-id="<?php echo $t['id']; ?>" data-task-type="<?php echo $t['task_type']; ?>" data-adv-id="<?php echo $t['adv_camp']; ?>">
                         <div class="img-holder">
                                 <img src="<?php echo $GLOBALS['wasd_domain']; ?>/public/images/soc_tasks/big_<?php echo $t['img']; ?>" alt="<?php echo $t['header']; ?>" />
                         </div>
@@ -12,20 +12,20 @@
                                 <p><?php echo $t['text']; ?></p>
                         </div>
                                 <div class="row">
-                                            <div class="pre-ready lottery-task-btn" id="soc_task_btn_start_<?php echo $t['id']; ?>"<?php if ($is_user){ ?>style="display:none;"<?php } ?>>
+                                            <div class="pre-ready lottery-task-btn lottery-task-btn-start" <?php if ($is_user){ ?>style="display:none;"<?php } ?>>
                                                     <a title="Участвовать" href="<?php if ($is_user){ ?><?php echo $GLOBALS['wasd_domain']; ?>/soctask/user/starttask/id/<?php echo $t['id']; ?><?php } else { ?>#<?php } ?>" target="_blank" <?php if (!$is_user){ ?>onclick="showDemoLogin();return false;"<?php } ?> class="button">
                                                             <div class="ready pc">Участвовать</div>
                                                     </a>
                                                 <!-- {$captcha|default:''} -->
                                             </div>
                                             <?php if ($is_user){ ?>
-                                            <div class="pre-ready lottery-task-btn" id="soc_task_btn_loading_<?php echo $t['id']; ?>">
+                                            <div class="pre-ready lottery-task-btn lottery-task-btn-loading">
                                                 <a href="#" title="Загрузка" class="button button-loading">
                                                     <img src="/cms/public/images/loading.gif" />
                                                 </a>
                                             </div>
 
-                                            <div class="pre-ready lottery-task-btn" id="soc_task_btn_started_<?php echo $t['id']; ?>" style="display:none;">
+                                            <div class="pre-ready lottery-task-btn lottery-task-btn-started" style="display:none;">
                                                     <a href="#" title="Выполняется" class="button progress">
                                                             <div class="ready time">
                                                                     <div class="time"></div>
@@ -33,7 +33,7 @@
                                                             </div>
                                                     </a>
                                             </div>		
-                                            <div class="pre-ready lottery-task-btn" id="soc_task_btn_finished_<?php echo $t['id']; ?>" style="display:none;">
+                                            <div class="pre-ready lottery-task-btn lottery-task-btn-finished" style="display:none;">
                                                     <a href="#" title="Выполнено" class="button button-complete">
                                                             <div class="ready checked">
                                                                     <div class="checked"></div>
@@ -45,7 +45,7 @@
                                 </div>
                 </li>
     <?php } elseif ($t['task_type']=='cpa') { ?>
-        <li class="task-c task-c-cpa" data-task-id="<?php echo $t['id']; ?>" id="cpa_task_<?php echo $t['id']; ?>">
+        <li class="task-c task-c-cpa" data-task-id="<?php echo $t['id']; ?>" data-task-type="<?php echo $t['task_type']; ?>" data-adv-id="<?php echo $t['adv_camp']; ?>" id="cpa_task_<?php echo $t['id']; ?>">
                         <div class="img-holder">
                                 <img src="<?php echo $GLOBALS['wasd_domain']; ?>/public/jobs/big_<?php echo $t['img']; ?>" alt="<?php echo $t['header']; ?>">
                         <!--        
@@ -81,7 +81,7 @@
                                 <p><?php echo $t['text']; ?></p>
                         </div>
                                 <div class="row">
-                                    <div class="pre-ready lottery-task-btn" id="cpa_task_btn_start_<?php echo $t['id']; ?>"<?php if ($is_user){ ?>  style="display:none;"<?php } ?>>
+                                    <div class="pre-ready lottery-task-btn lottery-task-btn-start"<?php if ($is_user){ ?>  style="display:none;"<?php } ?>>
                             <?php if ($t['jump_method']=='iframe'){ ?>
                                     <a title="Участвовать" href="#" target="_blank" onclick="<?php if ($is_user){ ?><?php if ($t['captcha']){ ?> showRecaptcha('publickey',startIframeTask,<?php echo $t['id']; ?>); <?php } else { ?> startIframeTask(<?php echo $t['id']; ?>);<?php } ?> return false;<?php } else { ?>showDemoLogin();return false;<?php } ?>" class="button">
                                         <div class="ready pc">Участвовать</div>
@@ -141,13 +141,13 @@
                             <?php } ?>
                                                 </div>
                                         <?php if ($is_user){ ?>
-                                        <div class="pre-ready lottery-task-btn" id="cpa_task_btn_loading_<?php echo $t['id']; ?>">
+                                        <div class="pre-ready lottery-task-btn lottery-task-btn-loading">
                                             <a href="#" title="Загрузка" class="button button-loading">
                                                 <img src="/cms/public/images/loading.gif" />
                                             </a>
                                         </div>
 
-                                        <div class="pre-ready lottery-task-btn" id="cpa_task_btn_started_<?php echo $t['id']; ?>" style="display:none;">
+                                        <div class="pre-ready lottery-task-btn lottery-task-btn-started" style="display:none;">
                                                 <a href="#" title="Выполняется" class="button progress">
                                                         <div class="ready time">
                                                                 <div class="time"></div>
@@ -156,7 +156,7 @@
                                                 </a>
                                         </div>
 
-                                        <div class="pre-ready lottery-task-btn" id="cpa_task_btn_finished_<?php echo $t['id']; ?>" style="display:none;">
+                                        <div class="pre-ready lottery-task-btn lottery-task-btn-finished" style="display:none;">
                                                 <a href="#" title="Выполнено" class="button button-complete">
                                                         <div class="ready checked">
                                                                 <div class="checked"></div>

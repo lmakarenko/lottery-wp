@@ -40,7 +40,9 @@ class lottery {
             $post_id = get_the_ID();
             $adv_ids = get_field('id_adv', $post_id);
             $this->load_tasks_data($post_id);
-            $this->load_tasks_status($GLOBALS['user_data']['id'], $adv_ids);
+            if(isset($GLOBALS['user_data']['id']) && !empty($GLOBALS['user_data']['id'])){
+                $this->load_tasks_status($GLOBALS['user_data']['id'], $adv_ids);
+            }
             $this->load_complete_cnt($adv_ids);
         }
     }
@@ -433,6 +435,17 @@ class lottery {
             $ids .= (0 == $k ? '' : ',') . $v->ID;
         }
         return $ids;
+    }
+    
+    public function get_tasks_ids_s(){
+        if(empty($this->tasks_data)){
+            return false;
+        }
+        $tasks_ids = array();
+        foreach($this->tasks_data as $c){
+            $tasks_ids = array_merge($tasks_ids, array_keys($c));
+        }
+        return implode(',', $tasks_ids);
     }
     
     public function get_complete_cnt($post_id, $c = false){
