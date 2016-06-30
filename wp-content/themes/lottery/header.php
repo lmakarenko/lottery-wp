@@ -40,7 +40,7 @@
 
 <script type="text/javascript" src="/site/skins/wasd2_sub/public/js/select.js"></script>
 <script type="text/javascript" src="/site/skins/wasd2_sub/public/js/jquery.main.js"></script>
-<?php if(isset($user_data['id'])){ ?>
+<?php if(isset($GLOBALS['user_data']['id'])){ ?>
 <script type="text/javascript" src="/site/skins/wasd2_sub/public/js/soctask_script.js"></script>
 <script type="application/javascript">var isGuest = false;</script>
 <?php } else { ?>
@@ -67,7 +67,7 @@
 </head>
 <body>
     <div id="exit-form-back" style="display:none"></div>
-    <?php if(!isset($user_data['id'])){ ?>
+    <?php if(!isset($GLOBALS['user_data']['id'])){ ?>
     <div id="demo_login" style="display: none"></div>
     <?php } ?>
         <div id="default_alert_popup">
@@ -104,7 +104,7 @@
 
                                 <ul id="nav">
                                     <li>
-                                        <a href="/<?php if(isset($user_data['id'])) { ?>jobs<?php } else { ?>demo<?php } ?>">
+                                        <a href="/<?php if(isset($GLOBALS['user_data']['id'])) { ?>jobs<?php } else { ?>demo<?php } ?>">
                                             <div class="ditch-border">
                                                 <div class="inner-convex-background sab-nav-option">
                                                     Tasks
