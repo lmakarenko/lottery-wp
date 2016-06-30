@@ -559,7 +559,7 @@ class lottery {
     
     public function include_before_theme(){
         // incudes
-        include_once('core/api.php');
+        include_once(LOTTERY__PLUGIN_DIR . 'core/api.php');
     }
     
 }
