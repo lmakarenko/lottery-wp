@@ -566,14 +566,13 @@ class lottery {
 
 function lottery()
 {
-	global $lottery;
-	
-	if( !isset($lottery) )
+    
+	if( !isset($GLOBALS['lottery']) )
 	{
-		$lottery = new lottery();
+		$GLOBALS['lottery'] = new lottery();
 	}
 	
-	return $lottery;
+	return $GLOBALS['lottery'];
 }
 
 
