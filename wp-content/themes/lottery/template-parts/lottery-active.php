@@ -13,7 +13,7 @@ $complete_cnt = lottery_get_complete_cnt($post_id, true);
 $end_date = lottery_end_date();
 $title = get_the_title();
 $adv_ids = get_field('id_adv', $post_id);
-$logo3 = get_field('logo3', $post_id)[0];
+$logo3 = get_field('logo3', $post_id);
 
 ?>
 <a class="post-c" href="<?php echo esc_url( get_permalink() ); ?>" title="<?php echo $title; ?>">    
@@ -22,7 +22,7 @@ $logo3 = get_field('logo3', $post_id)[0];
     <div class="inner clear">
         <div class="lottery-overlay"></div>
         <div class="lottery-corener"></div>
-        <img src="<?php the_field('logo3'); ?>" class="lottery-bg" />
+        <img src="<?php echo $logo3; ?>" class="lottery-bg" />
         <div class="lottery-top-text">
             <h2 class="post-title"><?php echo $title; ?></h2>
             <div class="post-content">
