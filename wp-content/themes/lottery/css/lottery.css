@@ -16,7 +16,7 @@ a.post-c{
 #newPost .lottery-top-text-c{
     padding: 0 0 20px; 
 }
-#newPost .title-h {
+.title-h {
     background-image: url("/site/skins/wasd2_sub/public/images/lottery/2title.png");
 }
 .newPost .lottery-top-text-c .inner{
