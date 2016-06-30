@@ -43,19 +43,20 @@ a.post-c{
 .lottery-complete-c{
     display:none;
     margin: 20px 370px 0 0;
+    font-size: 14px;
+    line-height: 19px;
 }
 .lottery-complete{
     padding-left:40px;
     float:left;
     position: relative;
-    font-size:14px;
 }
 .lottery-complete span{
     background:url('../images/lottery-h-sprite.png') no-repeat scroll transparent;
     width:20px; height:19px;
     display:inline-block;
     position: absolute;
-    margin: 1px auto auto -23px;
+    margin: 0 auto auto -23px;
 }
 .lottery-complete span.lottery-complete-cnt{
     background-position:0 -17px;
