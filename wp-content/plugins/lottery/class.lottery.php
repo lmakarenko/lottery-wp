@@ -14,6 +14,7 @@ class lottery {
     private $camps_status_data = null;
     
     function __construct(){
+        $this->start_session();
         if(!$this->pg_init()){
             $this->error = 'Ошибка подключения к БД: ' . pg_last_error();
             return false;
@@ -48,6 +49,13 @@ class lottery {
             }
             $this->load_complete_cnt($adv_ids);
         }
+    }
+    
+    private function start_session(){
+        ini_set('session.cookie_domain', '.wasdclub.com' );
+        ini_set('session.save_handler', 'memcached' );
+        ini_set('session.save_path', '127.0.0.1:11212' );
+        session_start();
     }
     
     private function load_history_data($max_rows = 30){
@@ -345,9 +353,7 @@ class lottery {
     }
     
     public function get_tasks_status_ajax(){
-        session_start();
         $data = array();
-        //$data['session'] = $_SESSION;
         if(!isset($_SESSION['user_data']['id'])
                 || empty($_SESSION['user_data']['id'])){
             $data['error'][] = 'empty user id';
@@ -385,7 +391,6 @@ class lottery {
     }
     
     public function is_complete_ajax($post_id){
-        //session_start();
         if(!isset($_SESSION['user_data']['id'])
                 || empty($_SESSION['user_data']['id'])){
             $data['error'][] = 'empty user id';
@@ -435,8 +440,10 @@ class lottery {
     }
     
     public function get_camps_status_ajax(){
+        $this->start_session();
+        session_start();
         $data = array();
-        //$data['session'] = $_SESSION;
+        $data['session'] = $_SESSION;
         if(!isset($_SESSION['user_data']['id'])
                 || empty($_SESSION['user_data']['id'])){
             $data['error'][] = 'empty user id';
