@@ -8,7 +8,7 @@ a.post-c{
     display: block;
     margin: 20px auto;
     padding: 0;
-    width: 874px;
+    width: 870px;
 }
 #newPost .post-c{
     margin: 20px auto 0;
@@ -22,7 +22,7 @@ a.post-c{
 .newPost{
     display: block;
     padding: 0;
-    width:874px;
+    width:870px;
 }
 .newPost.active{
     border: 2px solid green;
@@ -48,6 +48,7 @@ a.post-c{
     padding-left:40px;
     float:left;
     position: relative;
+    font-size:14px;
 }
 .lottery-complete span{
     background:url('../images/lottery-h-sprite.png') no-repeat scroll transparent;
