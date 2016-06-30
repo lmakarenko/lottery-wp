@@ -16,6 +16,9 @@ a.post-c{
 #newPost .lottery-top-text-c{
     padding: 0 0 20px; 
 }
+.newPost .lottery-top-text-c .inner{
+    position:relative;
+}
 .newPost{
     display: block;
     padding: 0;
@@ -37,9 +40,27 @@ a.post-c{
     font-size:28px;
     line-height:28px;
 }
-.lottery-complete-cnt-c{
+.lottery-complete-c{
     display:none;
-    margin: 20px 455px 0 0;
+    margin: 20px 370px 0 0;
+}
+.lottery-complete{
+    padding-left:40px;
+    float:left;
+    position: relative;
+}
+.lottery-complete span{
+    background:url('../images/lottery-h-sprite.png') no-repeat scroll transparent;
+    width:20px; height:19px;
+    display:inline-block;
+    position: absolute;
+    margin: 1px auto auto -23px;
+}
+.lottery-complete span.lottery-complete-cnt{
+    background-position:0 -17px;
+}
+.lottery-complete span.lottery-complete-date{
+    background-position:0 0;   
 }
 .lottery-corener{
     position:absolute;
@@ -63,4 +84,11 @@ a.post-c{
     padding: 10px;
     position: absolute;
     width: 428px;
+}
+.lottery-overlay{
+    background-color: rgba(0, 0, 0, 0.7) !important;
+    width:100%;
+    height:100%;
+    position:absolute;
+    display:none;
 }

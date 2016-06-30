@@ -20,6 +20,7 @@ $adv_ids = get_field('id_adv', $post_id);
 <div data-id="<?php echo $post_id; ?>" data-adv="<?php echo $adv_ids; ?>" style="display:block;" href="<?php echo esc_url( get_permalink() ); ?>" class="newPost c-lottery <?php echo $is_complete_cls; ?>">
 <div class="lottery-top-text-c">
     <div class="inner clear">
+        <div class="lottery-overlay"></div>
         <div class="lottery-corener"></div>
         <img src="<?php the_field('logo3'); ?>" class="lottery-bg" />
         <div class="lottery-top-text">
@@ -27,9 +28,20 @@ $adv_ids = get_field('id_adv', $post_id);
             <div class="post-content">
                 <?php the_content(); ?>
             </div>
-        </div>
-        <div class="lottery-bg-trans lottery-complete-cnt-c">
-            <div>Участников:&nbsp;&nbsp;<span id="lottery-complete-cnt"><?php echo $complete_cnt; ?></span>, <?php echo $end_date; ?></div>
+            <div class="lottery-complete-c">
+                <div>
+                    <div class="fl">Поздравляем! Вы участник конкурса!</div>
+                    <div class="lottery-complete">
+                        <span class="lottery-complete-cnt"></span>
+                        <?php echo $complete_cnt; ?>
+                    </div>
+                    <div class="lottery-complete">
+                        <span class="lottery-complete-date"></span>
+                        <?php echo $end_date; ?>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
         </div>
         <div class="clear"></div>
     </div>

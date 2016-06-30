@@ -8,47 +8,47 @@
 <meta name="verification" content="faddbab08fcc393180f820b60ab6efb2" />       
 <title>WASD</title>
 
-<link type="text/css" rel="stylesheet" href="<?php echo $GLOBALS['wasd_domain']; ?>/cms/public/css/main.css" />
-<link type="text/css" rel="stylesheet" href="<?php echo $GLOBALS['wasd_domain']; ?>/cms/public/bootstrap/css/bootstrap.min.css" />
-<link type="text/css" rel="stylesheet" href="<?php echo $GLOBALS['wasd_domain']; ?>/cms/public/bootstrap/css/datepicker.css" />
-<link type="text/css" rel="stylesheet" href="<?php echo $GLOBALS['wasd_domain']; ?>/cms/public/css/jquery/smoothness/jquery-ui.custom.min.css" />
-<link type="text/css" rel="stylesheet" href="<?php echo $GLOBALS['wasd_domain']; ?>/site/plugins/coins/public/css/controller/docs/charity/cabinet.css" />
-<link type="text/css" rel="stylesheet" href="<?php echo $GLOBALS['wasd_domain']; ?>/site/skins/wasd2_sub/public/css/lottery.css" />
+<link type="text/css" rel="stylesheet" href="/cms/public/css/main.css" />
+<link type="text/css" rel="stylesheet" href="/cms/public/bootstrap/css/bootstrap.min.css" />
+<link type="text/css" rel="stylesheet" href="/cms/public/bootstrap/css/datepicker.css" />
+<link type="text/css" rel="stylesheet" href="/cms/public/css/jquery/smoothness/jquery-ui.custom.min.css" />
+<link type="text/css" rel="stylesheet" href="/site/plugins/coins/public/css/controller/docs/charity/cabinet.css" />
+<link type="text/css" rel="stylesheet" href="/site/skins/wasd2_sub/public/css/lottery.css" />
 <link type="text/css" rel="stylesheet" href="/wp-content/themes/lottery/css/lottery.css" />
 
-<script type="text/javascript" src="<?php echo $GLOBALS['wasd_domain']; ?>/cms/public/js/jquery/jquery-1.10.2.min.js"></script>
-<script type="text/javascript" src="<?php echo $GLOBALS['wasd_domain']; ?>/cms/public/js/ajaxDialog.js"></script>
-<script type="text/javascript" src="<?php echo $GLOBALS['wasd_domain']; ?>/cms/public/js/jquery/jquery.cookie.js"></script>
-<script type="text/javascript" src="<?php echo $GLOBALS['wasd_domain']; ?>/cms/public/js/jquery/jquery-ui.min.js"></script>
-<script type="text/javascript" src="<?php echo $GLOBALS['wasd_domain']; ?>/cms/public/js/jquery/jquery.ui.datepicker-ru.js"></script>
-<script type="text/javascript" src="<?php echo $GLOBALS['wasd_domain']; ?>/cms/public/js/jquery/ckeditor_in_jq_dialog_patch.js"></script>
-<script type="text/javascript" src="<?php echo $GLOBALS['wasd_domain']; ?>/cms/public/js/bsDialog.js"></script>
-<script type="text/javascript" src="<?php echo $GLOBALS['wasd_domain']; ?>/cms/public/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="<?php echo $GLOBALS['wasd_domain']; ?>/cms/public/js/main.js"></script>
-<script type="text/javascript" src="<?php echo $GLOBALS['wasd_domain']; ?>/cms/public/bootstrap/js/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="/cms/public/js/jquery/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="/cms/public/js/ajaxDialog.js"></script>
+<script type="text/javascript" src="/cms/public/js/jquery/jquery.cookie.js"></script>
+<script type="text/javascript" src="/cms/public/js/jquery/jquery-ui.min.js"></script>
+<script type="text/javascript" src="/cms/public/js/jquery/jquery.ui.datepicker-ru.js"></script>
+<script type="text/javascript" src="/cms/public/js/jquery/ckeditor_in_jq_dialog_patch.js"></script>
+<script type="text/javascript" src="/cms/public/js/bsDialog.js"></script>
+<script type="text/javascript" src="/cms/public/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/cms/public/js/main.js"></script>
+<script type="text/javascript" src="/cms/public/bootstrap/js/bootstrap-datepicker.js"></script>
 <?php /*
-<script type="text/javascript" src="<?php echo $GLOBALS['wasd_domain']; ?>/site/skins/wasd2_sub/public/js/lottery-history.js"></script>
-<script type="text/javascript" src="<?php echo $GLOBALS['wasd_domain']; ?>/site/skins/wasd2_sub/public/js/lottery-user.js"></script>
-<script type="text/javascript" src="<?php echo $GLOBALS['wasd_domain']; ?>/site/skins/wasd2_sub/public/js/lottery-public.js"></script>
+<script type="text/javascript" src="/site/skins/wasd2_sub/public/js/lottery-history.js"></script>
+<script type="text/javascript" src="/site/skins/wasd2_sub/public/js/lottery-user.js"></script>
+<script type="text/javascript" src="/site/skins/wasd2_sub/public/js/lottery-public.js"></script>
 */ ?>
-<link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['wasd_domain']; ?>/site/skins/wasd2_sub/public/css/all.css" />
+<link rel="stylesheet" type="text/css" href="/site/skins/wasd2_sub/public/css/all.css" />
 
-<script type="text/javascript" src="<?php echo $GLOBALS['wasd_domain']; ?>/site/skins/wasd2_sub/public/js/clear-form-fields.js"></script>
+<script type="text/javascript" src="/site/skins/wasd2_sub/public/js/clear-form-fields.js"></script>
 
-<script type="text/javascript" src="<?php echo $GLOBALS['wasd_domain']; ?>/site/skins/wasd2_sub/public/js/form.js"></script>
-<script type="text/javascript" src="<?php echo $GLOBALS['wasd_domain']; ?>/site/skins/wasd2_sub/public/js/jquery.jscrollpane.min.js"></script>
+<script type="text/javascript" src="/site/skins/wasd2_sub/public/js/form.js"></script>
+<script type="text/javascript" src="/site/skins/wasd2_sub/public/js/jquery.jscrollpane.min.js"></script>
 
-<script type="text/javascript" src="<?php echo $GLOBALS['wasd_domain']; ?>/site/skins/wasd2_sub/public/js/select.js"></script>
-<script type="text/javascript" src="<?php echo $GLOBALS['wasd_domain']; ?>/site/skins/wasd2_sub/public/js/jquery.main.js"></script>
+<script type="text/javascript" src="/site/skins/wasd2_sub/public/js/select.js"></script>
+<script type="text/javascript" src="/site/skins/wasd2_sub/public/js/jquery.main.js"></script>
 <?php if(isset($user_data['id'])){ ?>
-<script type="text/javascript" src="<?php echo $GLOBALS['wasd_domain']; ?>/site/skins/wasd2_sub/public/js/soctask_script.js"></script>
+<script type="text/javascript" src="/site/skins/wasd2_sub/public/js/soctask_script.js"></script>
 <script type="application/javascript">var isGuest = false;</script>
 <?php } else { ?>
-<script type="text/javascript" src="<?php echo $GLOBALS['wasd_domain']; ?>/site/skins/wasd2_sub/public/js/guest.js"></script>
-<script type="text/javascript" src="<?php echo $GLOBALS['wasd_domain']; ?>/site/plugins/siteuser/public/js/main.js"></script>
+<script type="text/javascript" src="/site/skins/wasd2_sub/public/js/guest.js"></script>
+<script type="text/javascript" src="/site/plugins/siteuser/public/js/main.js"></script>
 <?php } ?>
 
-<script type="text/javascript" src="<?php echo $GLOBALS['wasd_domain']; ?>/site/skins/wasd2_sub/public/js/share.js"></script>
+<script type="text/javascript" src="/site/skins/wasd2_sub/public/js/share.js"></script>
 <!--[if lt IE 9]><script type="text/javascript" src="/site/skins/wasd2_sub/public/js/pie.js"></script><![endif]-->
 
 <script src="//www.google.com/jsapi" type="text/javascript"></script>
@@ -60,7 +60,7 @@
 
 <style>
     body {
-        background: #455A6F url("<?php echo $GLOBALS['wasd_domain']; ?>/site/skins/wasd2_sub/public/images/mail-ru-bg.jpeg") no-repeat scroll center top;
+        background: #455A6F url("/site/skins/wasd2_sub/public/images/mail-ru-bg.jpeg") no-repeat scroll center top;
     }
 </style>
 
@@ -104,7 +104,7 @@
 
                                 <ul id="nav">
                                     <li>
-                                        <a href="<?php echo $GLOBALS['wasd_domain']; ?>/<?php if(isset($user_data['id'])) { ?>jobs<?php } else { ?>demo<?php } ?>">
+                                        <a href="/<?php if(isset($user_data['id'])) { ?>jobs<?php } else { ?>demo<?php } ?>">
                                             <div class="ditch-border">
                                                 <div class="inner-convex-background sab-nav-option">
                                                     Tasks
@@ -113,7 +113,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="<?php echo $GLOBALS['wasd_domain']; ?>/withdraw">
+                                        <a href="/withdraw">
                                             <div class="ditch-border">
                                                 <div class="inner-convex-background sab-nav-option">
                                                     Withdraw
@@ -121,7 +121,7 @@
                                             </div>
                                         </a>
                                     </li>
-                                    <li onclick="location.href='<?php echo $GLOBALS['wasd_domain']; ?>/discounts'" style="cursor:pointer;">
+                                    <li onclick="location.href='/discounts'" style="cursor:pointer;">
                                         <div class="ditch-border">
                                             <div class="inner-convex-background sab-nav-option">
                                                     <span>Deals</span>
@@ -138,7 +138,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="<?php echo $GLOBALS['wasd_domain']; ?>/guides">
+                                        <a href="/guides">
                                             <div class="ditch-border">
                                                 <div class="inner-convex-background sab-nav-option">
                                                     Video
@@ -164,11 +164,11 @@
                                                 </a>
                                             </li>
                                             <li>
-                                                                                                    <a href="<?php echo $GLOBALS['wasd_domain']; ?>/api/oauth/index?c_id=2&redirect=http://forum.wasdclub.com/ucp.php">
+                                                                                                    <a href="/api/oauth/index?c_id=2&redirect=http://forum.wasdclub.com/ucp.php">
                                                         <span>Forum</span>
                                                     </a>
                                                                                             </li>
-                                            <li onclick="location.href='<?php echo $GLOBALS['wasd_domain']; ?>/siteuser/news/list'" style="cursor:pointer;">
+                                            <li onclick="location.href='/siteuser/news/list'" style="cursor:pointer;">
                                                                                                     <span>News</span>
                                                                                             </li>
                                                                                             <li onclick="location.href='/articles'" style="cursor:pointer;">
@@ -176,7 +176,7 @@
                                                         <span class="number blue"> 2</span>
                                                                                                     </li>
                                                                                                                                         <li>
-                                                    <a href="<?php echo $GLOBALS['wasd_domain']; ?>/streams">
+                                                    <a href="/streams">
                                                         <span>Streams</span>
                                                     </a>
                                                 </li>
@@ -196,30 +196,30 @@
                                             <div class="ditch-border">
                                             <div class="inner-ditch-background">
                                             <li>
-                                                <a href="<?php echo $GLOBALS['wasd_domain']; ?>/siteuser/index/userinfo">
+                                                <a href="/siteuser/index/userinfo">
                                                     Анкета
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="<?php echo $GLOBALS['wasd_domain']; ?>/coins/docs/stat">
+                                                <a href="/coins/docs/stat">
                                                     Статистика
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="<?php echo $GLOBALS['wasd_domain']; ?>/premium">
+                                                <a href="/premium">
                                                     VIP
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="<?php echo $GLOBALS['wasd_domain']; ?>/pay">
+                                                <a href="/pay">
                                                     Пополнить счёт
                                                 </a>
                                             </li>
-                                            <li onclick="location.href='<?php echo $GLOBALS['wasd_domain']; ?>/support'" style="cursor:pointer;">
+                                            <li onclick="location.href='/support'" style="cursor:pointer;">
                                                 <span>Саппорт</span>
                                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="16px" style="enable-background:new 0 0 16 16;" class="mail_svg_icon"version="1.1" viewBox="0 0 16 16" width="16px" xml:space="preserve"><path d="M8,10c-0.266,0-0.5-0.094-1-0.336L0,6v7c0,0.55,0.45,1,1,1h14c0.55,0,1-0.45,1-1V6L9,9.664C8.5,9.906,8.266,10,8,10z M15,2  H1C0.45,2,0,2.45,0,3v0.758l8,4.205l8-4.205V3C16,2.45,15.55,2,15,2z" fill="#FFFFFF"/></svg>
                                                                                                                                                                                      <li>
-                                                <a href="<?php echo $GLOBALS['wasd_domain']; ?>/siteuser/index/logout">
+                                                <a href="/siteuser/index/logout">
                                                     Выход
                                                 </a>
                                             </li>

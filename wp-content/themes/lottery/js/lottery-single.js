@@ -38,18 +38,6 @@ $(function(){
         });
     }
     
-    function update_statuses(){
-        for(var i=0;i<tasks_id.length;++i){
-            var task_id = tasks_id[i];
-            if(typeof posts_statuses[post_id] !== 'undefined'
-                    && posts_statuses[post_id]){
-                set_status_active(post_id);
-            } else {
-                set_status_noactive(post_id);
-            }
-        }
-    }
-    
     function parse_tasks_data(){
         id_adv = $('#id-adv').val();
         var adv_id_a = id_adv.split(',');
@@ -74,11 +62,31 @@ $(function(){
         }
     }
     
+    function get_task_btn_cls(task_status){
+        var cls = 'loading';
+        switch(task_status){
+            case 'started':
+                cls = 'started';
+            break;
+            case 'paid':
+            case 'finished':
+                cls = 'finished';
+            break;
+            case 'error':
+            case 'not paid':
+            case 'not_paid':
+            break;
+            default: break;
+        }
+        return cls;
+    }
+    
     function set_task_status_v(task_type, task_id, task_status){
         console.log('set v ' + task_type + ' ' + task_id);
-        var e = $('ul#lottery-task-list > li[data-task-type="'+task_type+'"][data-task-id="'+task_id+'"]').first();
+        var e = $('ul#lottery-task-list > li[data-task-type="'+task_type+'"][data-task-id="'+task_id+'"]').first(),
+            btn_cls_ = get_task_btn_cls(task_status);
         e.find('.lottery-task-btn').hide();
-        e.find('.lottery-task-btn-'+task_status).first().show();
+        e.find('.lottery-task-btn-'+btn_cls_).first().show();
     }
     
     function update_task_status(task_type, adv_id, task_id){
@@ -88,7 +96,7 @@ $(function(){
         var task_status, k;
         if(adv_id){
             if(task_id){
-                task_status = tasks_statuses[task_type][adv_id][task_id]['status'];
+                task_status = tasks_statuses[task_type][adv_id][task_id]['task_status'];
                 set_task_status_v(task_type, task_id, task_status);
             } else {
                 var task_id;
@@ -131,6 +139,7 @@ $(function(){
                         }
                     } else {
                         // set status to all of current type and current adv
+                        console.log('all of type ' + task_type+' and adv '+adv_id);
                         update_task_status(task_type,adv_id);
                     }
                 }

@@ -11,6 +11,7 @@ class lottery {
     private $tasks_data = null;
     private $history_data = null;
     private $tasks_status_data = null;
+    private $camps_status_data = null;
     
     function __construct(){
         if(!$this->pg_init()){
@@ -20,6 +21,8 @@ class lottery {
         add_action( 'template_redirect', array( $this, 'init_before_theme' ), 1 );
         add_action( 'wp_ajax_nopriv_get_tasks_status', array( $this, 'get_tasks_status_ajax' ) );
         add_action( 'wp_ajax_get_tasks_status' , array( $this, 'get_tasks_status_ajax' ) );
+        add_action( 'wp_ajax_nopriv_get_camps_status', array( $this, 'get_camps_status_ajax' ) );
+        add_action( 'wp_ajax_get_camps_status' , array( $this, 'get_camps_status_ajax' ) );
     }
     
     public function __destruct() {
@@ -33,7 +36,7 @@ class lottery {
                 is_category('active')){
             //echo 'List';
             $this->load_posts_data();
-            $this->load_tasks_status_all();
+            $this->load_camps_status_all();
             $this->load_complete_cnt_all();
         } else if(is_single()){
             //echo 'Single';
@@ -365,6 +368,22 @@ class lottery {
         wp_send_json($data);
     }
     
+    private function load_tasks_status($user_id, $adv_ids){
+        $sql = "select * from lottery_tasks_status(" . $user_id . ", '{" . $adv_ids . "}'::INT[]);";
+        //echo $sql;
+        $result = pg_query($sql);
+        if(false === $result){
+            $this->error = 'Ошибка запроса: ' . pg_last_error();
+            return false;
+        }
+        $data = array();
+        while ($row = pg_fetch_array($result, null, PGSQL_ASSOC)) {
+            $data[ $row['task_type'] ][ $row['camp_id'] ][ $row['task_id'] ] = $row;
+        }
+        pg_free_result($result);
+        $this->tasks_status_data = $data;
+    }
+    
     public function is_complete_ajax($post_id){
         session_start();
         if(!isset($_SESSION['user_data']['id'])
@@ -386,8 +405,11 @@ class lottery {
         return $this->status;
     }
     
-    private function load_tasks_status($user_id, $adv_ids){
-        $sql = "select * from lottery_tasks_status(" . $user_id . ", '{" . $adv_ids . "}'::INT[]);";
+    private function load_camps_status($user_id, $adv_ids){
+        $sql = "select
+                t.*, c.type camp_type
+                from lottery_camps_status(" . $user_id . ", '{" . $adv_ids . "}'::INT[]) t
+                inner join adv_camps c on c.id = t.camp_id";
         //echo $sql;
         $result = pg_query($sql);
         if(false === $result){
@@ -396,20 +418,44 @@ class lottery {
         }
         $data = array();
         while ($row = pg_fetch_array($result, null, PGSQL_ASSOC)) {
-            $data[ $row['task_type'] ][ $row['camp_id'] ][ $row['task_id'] ] = $row;
+            $data[ $row['camp_type'] ][ $row['camp_id'] ] = $row['task_complete_cnt'];
         }
         pg_free_result($result);
-        $this->tasks_status_data = $data;
+        $this->camps_status_data = $data;
     }
     
-    private function load_tasks_status_all(){
+    private function load_camps_status_all(){
         if(!isset($GLOBALS['user_data']['id']) || empty($GLOBALS['user_data']['id'])){
             return false;
         }
-        $this->load_tasks_status($GLOBALS['user_data']['id'], $this->get_adv_ids_s());
+        $this->load_camps_status($GLOBALS['user_data']['id'], $this->get_adv_ids_s());
         foreach($this->posts_data as &$post){
             $post->lottery_complete_status = $this->is_complete($post->ID, $GLOBALS['user_data']['id']);
         }
+    }
+    
+    public function get_camps_status_ajax(){
+        session_start();
+        $data = array();
+        //$data['session'] = $_SESSION;
+        if(!isset($_SESSION['user_data']['id'])
+                || empty($_SESSION['user_data']['id'])){
+            $data['error'][] = 'empty user id';
+        }
+        if(!isset($_POST['id_adv'])
+                || empty($_POST['id_adv'])){
+            $data['error'][] = 'empty camp ids';
+        }
+        if(isset($data['error'])){
+            wp_send_json($data);
+            return false;
+        }
+        $this->load_camps_status($_SESSION['user_data']['id'], $_POST['id_adv']);
+        $data['statuses'] = $this->camps_status_data;
+        if(!empty($this->error)){
+            $data['error'][] = $this->error;
+        }
+        wp_send_json($data);
     }
     
     public function get_adv_ids_s(){
@@ -482,9 +528,8 @@ class lottery {
             }
             $s = true;
             foreach($adv_ids as $adv_id){
-                $s = (isset($this->tasks_status_data[ $adv_id ])
-                    && in_array($this->tasks_status_data[ $adv_id ]['task_status'], array('paid','finish')));
-                if(!$s){
+                if(!isset($this->camps_status_data[ $adv_id ])){
+                    $s = false;
                     break;
                 }
             }
