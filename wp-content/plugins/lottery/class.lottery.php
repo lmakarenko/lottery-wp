@@ -14,9 +14,9 @@ class lottery {
     private $camps_status_data = null;
     
     function __construct(){
-        if(!$this->is_session_started()){
+        /*if(!$this->is_session_started()){
             $this->start_session();
-        }
+        }*/
         if(!$this->pg_init()){
             $this->error = 'Ошибка подключения к БД: ' . pg_last_error();
             return false;
