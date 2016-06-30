@@ -385,7 +385,7 @@ class lottery {
     }
     
     public function is_complete_ajax($post_id){
-        session_start();
+        //session_start();
         if(!isset($_SESSION['user_data']['id'])
                 || empty($_SESSION['user_data']['id'])){
             $data['error'][] = 'empty user id';
@@ -435,7 +435,6 @@ class lottery {
     }
     
     public function get_camps_status_ajax(){
-        session_start();
         $data = array();
         //$data['session'] = $_SESSION;
         if(!isset($_SESSION['user_data']['id'])
@@ -559,7 +558,7 @@ class lottery {
     
     public function include_before_theme(){
         // incudes
-        include_once(LOTTERY__PLUGIN_DIR . 'core/api.php');
+        include_once('core/api.php');
     }
     
 }
