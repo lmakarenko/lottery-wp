@@ -14,7 +14,9 @@ class lottery {
     private $camps_status_data = null;
     
     function __construct(){
-        $this->start_session();
+        if(!$this->is_session_started()){
+            $this->start_session();
+        }
         if(!$this->pg_init()){
             $this->error = 'Ошибка подключения к БД: ' . pg_last_error();
             return false;
@@ -24,6 +26,17 @@ class lottery {
         add_action( 'wp_ajax_get_tasks_status' , array( $this, 'get_tasks_status_ajax' ) );
         add_action( 'wp_ajax_nopriv_get_camps_status', array( $this, 'get_camps_status_ajax' ) );
         add_action( 'wp_ajax_get_camps_status' , array( $this, 'get_camps_status_ajax' ) );
+    }
+    
+    private function is_session_started(){
+        if ( php_sapi_name() !== 'cli' ) {
+            if ( version_compare(phpversion(), '5.4.0', '>=') ) {
+                return session_status() === PHP_SESSION_ACTIVE ? TRUE : FALSE;
+            } else {
+                return session_id() === '' ? FALSE : TRUE;
+            }
+        }
+        return FALSE;
     }
     
     public function __destruct() {
