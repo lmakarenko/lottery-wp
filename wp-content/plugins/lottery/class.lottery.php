@@ -453,10 +453,7 @@ class lottery {
     }
     
     public function get_camps_status_ajax(){
-        $this->start_session();
-        session_start();
         $data = array();
-        $data['session'] = $_SESSION;
         if(!isset($_SESSION['user_data']['id'])
                 || empty($_SESSION['user_data']['id'])){
             $data['error'][] = 'empty user id';
