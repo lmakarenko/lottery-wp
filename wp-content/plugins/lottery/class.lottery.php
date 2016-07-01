@@ -14,9 +14,6 @@ class lottery {
     private $camps_status_data = null;
     
     function __construct(){
-        /*if(!$this->is_session_started()){
-            $this->start_session();
-        }*/
         if(!$this->pg_init()){
             $this->error = 'Ошибка подключения к БД: ' . pg_last_error();
             return false;
@@ -26,17 +23,6 @@ class lottery {
         add_action( 'wp_ajax_get_tasks_status' , array( $this, 'get_tasks_status_ajax' ) );
         add_action( 'wp_ajax_nopriv_get_camps_status', array( $this, 'get_camps_status_ajax' ) );
         add_action( 'wp_ajax_get_camps_status' , array( $this, 'get_camps_status_ajax' ) );
-    }
-    
-    private function is_session_started(){
-        if ( php_sapi_name() !== 'cli' ) {
-            if ( version_compare(phpversion(), '5.4.0', '>=') ) {
-                return session_status() === PHP_SESSION_ACTIVE ? TRUE : FALSE;
-            } else {
-                return session_id() === '' ? FALSE : TRUE;
-            }
-        }
-        return FALSE;
     }
     
     public function __destruct() {
@@ -62,13 +48,6 @@ class lottery {
             }
             $this->load_complete_cnt($adv_ids);
         }
-    }
-    
-    private function start_session(){
-        ini_set('session.cookie_domain', '.wasdclub.com' );
-        ini_set('session.save_handler', 'memcached' );
-        ini_set('session.save_path', '127.0.0.1:11212' );
-        session_start();
     }
     
     private function load_history_data($max_rows = 30){
@@ -150,7 +129,13 @@ class lottery {
         if($this->db_pg){
             return true;
         }
-        $this->db_pg = pg_connect("host=db.wasdclub.com dbname=mr_alpha user=mr_alpha password=mr_alpha500f");
+        if(false !== mb_strpos($_SERVER['SERVER_NAME'], 'wasdclub.com')){
+            $dns = "host=db.wasdclub.com dbname=mediareach user=mediareach password=jshnzoSh82nsni";
+        } else if(false !== mb_strpos($_SERVER['SERVER_NAME'], 'alpha.wasdclub.com')
+                || false !== mb_strpos($_SERVER['SERVER_NAME'], 'localhost')){
+            $dns = "host=db.wasdclub.com dbname=mr_alpha user=mr_alpha password=mr_alpha500f";
+        }
+        $this->db_pg = pg_connect($dns);
         return (false !== $this->db_pg);
     }
     
