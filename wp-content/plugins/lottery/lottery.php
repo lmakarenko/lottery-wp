@@ -10,10 +10,6 @@ License: GPLv2 or later
 Text Domain: lottery
 */
 
-/*if(is_admin()){
-    return;
-}*/
-
 if ( !function_exists( 'add_action' ) ) {
 	echo 'Hi there!  I\'m just a plugin, not much I can do when called directly.';
 	exit;

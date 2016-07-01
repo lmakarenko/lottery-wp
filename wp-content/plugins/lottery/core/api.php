@@ -31,8 +31,10 @@ function lottery_is_complete($c = false){
     return lottery()->is_complete($post_id, $user_id, $c);
 }
 
-function lottery_end_date(){
-    $post_id = get_the_ID();
+function lottery_end_date($post_id = false){
+    if(!$post_id){
+        $post_id = get_the_ID();
+    }
     $date_end = get_field('date_end', $post_id);
     return $date_end;
 }

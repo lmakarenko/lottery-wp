@@ -4,7 +4,6 @@ if( !class_exists('lottery') ):
 
 class lottery {
     
-    private $task_types = array('social','cpa');
     private $status = null;
     private $db_pg = null;
     private $error = null;
@@ -22,15 +21,23 @@ class lottery {
         add_action( 'template_redirect', array( $this, 'init_before_theme' ), 1 );
         add_action( 'wp_ajax_nopriv_get_tasks_status', array( $this, 'get_tasks_status_ajax' ) );
         add_action( 'wp_ajax_get_tasks_status' , array( $this, 'get_tasks_status_ajax' ) );
+        
         add_action( 'wp_ajax_nopriv_get_camps_status', array( $this, 'get_camps_status_ajax' ) );
         add_action( 'wp_ajax_get_camps_status' , array( $this, 'get_camps_status_ajax' ) );
+        
+        add_action( 'wp_ajax_nopriv_get_complete_cnt', array( $this, 'get_complete_cnt_ajax' ) );
+        add_action( 'wp_ajax_get_complete_cnt' , array( $this, 'get_complete_cnt_ajax' ) );
+        
     }
     
-    public function __destruct() {
+    function __destruct() {
         $this->pg_deinit();
     }
     
     public function init_before_theme() {
+        /*if(is_admin()){
+            return false;
+        }*/
         // includes
         $this->include_before_theme();
         if(is_home() ||
@@ -38,7 +45,7 @@ class lottery {
             //echo 'List';
             $this->load_posts_data();
             $this->load_camps_status_all();
-            $this->load_complete_cnt_all();
+            $this->load_complete_cnt_all( $this->posts_data );
         } else if(is_single()){
             //echo 'Single';
             $post_id = get_the_ID();
@@ -48,6 +55,8 @@ class lottery {
                 $this->load_tasks_status($GLOBALS['user_data']['id'], $adv_ids);
             }
             $this->load_complete_cnt($adv_ids);
+            $this->load_history_data();
+            $this->load_complete_cnt_all( $this->history_data );
         }
     }
     
@@ -285,20 +294,40 @@ class lottery {
         $this->posts_data = $d;
     }
     
+    public function get_complete_cnt_ajax(){
+        if(!isset($_POST['id_posts'])
+                || empty($_POST['id_posts'])){
+            $data['error'][] = 'empty posts ids';
+        }
+        if(isset($data['error'])){
+            wp_send_json($data);
+            return false;
+        }
+        $post_ids = explode(',', $_POST['id_posts']);
+        foreach($post_ids as $post_id){
+            $adv_ids = get_field('id_adv', $post_id);
+            $data[ $post_id ]['cnt'] = $this->load_complete_cnt($adv_ids);
+            if(!empty($this->error)){
+                $data['error'][] = $this->error;
+            }
+        }
+        wp_send_json($data);
+    }
+    
     private function load_complete_cnt($adv_ids){
         $sql = "SELECT lottery_participants_cnt_new('{" . $adv_ids . "}'::INT[]) cnt;";
         //echo $sql;
-        $result = pg_query($sql);
+        $result = pg_query($this->db_pg, $sql);
         if(false === $result){
-            $this->error = 'Ошибка запроса: ' . pg_last_error();
+            $this->error = 'Ошибка запроса: ' . pg_last_error($this->db_pg);
             return false;
         }
         $row = pg_fetch_array($result, null, PGSQL_ASSOC);
         return $row['cnt'];
     }
     
-    private function load_complete_cnt_all(){
-        foreach($this->posts_data as &$post){
+    private function load_complete_cnt_all(&$posts){
+        foreach($posts as &$post){
             $post->lottery_complete_cnt = $this->get_complete_cnt($post->ID);
         }
     }
@@ -328,7 +357,7 @@ class lottery {
     public function get_posts_data( $post_id = false ){
         if(empty($this->posts_data)){
             $this->load_posts_data( $post_id );
-            $this->load_complete_cnt_all();
+            $this->load_complete_cnt_all( $this->posts_data );
         }
         return $this->posts_data;
     }
@@ -377,9 +406,9 @@ class lottery {
     private function load_tasks_status($user_id, $adv_ids){
         $sql = "select * from lottery_tasks_status(" . $user_id . ", '{" . $adv_ids . "}'::INT[]);";
         //echo $sql;
-        $result = pg_query($sql);
+        $result = pg_query($this->db_pg, $sql);
         if(false === $result){
-            $this->error = 'Ошибка запроса: ' . pg_last_error();
+            $this->error = 'Ошибка запроса: ' . pg_last_error($this->db_pg);
             return false;
         }
         $data = array();
@@ -417,9 +446,9 @@ class lottery {
                 inner join adv_camps c on c.id = t.camp_id";*/
         $sql = "select * from lottery_camps_status(" . $user_id . ", '{" . $adv_ids . "}'::INT[]);";
         //echo $sql;
-        $result = pg_query($sql);
+        $result = pg_query($this->db_pg, $sql);
         if(false === $result){
-            $this->error = 'Ошибка запроса: ' . pg_last_error();
+            $this->error = 'Ошибка запроса: ' . pg_last_error($this->db_pg);
             return false;
         }
         $data = array();
@@ -557,7 +586,7 @@ class lottery {
         if(empty($this->history_data)){
             return;
         }
-        $old = $this->get_history_data();
+        $old = &$this->history_data;
         include(locate_template( 'template-parts/lottery-history.php' ));
     }
     

@@ -4,10 +4,12 @@ $(function(){
         tasks_statuses, task_types = ['social','cpa'],
         task_status_q = {}, task_q = [];
     
-    (function init(){
+    setTimeout(init, 16000);
+    
+    function init(){
         parse_tasks_data();
         status_updater();
-    })();
+    }
     
     function status_updater(){
         if (taskTimeoutId) {

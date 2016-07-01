@@ -36,12 +36,13 @@ if(0 < count($posts)){
                 </ul>
             </div>
         </div>
+        <?php lottery_print_history(); ?>
     </div>
     <div class="clear"></div>
-    <?php lottery_print_history(); ?>
 </div>
 <input type="hidden" id="id-adv" name="id_adv" value="<?php echo lottery_get_adv_ids_s(); ?>" />
 <script type="text/javascript" src="/wp-content/themes/lottery/js/lottery-single.js"></script>
+<script type="text/javascript" src="/wp-content/themes/lottery/js/lottery-history.js"></script>
 <?php get_footer(); ?>
 <!--
 <?php

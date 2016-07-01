@@ -3,11 +3,16 @@ $(function(){
     var taskTimeoutId, camps_statuses, posts_statuses = {}, posts_id, id_adv,
         post_status_q = [], post_q = [];
     
-    (function init(){
+    parse_posts_data();
+    bind_posts_events();
+    setTimeout(init, 16000);
+    
+    function init(){
         parse_posts_data();
         bind_posts_events();
+        create_post_q();
         status_updater();
-    })();
+    }
     
     function status_updater(){
         
@@ -54,9 +59,12 @@ $(function(){
     }
         
     function parse_posts_data(){
-        var i, post_id;
         id_adv = $('#id-adv').val();
         posts_id = $('#id-posts').val().split(',');
+    }
+    
+    function create_post_q(){
+        var i, post_id;
         for(i=0;i<posts_id.length;++i){
             post_id = posts_id[i];
             post_status_q.push(post_id);
