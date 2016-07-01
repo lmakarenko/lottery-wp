@@ -45,7 +45,7 @@ a.post-c{
 }
 .lottery-complete-c{
     display:none;
-    margin: 20px 370px 0 0;
+    margin: 20px 0 0 0;
     font-size: 14px;
     line-height: 19px;
 }
@@ -81,7 +81,7 @@ a.post-c{
     right:-6px; top:-7px;
 }
 #lottery-top-text {
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.25);
     bottom: 0;
     left: 0;
     margin: 0 0 20px 25px;
@@ -91,7 +91,7 @@ a.post-c{
     width: 428px;
 }
 .lottery-overlay{
-    background-color: rgba(0, 0, 0, 0.7) !important;
+    background-color: rgba(0, 0, 0, 0.25) !important;
     width:100%;
     height:100%;
     position:absolute;

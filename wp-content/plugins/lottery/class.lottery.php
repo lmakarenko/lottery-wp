@@ -4,6 +4,7 @@ if( !class_exists('lottery') ):
 
 class lottery {
     
+    private $task_types = array('social','cpa');
     private $status = null;
     private $db_pg = null;
     private $error = null;
@@ -129,13 +130,14 @@ class lottery {
         if($this->db_pg){
             return true;
         }
-        if(false !== mb_strpos($_SERVER['SERVER_NAME'], 'wasdclub.com')){
-            $dns = "host=db.wasdclub.com dbname=mediareach user=mediareach password=jshnzoSh82nsni";
-        } else if(false !== mb_strpos($_SERVER['SERVER_NAME'], 'alpha.wasdclub.com')
-                || false !== mb_strpos($_SERVER['SERVER_NAME'], 'localhost')){
-            $dns = "host=db.wasdclub.com dbname=mr_alpha user=mr_alpha password=mr_alpha500f";
-        }
-        $this->db_pg = pg_connect($dns);
+        $dsn = "host=db.wasdclub.com dbname=mediareach user=mediareach password=jshnzoSh82nsni";
+        /*
+        if(false !== mb_strpos(str_replace('www.', '', $_SERVER['SERVER_NAME']), 'wasdclub.com')){
+            $dsn = "host=db.wasdclub.com dbname=mediareach user=mediareach password=jshnzoSh82nsni";
+        } else {
+            $dsn = "host=db.wasdclub.com dbname=mr_alpha user=mr_alpha password=mr_alpha500f";
+        }*/
+        $this->db_pg = pg_connect($dsn);
         return (false !== $this->db_pg);
     }
     
@@ -409,10 +411,11 @@ class lottery {
     }
     
     private function load_camps_status($user_id, $adv_ids){
-        $sql = "select
+        /*$sql = "select
                 t.*, c.type camp_type
                 from lottery_camps_status(" . $user_id . ", '{" . $adv_ids . "}'::INT[]) t
-                inner join adv_camps c on c.id = t.camp_id";
+                inner join adv_camps c on c.id = t.camp_id";*/
+        $sql = "select * from lottery_camps_status(" . $user_id . ", '{" . $adv_ids . "}'::INT[]);";
         //echo $sql;
         $result = pg_query($sql);
         if(false === $result){
@@ -421,7 +424,7 @@ class lottery {
         }
         $data = array();
         while ($row = pg_fetch_array($result, null, PGSQL_ASSOC)) {
-            $data[ $row['camp_type'] ][ $row['camp_id'] ] = $row['task_complete_cnt'];
+            $data[ $row['camp_id'] ] = $row['task_complete_cnt'];
         }
         pg_free_result($result);
         $this->camps_status_data = $data;

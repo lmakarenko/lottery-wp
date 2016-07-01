@@ -40,4 +40,3 @@ txt_a(lottery_get_posts());
 txt_a(lottery_get_tasks_status());
 ?>
 -->
-
