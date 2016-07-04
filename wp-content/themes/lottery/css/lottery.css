@@ -11,6 +11,10 @@
     position: relative;
 }
 
+.post-content ul{
+    margin-left:0;
+}
+
 .lottery-outer-c{
     padding:10px 13px 0 13px;
 }
