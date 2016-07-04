@@ -9,7 +9,7 @@
 <title>WASD</title>
 
 <link type="text/css" rel="stylesheet" href="/cms/public/css/main.css" />
-<?php/*
+<?php /*
 <link type="text/css" rel="stylesheet" href="/cms/public/bootstrap/css/bootstrap.min.css" />
 <link type="text/css" rel="stylesheet" href="/cms/public/bootstrap/css/datepicker.css" />
 <link type="text/css" rel="stylesheet" href="/cms/public/css/jquery/smoothness/jquery-ui.custom.min.css" />
