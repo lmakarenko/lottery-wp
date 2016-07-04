@@ -260,9 +260,18 @@ class lottery {
         $data = array();
         while ($row = pg_fetch_array($result, null, PGSQL_ASSOC)) {
             
-            $row['need_vk_auth'] = (($row['vk_id_send'] || $row['vk_link']) && !$user_data['vk_id']) ? true : false;
-            $row['need_fb_auth'] = false;
-            //$row['need_fb_auth'] = ($row['fb_link'] && !$user_data['fb_id']) ? true : false;
+            if ($row['task_type'] == 'social') {
+                $param = $row['soc_type'] . '_id';
+                if (!isset($user_data[$param]) || !$user_data[$param]) {
+                    $row['need_auth'] = true;
+                }
+            } else {
+                $row['need_vk_auth'] = (($row['vk_id_send'] || $row['vk_link'])
+                        && (!isset($user_data['vk_id']) || !$user_data['vk_id'])) ? true : false;
+                $row['need_fb_auth'] = false;
+                /*$row['need_fb_auth'] = ($row['fb_link']
+                        && (!isset($user_data['vk_id']) || !$user_data['fb_id'])) ? true : false;*/
+            }
             
             $data[ $row['adv_camp'] ][ $row['id'] ] = $row;
         }
