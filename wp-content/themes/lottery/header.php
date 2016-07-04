@@ -105,7 +105,7 @@
 
                                 <ul id="nav">
                                     <li>
-                                        <a href="/<?php if(isset($GLOBALS['user_data']['id'])) { ?>jobs<?php } else { ?>demo<?php } ?>">
+                                        <a href="<?php echo $GLOBALS['wasd_domain']; ?>/<?php if(isset($GLOBALS['user_data']['id'])) { ?>jobs<?php } else { ?>demo<?php } ?>">
                                             <div class="ditch-border">
                                                 <div class="inner-convex-background sab-nav-option">
                                                     Tasks
@@ -114,7 +114,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="/withdraw">
+                                        <a href="<?php echo $GLOBALS['wasd_domain']; ?>/withdraw">
                                             <div class="ditch-border">
                                                 <div class="inner-convex-background sab-nav-option">
                                                     Withdraw
@@ -122,7 +122,7 @@
                                             </div>
                                         </a>
                                     </li>
-                                    <li onclick="location.href='/discounts'" style="cursor:pointer;">
+                                    <li onclick="location.href='<?php echo $GLOBALS['wasd_domain']; ?>/discounts'" style="cursor:pointer;">
                                         <div class="ditch-border">
                                             <div class="inner-convex-background sab-nav-option">
                                                     <span>Deals</span>
@@ -139,7 +139,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="/guides">
+                                        <a href="<?php echo $GLOBALS['wasd_domain']; ?>/guides">
                                             <div class="ditch-border">
                                                 <div class="inner-convex-background sab-nav-option">
                                                     Video
@@ -160,33 +160,32 @@
                                             <div class="ditch-border">
                                             <div class="inner-ditch-background">
                                             <li>
-                                                <a href="games">
+                                                <a href="<?php echo $GLOBALS['wasd_domain']; ?>/games">
                                                     <span>Games</span>
                                                 </a>
                                             </li>
                                             <li>
-                                                                                                    <a href="/api/oauth/index?c_id=2&redirect=http://forum.wasdclub.com/ucp.php">
+                                                    <a href="<?php echo $GLOBALS['wasd_domain']; ?>/api/oauth/index?c_id=2&redirect=http://forum.wasdclub.com/ucp.php">
                                                         <span>Forum</span>
                                                     </a>
-                                                                                            </li>
-                                            <li onclick="location.href='/siteuser/news/list'" style="cursor:pointer;">
-                                                                                                    <span>News</span>
-                                                                                            </li>
-                                                                                            <li onclick="location.href='/articles'" style="cursor:pointer;">
-                                                                                                            <span class="clr-chngn">Blog</span>
-                                                        <span class="number blue"> 2</span>
-                                                                                                    </li>
-                                                                                                                                        <li>
-                                                    <a href="/streams">
-                                                        <span>Streams</span>
-                                                    </a>
-                                                </li>
-                                                                                        </div>
+                                            </li>
+                                            <li onclick="location.href='<?php echo $GLOBALS['wasd_domain']; ?>/siteuser/news/list'" style="cursor:pointer;">
+                                                <span>News</span>
+                                            </li>
+                                            <li onclick="location.href='<?php echo $GLOBALS['wasd_domain']; ?>/articles'" style="cursor:pointer;">
+                                                <span class="clr-chngn">Blog</span>
+                                                <span class="number blue"> 2</span>
+                                            </li>
+                                            <a href="<?php echo $GLOBALS['wasd_domain']; ?>/streams">
+                                                <span>Streams</span>
+                                            </a>
+                                    </li>
+                                </div>
                                             </div>
                                         </ul>
                                     </li>
                                     <li>
-                                                                            <a href="#" onclick="return false;">
+                                        <a href="#" onclick="return false;">
                                             <div class="ditch-border">
                                                 <div class="inner-convex-background sab-nav-option">
                                                     Личный кабинет
@@ -197,30 +196,30 @@
                                             <div class="ditch-border">
                                             <div class="inner-ditch-background">
                                             <li>
-                                                <a href="/siteuser/index/userinfo">
+                                                <a href="<?php echo $GLOBALS['wasd_domain']; ?>/siteuser/index/userinfo">
                                                     Анкета
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="/coins/docs/stat">
+                                                <a href="<?php echo $GLOBALS['wasd_domain']; ?>/coins/docs/stat">
                                                     Статистика
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="/premium">
+                                                <a href="<?php echo $GLOBALS['wasd_domain']; ?>/premium">
                                                     VIP
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="/pay">
+                                                <a href="<?php echo $GLOBALS['wasd_domain']; ?>/pay">
                                                     Пополнить счёт
                                                 </a>
                                             </li>
-                                            <li onclick="location.href='/support'" style="cursor:pointer;">
+                                            <li onclick="location.href='<?php echo $GLOBALS['wasd_domain']; ?>/support'" style="cursor:pointer;">
                                                 <span>Саппорт</span>
                                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="16px" style="enable-background:new 0 0 16 16;" class="mail_svg_icon"version="1.1" viewBox="0 0 16 16" width="16px" xml:space="preserve"><path d="M8,10c-0.266,0-0.5-0.094-1-0.336L0,6v7c0,0.55,0.45,1,1,1h14c0.55,0,1-0.45,1-1V6L9,9.664C8.5,9.906,8.266,10,8,10z M15,2  H1C0.45,2,0,2.45,0,3v0.758l8,4.205l8-4.205V3C16,2.45,15.55,2,15,2z" fill="#FFFFFF"/></svg>
                                                                                                                                                                                      <li>
-                                                <a href="/siteuser/index/logout">
+                                                <a href="<?php echo $GLOBALS['wasd_domain']; ?>/siteuser/index/logout">
                                                     Выход
                                                 </a>
                                             </li>

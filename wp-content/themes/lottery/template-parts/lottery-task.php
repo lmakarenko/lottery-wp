@@ -13,7 +13,7 @@
                         </div>
                                 <div class="row">
                                             <div class="pre-ready lottery-task-btn lottery-task-btn-start" <?php if ($is_user){ ?>style="display:none;"<?php } ?>>
-                                                    <a title="Участвовать" href="<?php if ($is_user){ ?><?php echo $GLOBALS['wasd_domain']; ?>/soctask/user/starttask/id/<?php echo $t['id']; ?><?php } else { ?>#<?php } ?>" target="_blank" <?php if (!$is_user){ ?>onclick="showDemoLogin();return false;"<?php } ?> class="button">
+                                                    <a title="Участвовать" href="<?php if ($is_user){ ?><?php echo $GLOBALS['wasd_domain']; ?>/soctask/user/starttask/id/<?php echo $t['id']; ?><?php } else { echo $GLOBALS['wasd_domain']; } ?>" target="_blank" class="button">
                                                             <div class="ready pc">Участвовать</div>
                                                     </a>
                                                 <!-- {$captcha|default:''} -->
