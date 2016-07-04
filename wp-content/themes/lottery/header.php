@@ -185,6 +185,7 @@
                                         </ul>
                                     </li>
                                     <li>
+                                    <?php if(isset($GLOBALS['user_data']['id'])){ ?>
                                         <a href="#" onclick="return false;">
                                             <div class="ditch-border">
                                                 <div class="inner-convex-background sab-nav-option">
@@ -226,7 +227,16 @@
                                             </div>
                                             </div>
                                         </ul>
-                                                                        </li>
+                                    <?php } else { ?>
+                                        <a href="<?php echo $GLOBALS['wasd_domain']; ?>">
+                                            <div class="ditch-border">
+                                                <div class="inner-convex-background sab-nav-option">
+                                                    Вход
+                                                </div>
+                                            </div>
+                                        </a>
+                                    <?php } ?>
+                                    </li>
                                 </ul>
 
                             </div>
