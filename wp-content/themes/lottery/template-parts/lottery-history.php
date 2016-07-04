@@ -22,7 +22,7 @@
 ?>
     <div class="lottery-history-bg lottery-history-item">
         <div class="lottery-history-c">
-            <img class="lottery-history-img" src="<?php the_field('logo3', $c->ID); ?>" />
+            <img class="lottery-history-img" src="<?php the_field('logo1', $c->ID); ?>" />
             <div class="lottery-history-c1">
                 <div class="lottery-history-c11">спонсор</div>
                 <div class="lottery-history-c12"><?php echo $c->post_title; ?></div>

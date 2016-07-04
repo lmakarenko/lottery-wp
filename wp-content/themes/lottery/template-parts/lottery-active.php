@@ -32,7 +32,7 @@ $logo3 = get_field('logo3', $post_id);
             </div>
             <div class="lottery-complete-c" data-id="<?php echo $post_id; ?>">
                 <div>
-                    <div class="fl">Поздравляем! Вы участник конкурса!</div>
+                    <div class="fl"><?php if($is_complete){ ?>Поздравляем! Вы участник розыгрыша!<?php } else { ?>Стань участником розыгрыша!<?php } ?></div>
                     <div class="lottery-complete">
                         <span class="lottery-complete-cnt pic"></span>
                         <span class="lottery-complete-cnt-n" data-id="<?php echo $post_id; ?>"><?php echo $complete_cnt; ?></span>
