@@ -38,7 +38,7 @@ $(function(){
                   console.log('task_q:',task_q);
                   */
                   if(0 < task_q.length){
-                    taskTimeoutId = setTimeout(status_updater, 16000);
+                    taskTimeoutId = setTimeout(status_updater, 36000);
                   }
                 }
             }

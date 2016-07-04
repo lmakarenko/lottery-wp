@@ -1,6 +1,8 @@
 #lottery-outer-c .lottery-top-text-c{
     padding:0;
+    border:0;
 }
+
 .lottery-outer-c{
     padding:10px 13px 0 13px;
 }
@@ -21,6 +23,10 @@ a.post-c{
 }
 .newPost .lottery-top-text-c .inner{
     position:relative;
+}
+.newPost .lottery-top-text-c .inner img.lottery-bg{
+    max-width: 100% !important;
+    border:0;
 }
 .newPost{
     display: block;
@@ -84,6 +90,7 @@ a.post-c{
     position:absolute;
     background:url("../images/lottery-coreners.png") 0 0 no-repeat scroll transparent;
     width:66px; height:63px;
+    z-index:2;
 }
 .lottery-corener.noactive, .newPost.noactive .lottery-corener{
     display:block;

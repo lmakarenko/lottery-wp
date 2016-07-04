@@ -55,9 +55,9 @@ class lottery {
                 $this->load_tasks_status($GLOBALS['user_data']['id'], $adv_ids);
             }
             //$this->load_complete_cnt($adv_ids);
-            $this->load_history_data();
-            $this->load_complete_cnt_all( $this->history_data );
         }
+        $this->load_history_data();
+        $this->load_complete_cnt_all( $this->history_data );
     }
     
     private function load_history_data($max_rows = 30){

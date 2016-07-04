@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 <div id="main">
-<div class="lottery-outer-c">
+<div id="lottery-outer-c" class="lottery-outer-c">
 <div class="title-h">розыгрыши</div>
 <?php
 
@@ -26,12 +26,14 @@ else :
 endif;
 
 ?>
+<?php lottery_print_history(); ?>
 </div>
 </div>
 <input type="hidden" id="id-posts" name="id_posts" value="<?php echo lottery_get_posts_ids_s(); ?>" />
 <input type="hidden" id="id-adv" name="id_adv" value="<?php echo lottery_get_adv_ids_s(); ?>" />
 <script type="text/javascript" src="/wp-content/themes/lottery/js/lottery-index.js"></script>
 <script type="text/javascript" src="/wp-content/themes/lottery/js/lottery-complete.js"></script>
+<script type="text/javascript" src="/wp-content/themes/lottery/js/lottery-history.js"></script>
 <?php get_footer(); ?>
 <!--
 <?php

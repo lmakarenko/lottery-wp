@@ -180,7 +180,7 @@
                                             </li>
                                             <li onclick="location.href='<?php echo $GLOBALS['wasd_domain']; ?>/articles'" style="cursor:pointer;">
                                                 <span class="clr-chngn">Blog</span>
-                                                <span class="number blue"> 2</span>
+                                                <span class="number blue">2</span>
                                             </li>
                                             <a href="<?php echo $GLOBALS['wasd_domain']; ?>/streams">
                                                 <span>Streams</span>
