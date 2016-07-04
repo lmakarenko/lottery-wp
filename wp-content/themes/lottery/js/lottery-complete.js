@@ -2,7 +2,7 @@ $('document').ready(function(){
     
     var checkTimeoutId = false, posts_id_s = $('#id-posts').val(), posts_id = posts_id_s.split(',');
     
-    setTimeout(checkCompleteCnt, 16000);
+    checkCompleteCnt();
     
     function checkCompleteCnt(id_adv){
         
@@ -21,12 +21,12 @@ $('document').ready(function(){
                 
                 var i, cnt, post_id;
                 
-                for(i=0;i<posts_id;++i){
+                for(i=0;i<posts_id.length;++i){
                     post_id = posts_id[i];
                     if(!data[ post_id ]){
                         continue;
                     }
-                    cnt = data[ post_id ].cnt || false;
+                    cnt = data[ post_id ].cnt || false;                   
                     if(false !== cnt){
                         cnt = parseInt(cnt);
                         $('.lottery-complete-cnt-n[data-id="' + post_id + '"]').first().html(cnt);

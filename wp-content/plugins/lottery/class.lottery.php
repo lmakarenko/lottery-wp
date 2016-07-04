@@ -44,8 +44,8 @@ class lottery {
                 is_category('active')){
             //echo 'List';
             $this->load_posts_data();
-            $this->load_camps_status_all();
-            $this->load_complete_cnt_all( $this->posts_data );
+            //$this->load_camps_status_all();
+            //$this->load_complete_cnt_all( $this->posts_data );
         } else if(is_single()){
             //echo 'Single';
             $post_id = get_the_ID();
@@ -54,7 +54,7 @@ class lottery {
             if(isset($GLOBALS['user_data']['id']) && !empty($GLOBALS['user_data']['id'])){
                 $this->load_tasks_status($GLOBALS['user_data']['id'], $adv_ids);
             }
-            $this->load_complete_cnt($adv_ids);
+            //$this->load_complete_cnt($adv_ids);
             $this->load_history_data();
             $this->load_complete_cnt_all( $this->history_data );
         }
@@ -546,7 +546,7 @@ class lottery {
     }
     
     public function is_complete($post_id, $user_id, $c = false){
-        if(empty($this->tasks_status_data)){
+        if(empty($this->camps_status_data)){
             return false;
         }
         if($c){

@@ -6,9 +6,10 @@
  * @subpackage lottery
  * @since lottery 1.0
  */
+$is_user = isset($GLOBALS['user_data']['id']) && (int)$GLOBALS['user_data']['id'] > 0;
 $post_id = get_the_ID();
 $is_complete = lottery_is_complete(true);
-$is_complete_cls = $is_complete ? 'active' : 'noactive';
+$is_complete_cls = $is_user ? ($is_complete ? ' active' : ' noactive') : '';
 $complete_cnt = lottery_get_complete_cnt($post_id, true);
 $end_date = lottery_end_date();
 $title = get_the_title();
@@ -17,7 +18,7 @@ $logo3 = get_field('logo3', $post_id);
 
 ?>
 <a class="post-c" href="<?php echo esc_url( get_permalink() ); ?>" title="<?php echo $title; ?>">    
-<div data-id="<?php echo $post_id; ?>" data-adv="<?php echo $adv_ids; ?>" style="display:block;" href="<?php echo esc_url( get_permalink() ); ?>" class="newPost c-lottery <?php echo $is_complete_cls; ?>">
+<div data-id="<?php echo $post_id; ?>" data-adv="<?php echo $adv_ids; ?>" style="display:block;" href="<?php echo esc_url( get_permalink() ); ?>" class="newPost c-lottery<?php echo $is_complete_cls; ?>">
 <div class="lottery-top-text-c">
     <div class="inner clear">
         <div class="lottery-overlay" data-id="<?php echo $post_id; ?>"></div>

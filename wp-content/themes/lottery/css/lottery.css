@@ -43,11 +43,16 @@ a.post-c{
     font-size:28px;
     line-height:28px;
 }
+.lottery-inner-content{
+    font-size: 16px;
+    line-height: 20px;
+}
+.lottery-inner-content h2.post-title{
+    font-size:16px;
+}
 .lottery-complete-c{
     /*display:none;*/
     margin: 20px 0 0 0;
-    font-size: 14px;
-    line-height: 19px;
 }
 .lottery-complete{
     padding-left:40px;
@@ -75,15 +80,18 @@ a.post-c{
     position:relative;
 }
 .lottery-corener{
+    display:none;
     position:absolute;
     background:url("../images/lottery-coreners.png") 0 0 no-repeat scroll transparent;
     width:66px; height:63px;
 }
 .lottery-corener.noactive, .newPost.noactive .lottery-corener{
+    display:block;
     background-position: 0 0;
     right:-6px; top:-6px;
 }
 .lottery-corener.active, .newPost.active .lottery-corener{
+    display:block;
     background-position: 0 -65px;
     right:-6px; top:-7px;
 }

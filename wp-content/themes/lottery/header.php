@@ -10,11 +10,12 @@
 
 <link type="text/css" rel="stylesheet" href="/cms/public/css/main.css" />
 <?php /*
-<link type="text/css" rel="stylesheet" href="/cms/public/bootstrap/css/bootstrap.min.css" />
 <link type="text/css" rel="stylesheet" href="/cms/public/bootstrap/css/datepicker.css" />
 <link type="text/css" rel="stylesheet" href="/cms/public/css/jquery/smoothness/jquery-ui.custom.min.css" />
 <link type="text/css" rel="stylesheet" href="/site/plugins/coins/public/css/controller/docs/charity/cabinet.css" />
  */?>
+<link type="text/css" rel="stylesheet" href="/cms/public/bootstrap/css/bootstrap.min.css" />
+
 <link type="text/css" rel="stylesheet" href="/site/skins/wasd2_sub/public/css/lottery.css" />
 <link type="text/css" rel="stylesheet" href="/wp-content/themes/lottery/css/lottery.css" />
 
@@ -45,10 +46,14 @@
 <?php /*<script type="text/javascript" src="/site/skins/wasd2_sub/public/js/soctask_script.js"></script>*/ ?>
 <script type="application/javascript">var isGuest = false;</script>
 <?php } else { ?>
+<script type="application/javascript">var isGuest = true;</script>
+<?php /*
 <script type="text/javascript" src="/site/skins/wasd2_sub/public/js/guest.js"></script>
 <script type="text/javascript" src="/site/plugins/siteuser/public/js/main.js"></script>
+*/ ?>
 <?php } ?>
 
+<?php /*
 <script type="text/javascript" src="/site/skins/wasd2_sub/public/js/share.js"></script>
 <!--[if lt IE 9]><script type="text/javascript" src="/site/skins/wasd2_sub/public/js/pie.js"></script><![endif]-->
 
@@ -58,6 +63,7 @@
   google.load("swfobject", "2.1");
 </script>
 <script type="text/javascript" src="//yandex.st/share/share.js" charset="utf-8"></script>
+*/ ?>
 
 <style>
     body {
