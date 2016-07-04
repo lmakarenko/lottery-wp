@@ -1,5 +1,5 @@
 .c-lottery{
-    padding:15px 0;
+    padding:0 0 15px 0;
 }
 #lottery-outer-c .lottery-top-text-c{
     padding:0;
@@ -20,6 +20,7 @@ a.post-c{
     padding: 0;
     width: 870px;
 }
+
 #newPost .post-c{
     margin: 20px auto 0;
 }
