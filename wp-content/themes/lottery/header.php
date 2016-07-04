@@ -94,7 +94,6 @@
         <div id="wrapper">
             <div class="w1">
             <div class="ad" style="height: 120px;">
-                <?php /*
                 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                 <!-- Wasd TOP -->
                 <ins class="adsbygoogle"
@@ -104,7 +103,6 @@
                 <script>
                     (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
-                 */ ?>
             </div>
                         <div id="header">
                                 <div class="nav-holder">
@@ -156,11 +154,9 @@
                                     <li>
                                         <div class="ditch-border" style="cursor:pointer;">
                                             <div class="inner-convex-background sab-nav-option">
-                                                                                                    <span class="clr-chngn">Other</span>
-                                                    <span class="number"> 
-                                                        2
-                                                    </span>
-                                                                                            </div>
+                                                <span>Other</span>
+                                                <span class="number"></span>
+                                            </div>
                                         </div>
                                         <ul class="drop">
                                             <div class="ditch-border">
@@ -179,8 +175,8 @@
                                                 <span>News</span>
                                             </li>
                                             <li onclick="location.href='<?php echo $GLOBALS['wasd_domain']; ?>/articles'" style="cursor:pointer;">
-                                                <span class="clr-chngn">Blog</span>
-                                                <span class="number blue">2</span>
+                                                <span>Blog</span>
+                                                <span class="number blue"></span>
                                             </li>
                                             <a href="<?php echo $GLOBALS['wasd_domain']; ?>/streams">
                                                 <span>Streams</span>

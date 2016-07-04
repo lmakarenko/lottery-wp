@@ -2,6 +2,11 @@
     padding:0;
     border:0;
 }
+#lottery-outer-c .lottery-top-text-c > .inner{
+    border: 0 none;
+    height: 336px;
+    position: relative;
+}
 
 .lottery-outer-c{
     padding:10px 13px 0 13px;

@@ -46,12 +46,12 @@ if(0 < count($posts)){
 <script type="text/javascript" src="/wp-content/themes/lottery/js/lottery-single.js"></script>
 <script type="text/javascript" src="/wp-content/themes/lottery/js/lottery-history.js"></script>
 <?php get_footer(); ?>
-<!--
 <?php
+/*
 txt_a($user_data);
 txt_a(lottery_get_posts());
 txt_a(lottery_get_tasks_data());
 txt_a(lottery_get_tasks_status());
 txt_a(lottery_get_history_data());
+*/
 ?>
--->

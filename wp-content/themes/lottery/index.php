@@ -35,11 +35,11 @@ endif;
 <script type="text/javascript" src="/wp-content/themes/lottery/js/lottery-complete.js"></script>
 <script type="text/javascript" src="/wp-content/themes/lottery/js/lottery-history.js"></script>
 <?php get_footer(); ?>
-<!--
 <?php
+/*
 txt_a($GLOBALS['user_data']);
 txt_a(lottery_get_posts());
 //txt_a(lottery_get_tasks_data());
 txt_a(lottery_get_tasks_status());
+ */
 ?>
--->
