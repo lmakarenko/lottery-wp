@@ -1,11 +1,11 @@
 $(function(){
     
     var taskTimeoutId, camps_statuses, posts_statuses = {}, posts_id, id_adv,
-        post_status_q = [], post_q = [];
+        post_status_q = [], post_q = [], animating = false;
     
     parse_posts_data();
     bind_posts_events();
-    setTimeout(init, 16000);
+    init();
     
     function init(){
         parse_posts_data();
@@ -77,16 +77,24 @@ $(function(){
             post_id = posts_id[i];
             el = $('.newPost[data-id="'+post_id+'"]').first().parent()
                 .on('mouseenter', {'post_id': post_id}, function(e){
-                    var post_id = e.data.post_id,
-                        el_c = $('.newPost[data-id="'+post_id+'"]').first();
-                    el_c.find('.lottery-overlay').first().show();
-                    el_c.find('.lottery-complete-c').first().fadeIn('slow');
+                    if(animating){
+                        return;
+                    }
+                    var post_id = e.data.post_id;
+                    $('.lottery-overlay[data-id="'+post_id+'"]').first().show();
+                    $('.lottery-inner-content[data-id="'+post_id+'"]').first().show().animate({ bottom: 20 }, {duration: 400}, function(){
+                        animating = false;
+                    });
                 })
                 .on('mouseleave', {'post_id': post_id}, function(e){
-                    var post_id = e.data.post_id,
-                        el_c = $('.newPost[data-id="'+post_id+'"]').first();
-                    el_c.find('.lottery-complete-c').first().fadeOut('slow');
-                    el_c.find('.lottery-overlay').first().hide();
+                    if(animating){
+                        return;
+                    }
+                    var post_id = e.data.post_id;
+                    $('.lottery-inner-content[data-id="'+post_id+'"]').first().show().animate({ bottom: -20 }, {duration: 400}, function(){
+                       animating = false;
+                    });
+                    $('.lottery-overlay[data-id="'+post_id+'"]').first().hide();
                 });
         }
     }

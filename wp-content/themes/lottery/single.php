@@ -7,7 +7,8 @@
  * @since lottery 1.0
  */
 get_header(); ?>
-
+<div id="main">
+    <div id="lottery-outer-c">
 <?php
 
 $posts = lottery_get_posts( get_the_ID() );
@@ -15,8 +16,6 @@ $posts = lottery_get_posts( get_the_ID() );
 if(0 < count($posts)){
     setup_postdata($GLOBALS['post'] =& $posts[0]);
 ?>
-<div id="main">
-    <div id="lottery-outer-c">
         <div id="newPost" class="c-lottery">
             <div class="title-h">розыгрыш</div>
             <a class="post-c">
@@ -28,15 +27,18 @@ if(0 < count($posts)){
                 <h2>Для участия необходимо выполнить следующие задания:</h2>
                 <!--Контент-->
                 <ul id="lottery-task-list" class="news-list events-list">
-                <?php
-
-                    lottery_print_tasks();
-
-                } ?>
+                <?php lottery_print_tasks(); ?>
                 </ul>
             </div>
+            <div class="lottery-text lot-descr nonborder" id="lottery-descr-c">
+                    <h2>Спонсор розыгрыша: </h2>
+                    <p><?php the_field('descr'); ?></p>
+            </div>
+            <div class="lottery-text lot-descr nonborder" id="lottery-sponsor-c"><?php the_field('yt-iframe-sponsor'); ?></div>
+            <div class="clear"></div>
         </div>
-        <?php lottery_print_history(); ?>
+<?php } ?>
+<?php lottery_print_history(); ?>
     </div>
     <div class="clear"></div>
 </div>

@@ -1,7 +1,7 @@
 <?php get_header(); ?>
 <div id="main">
 <div class="lottery-outer-c">
-<div class="title-h">розыгрыш</div>
+<div class="title-h">розыгрыши</div>
 <?php
 
 $posts = lottery_get_posts();

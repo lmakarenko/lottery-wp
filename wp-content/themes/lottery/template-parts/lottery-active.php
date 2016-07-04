@@ -20,24 +20,26 @@ $logo3 = get_field('logo3', $post_id);
 <div data-id="<?php echo $post_id; ?>" data-adv="<?php echo $adv_ids; ?>" style="display:block;" href="<?php echo esc_url( get_permalink() ); ?>" class="newPost c-lottery <?php echo $is_complete_cls; ?>">
 <div class="lottery-top-text-c">
     <div class="inner clear">
-        <div class="lottery-overlay"></div>
+        <div class="lottery-overlay" data-id="<?php echo $post_id; ?>"></div>
         <div class="lottery-corener"></div>
         <img src="<?php echo $logo3; ?>" class="lottery-bg" />
-        <div class="lottery-top-text">
-            <h2 class="post-title"><?php echo $title; ?></h2>
-            <div class="post-content">
-                <?php the_content(); ?>
+        <div class="lottery-top-text lottery-inner-content" data-id="<?php echo $post_id; ?>">
+            <div class="lottery-top-content" data-id="<?php echo $post_id; ?>">
+                <h2 class="post-title"><?php echo $title; ?></h2>
+                <div class="post-content">
+                    <?php the_content(); ?>
+                </div>
             </div>
-            <div class="lottery-complete-c">
+            <div class="lottery-complete-c" data-id="<?php echo $post_id; ?>">
                 <div>
                     <div class="fl">Поздравляем! Вы участник конкурса!</div>
                     <div class="lottery-complete">
-                        <span class="lottery-complete-cnt"></span>
+                        <span class="lottery-complete-cnt pic"></span>
                         <span class="lottery-complete-cnt-n" data-id="<?php echo $post_id; ?>"><?php echo $complete_cnt; ?></span>
                     </div>
                     <div class="lottery-complete">
-                        <span class="lottery-complete-date"></span>
-                        <?php echo $end_date; ?>
+                        <span class="lottery-complete-date pic"></span>
+                        <span class="lottery-complete-date-n"><?php echo $end_date; ?></span>
                     </div>
                     <div class="clear"></div>
                 </div>

@@ -4,7 +4,7 @@ $(function(){
         tasks_statuses, task_types = ['social','cpa'],
         task_status_q = {}, task_q = [];
     
-    setTimeout(init, 16000);
+    init();
     
     function init(){
         parse_tasks_data();

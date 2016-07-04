@@ -9,14 +9,17 @@
 <title>WASD</title>
 
 <link type="text/css" rel="stylesheet" href="/cms/public/css/main.css" />
+<?php/*
 <link type="text/css" rel="stylesheet" href="/cms/public/bootstrap/css/bootstrap.min.css" />
 <link type="text/css" rel="stylesheet" href="/cms/public/bootstrap/css/datepicker.css" />
 <link type="text/css" rel="stylesheet" href="/cms/public/css/jquery/smoothness/jquery-ui.custom.min.css" />
 <link type="text/css" rel="stylesheet" href="/site/plugins/coins/public/css/controller/docs/charity/cabinet.css" />
+ */?>
 <link type="text/css" rel="stylesheet" href="/site/skins/wasd2_sub/public/css/lottery.css" />
 <link type="text/css" rel="stylesheet" href="/wp-content/themes/lottery/css/lottery.css" />
 
 <script type="text/javascript" src="/cms/public/js/jquery/jquery-1.10.2.min.js"></script>
+<?php /*
 <script type="text/javascript" src="/cms/public/js/ajaxDialog.js"></script>
 <script type="text/javascript" src="/cms/public/js/jquery/jquery.cookie.js"></script>
 <script type="text/javascript" src="/cms/public/js/jquery/jquery-ui.min.js"></script>
@@ -26,22 +29,20 @@
 <script type="text/javascript" src="/cms/public/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/cms/public/js/main.js"></script>
 <script type="text/javascript" src="/cms/public/bootstrap/js/bootstrap-datepicker.js"></script>
-<?php /*
 <script type="text/javascript" src="/site/skins/wasd2_sub/public/js/lottery-history.js"></script>
 <script type="text/javascript" src="/site/skins/wasd2_sub/public/js/lottery-user.js"></script>
 <script type="text/javascript" src="/site/skins/wasd2_sub/public/js/lottery-public.js"></script>
 */ ?>
 <link rel="stylesheet" type="text/css" href="/site/skins/wasd2_sub/public/css/all.css" />
-
+<?php /*
 <script type="text/javascript" src="/site/skins/wasd2_sub/public/js/clear-form-fields.js"></script>
-
 <script type="text/javascript" src="/site/skins/wasd2_sub/public/js/form.js"></script>
 <script type="text/javascript" src="/site/skins/wasd2_sub/public/js/jquery.jscrollpane.min.js"></script>
-
 <script type="text/javascript" src="/site/skins/wasd2_sub/public/js/select.js"></script>
 <script type="text/javascript" src="/site/skins/wasd2_sub/public/js/jquery.main.js"></script>
+*/ ?>
 <?php if(isset($GLOBALS['user_data']['id'])){ ?>
-<script type="text/javascript" src="/site/skins/wasd2_sub/public/js/soctask_script.js"></script>
+<?php /*<script type="text/javascript" src="/site/skins/wasd2_sub/public/js/soctask_script.js"></script>*/ ?>
 <script type="application/javascript">var isGuest = false;</script>
 <?php } else { ?>
 <script type="text/javascript" src="/site/skins/wasd2_sub/public/js/guest.js"></script>
@@ -129,7 +130,7 @@
                                         </div>
                                     </li>
                                     <li class="header-hovered">
-                                        <a href="http://lottery.mediareach.local/">
+                                        <a href="http://<?php echo $_SERVER['SERVER_NAME']; ?>/">
                                             <div class="ditch-border">
                                                 <div class="inner-convex-background sab-nav-option">
                                                     Розыгрыши
