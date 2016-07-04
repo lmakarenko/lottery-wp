@@ -25,6 +25,11 @@ a.post-c{
     width: 870px;
 }
 
+.newPost .post-content strong{
+    font-size:16px;
+    font-weight:normal;
+}
+
 #newPost .post-c{
     margin: 20px auto 0;
 }
@@ -63,7 +68,7 @@ a.post-c{
     line-height:28px;
 }
 .lottery-inner-content{
-    font-size: 16px;
+    font-size: 14px;
     line-height: 20px;
 }
 .lottery-inner-content h2.post-title{
