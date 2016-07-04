@@ -52,7 +52,7 @@ $(function(){
                   console.log('post_q:', post_q);
                   */
                   if(0 < post_status_q.length){
-                    taskTimeoutId = setTimeout(status_updater, 16000);
+                    taskTimeoutId = setTimeout(status_updater, 36000);
                   }
                 }
             }
