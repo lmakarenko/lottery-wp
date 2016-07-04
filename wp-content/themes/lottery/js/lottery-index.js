@@ -31,25 +31,26 @@ $(function(){
             success: function(d){
                 if(d.statuses){
                   camps_statuses = d.statuses;
+                  /*
                   console.log('BEFORE');
                   console.log('camps_statuses:', camps_statuses);
                   console.log('posts_id:', posts_id);
                   console.log('posts_statuses:', posts_statuses);
                   console.log('post_status_q:', post_status_q);
-                  
+                  */
                   check_posts_statuses();
-                  
+                  /*
                   console.log('AFTER CHECK');
                   console.log('posts_statuses:', posts_statuses);
                   console.log('post_status_q:', post_status_q);
-                  
+                  */
                   update_posts_statuses();
-                  
+                  /*
                   console.log('AFTER UPDATE');
                   console.log('posts_statuses:', posts_statuses);
                   console.log('post_status_q:', post_status_q);
                   console.log('post_q:', post_q);
-                  
+                  */
                   if(0 < post_status_q.length){
                     taskTimeoutId = setTimeout(status_updater, 16000);
                   }
@@ -100,14 +101,13 @@ $(function(){
     }
     
     function get_adv_id_for_upd(){
-        var i, post_id, id_adv_ = [];
+        var i, post_id, id_adv, id_adv_ = [];
         for(i=0;i<post_status_q.length;++i){
             post_id = post_status_q[i];
-            id_adv_.push(post_id);
+            id_adv = $('.newPost[data-id="'+post_id+'"]').first().attr('data-adv');
+            id_adv_.push(id_adv);
         }
-        //id_adv = id_adv_.join(',');
-        //console.log('new id_adv ' + id_adv);
-        return id_adv;
+        return id_adv_.join(',');
     }
     
     function check_posts_statuses(){
@@ -155,10 +155,10 @@ $(function(){
         for(i=0;i<post_status_q.length;++i){
             post_id = post_status_q[i];
             if(posts_statuses[post_id]){
-                console.log('status active:', post_id);
+                //console.log('status active:', post_id);
                 set_status_active(post_id);
             } else {
-                console.log('status noactive:', post_id);
+                //console.log('status noactive:', post_id);
                 set_status_noactive(post_id);
             }
         }

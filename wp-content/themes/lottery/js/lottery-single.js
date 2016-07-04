@@ -26,13 +26,17 @@ $(function(){
             success: function(d){
                 if(d.statuses){
                   tasks_statuses = d.statuses;
+                  /*
                   console.log('BEFORE');
                   console.log('tasks_statuses:',tasks_statuses);
                   console.log('task_status_q:',task_status_q);
                   console.log('task_q:',task_q);
+                  */
                   check_statuses();
+                  /*
                   console.log('AFTER CHECK');
                   console.log('task_q:',task_q);
+                  */
                   if(0 < task_q.length){
                     taskTimeoutId = setTimeout(status_updater, 16000);
                   }
@@ -106,10 +110,10 @@ $(function(){
     }
     
     function set_task_status_v(task_type, task_id, task_status){
-        console.log('set v ' + task_type + ' ' + task_id);
+        //console.log('set v ' + task_type + ' ' + task_id);
         var e = $('ul#lottery-task-list > li.task-c[data-task-type="'+task_type+'"][data-task-id="'+task_id+'"]').first(),
             btn_cls_ = get_task_btn_cls(task_status);
-        console.log('status: ' + task_status + ' ' + btn_cls_);
+        //console.log('status: ' + task_status + ' ' + btn_cls_);
         e.find('.lottery-task-btn').hide();
         e.find('.lottery-task-btn-'+btn_cls_).first().show();
     }
@@ -132,7 +136,7 @@ $(function(){
             if(task_id){
                 if(tasks_statuses[task_type][adv_id][task_id]){
                     task_status = tasks_statuses[task_type][adv_id][task_id]['task_status'];
-                    console.log('udpate task status: ', task_type, task_id, task_status);
+                    //console.log('udpate task status: ', task_type, task_id, task_status);
                     update_task_status_(task_type, task_id, task_status);
                 } else {
                     update_task_status_(task_type, task_id, 'start');
@@ -145,7 +149,7 @@ $(function(){
                 }
             }
         } else {
-            console.log('update all of type ' + task_type);
+            //console.log('update all of type ' + task_type);
             var adv_id, task_id;
             for(adv_id in task_status_q[task_type]){
                 for(k=0;k<task_status_q[task_type][adv_id].length;++k){
@@ -161,7 +165,7 @@ $(function(){
         for(j=0;j<task_types.length;++j){
             task_type = task_types[j];
             if(!task_status_q[task_type]){
-                console.log('no ' + task_type);
+                //console.log('no ' + task_type);
                 continue;
             }
             if(tasks_statuses[task_type]){
@@ -176,13 +180,13 @@ $(function(){
                         }
                     } else {
                         // set status to all of current type and current adv
-                        console.log('all of type ' + task_type+' and adv '+adv_id);
+                        //console.log('all of type ' + task_type+' and adv '+adv_id);
                         update_task_status(task_type,adv_id);
                     }
                 }
             } else {
                 // set status to all of current type
-                console.log('all of type ' + task_type);
+                //console.log('all of type ' + task_type);
                 update_task_status(task_type);
             }
         }
