@@ -18,10 +18,10 @@ if ( 'ACTIVE' == lottery_get_status() && 0 < count($posts) ) :
 else :
 
     setup_postdata( $GLOBALS['post'] =& $posts[0] );
-    include(locate_template( 'template-parts/lottery-ending.php' ));
+    include(locate_template( 'template-parts/lottery-active.php' ));
 
     setup_postdata( $GLOBALS['post'] =& $posts[1] );
-    include(locate_template( 'template-parts/lottery-future.php' ));
+    include(locate_template( 'template-parts/lottery-active.php' ));
 
 endif;
 
