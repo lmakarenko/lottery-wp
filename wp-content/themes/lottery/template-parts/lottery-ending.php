@@ -10,7 +10,7 @@
 $complete_cnt = $post->lottery_complete_cnt;
 
 ?>
-<div id="newPost" class="c-lottery" style="padding-top:20px;">
+<div id="newPost" class="c-lottery" style="padding-top:30px;">
 <div class="lottery-top-text-c">
     <div class="inner clear">
         <img src="<?php the_field('logo3'); ?>" class="lottery-bg" />
