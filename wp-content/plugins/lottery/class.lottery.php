@@ -72,12 +72,12 @@ class lottery {
             'ignore_sticky_posts' => true,
             'posts_per_page' => $max_rows,
             'meta_query' => array(
-                'relation' => 'OR',
+                /*'relation' => 'OR',
                 'sorder' => array(
                         'key' => 'sorder',
                         'type' => 'NUMERIC',
                         'compare' => 'EXISTS',
-                ),    
+                ),*/    
                 'date_end' => array(
                         'key' => 'date_end',
                         'type' => 'DATETIME',
@@ -85,7 +85,7 @@ class lottery {
                 ),
             ),
             'orderby' => array(
-                'sorder' => 'ASC',
+                //'sorder' => 'ASC',
                 'date_end' => 'DESC',
             )
         );
