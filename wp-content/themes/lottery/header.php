@@ -168,21 +168,21 @@
                                                 </a>
                                             </li>
                                             <li>
-                                                    <a href="<?php echo $GLOBALS['wasd_domain']; ?>/api/oauth/index?c_id=2&redirect=http://forum.wasdclub.com/ucp.php">
-                                                        <span>Форум</span>
-                                                    </a>
+                                                <a href="<?php echo $GLOBALS['wasd_domain']; ?>/api/oauth/index?c_id=2&redirect=http://forum.wasdclub.com/ucp.php">
+                                                    <span>Форум</span>
+                                                </a>
                                             </li>
                                             <li onclick="location.href='<?php echo $GLOBALS['wasd_domain']; ?>/siteuser/news/list'" style="cursor:pointer;">
                                                 <span>Новости</span>
                                             </li>
                                             <li onclick="location.href='<?php echo $GLOBALS['wasd_domain']; ?>/articles'" style="cursor:pointer;">
                                                 <span>Блог</span>
-                                                <span class="number blue"></span>
                                             </li>
-                                            <a href="<?php echo $GLOBALS['wasd_domain']; ?>/streams">
-                                                <span>Стримы</span>
-                                            </a>
-                                    </li>
+                                            <li>
+                                                <a href="<?php echo $GLOBALS['wasd_domain']; ?>/streams">
+                                                    <span>Стримы</span>
+                                                </a>
+                                            </li>
                                 </div>
                                             </div>
                                         </ul>
