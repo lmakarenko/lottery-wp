@@ -70,6 +70,7 @@ class lottery {
             'post_status' => 'publish',
             'category_name' => 'history',
             'ignore_sticky_posts' => true,
+            'posts_per_page' => $max_rows,
             'meta_query' => array(
                 'relation' => 'AND',
                 'sorder' => array(
@@ -91,12 +92,13 @@ class lottery {
         $this->history_data = get_posts($arg);
     }
     
-    private function load_active_posts(){
+    private function load_active_posts($max_rows = 30){
         $arg = array(
             'post_type' => 'post',
             'post_status' => 'publish',
             'category_name' => 'active',// active
             'ignore_sticky_posts' => true,
+            'posts_per_page' => $max_rows,
             'meta_query' => array(
                 'relation' => 'AND',
                 'sorder' => array(
