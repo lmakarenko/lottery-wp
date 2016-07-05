@@ -19,8 +19,6 @@ class lottery {
             return false;
         }
         
-        add_action( 'post_save', array( $this, 'clear_cache' ) );
-        
         add_action( 'template_redirect', array( $this, 'init_before_theme' ), 1 );
         add_action( 'wp_ajax_nopriv_get_tasks_status', array( $this, 'get_tasks_status_ajax' ) );
         add_action( 'wp_ajax_get_tasks_status' , array( $this, 'get_tasks_status_ajax' ) );
@@ -35,10 +33,6 @@ class lottery {
     
     function __destruct() {
         $this->pg_deinit();
-    }
-    
-    public function clear_cache(){
-        apc_clear_cache();
     }
     
     public function init_before_theme() {
@@ -188,6 +182,7 @@ class lottery {
         $c_key = 'lottery-tasks' . ($post_id ? '-' . $post_id : '');
         if(apc_exists($c_key)){
             $this->tasks_data = apc_fetch($c_key);
+            echo '<!-- ', print_r($this->tasks_data), ' -->';
         } else {
             $this->load_tasks_data($post_id);
             if(!empty($this->tasks_data)){
@@ -429,7 +424,8 @@ class lottery {
     public function get_tasks_data(){
         if(null === $this->tasks_data
                 && null !== $this->posts_data){
-            $this->load_tasks_data_wc();
+            $post_id = get_the_ID();
+            $this->load_tasks_data_wc($post_id);
         }
         return $this->tasks_data;
     }
