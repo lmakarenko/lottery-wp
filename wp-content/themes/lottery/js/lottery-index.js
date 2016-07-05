@@ -3,8 +3,6 @@ $(function(){
     var taskTimeoutId, camps_statuses, posts_statuses = {}, posts_id, id_adv,
         post_status_q = [], post_q = [], animating = false;
     
-    parse_posts_data();
-    bind_posts_events();
     init();
     
     function init(){
