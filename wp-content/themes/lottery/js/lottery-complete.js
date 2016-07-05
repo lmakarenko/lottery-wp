@@ -10,7 +10,7 @@ $('document').ready(function(){
             clearTimeout(checkTimeoutId);
 	}
         
-        var p = {'action': 'get_complete_cnt', 'id_posts': posts_id_s};
+        var p = {'action': 'get_complete_cnt', 'id_posts': posts_id_s, 'ajax_nonce': asdfqwer};
         
         $.ajax({
             'url':'/wp-admin/admin-ajax.php',

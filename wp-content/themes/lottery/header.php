@@ -19,6 +19,8 @@
 <link type="text/css" rel="stylesheet" href="/site/skins/wasd2_sub/public/css/lottery.css" />
 <link type="text/css" rel="stylesheet" href="/wp-content/themes/lottery/css/lottery.css" />
 
+<script type="text/javascript">var asdfqwer = '<?php echo $GLOBALS['ajax_nonce']; ?>';</script>
+
 <script type="text/javascript" src="/cms/public/js/jquery/jquery-1.10.2.min.js"></script>
 <?php /*
 <script type="text/javascript" src="/cms/public/js/ajaxDialog.js"></script>

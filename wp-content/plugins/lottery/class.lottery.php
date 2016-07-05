@@ -18,6 +18,7 @@ class lottery {
             $this->error = 'Ошибка подключения к БД: ' . pg_last_error();
             return false;
         }
+        
         add_action( 'template_redirect', array( $this, 'init_before_theme' ), 1 );
         add_action( 'wp_ajax_nopriv_get_tasks_status', array( $this, 'get_tasks_status_ajax' ) );
         add_action( 'wp_ajax_get_tasks_status' , array( $this, 'get_tasks_status_ajax' ) );
@@ -39,6 +40,9 @@ class lottery {
             return false;
         }*/
         // includes
+        global $ajax_nonce;
+        $ajax_nonce = wp_create_nonce( "security-code" );
+        
         $this->include_before_theme();
         if(is_home() ||
                 is_category('active')){
@@ -297,9 +301,10 @@ class lottery {
     }
     
     public function get_complete_cnt_ajax(){
+        check_ajax_referer('security-code', 'ajax_nonce');
         if(!isset($_POST['id_posts'])
                 || empty($_POST['id_posts'])){
-            $data['error'][] = 'empty posts ids';
+            $data['error'][] = array('txt' => 'empty posts ids', 'code' => -1);
         }
         if(isset($data['error'])){
             wp_send_json($data);
@@ -310,7 +315,7 @@ class lottery {
             $adv_ids = get_field('id_adv', $post_id);
             $data[ $post_id ]['cnt'] = $this->load_complete_cnt($adv_ids);
             if(!empty($this->error)){
-                $data['error'][] = $this->error;
+                $data['error'][] = array('txt' => $this->error, 'code' => 0);
             }
         }
         wp_send_json($data);
@@ -384,14 +389,15 @@ class lottery {
     }
     
     public function get_tasks_status_ajax(){
+        check_ajax_referer('security-code', 'ajax_nonce');
         $data = array();
         if(!isset($_SESSION['user_data']['id'])
                 || empty($_SESSION['user_data']['id'])){
-            $data['error'][] = 'empty user id';
+            $data['error'][] = array('txt' => 'empty user id', 'code' => -1);
         }
         if(!isset($_POST['id_adv'])
                 || empty($_POST['id_adv'])){
-            $data['error'][] = 'empty camp ids';
+            $data['error'][] = array('txt' => 'empty camp ids', 'code' => -2);
         }
         if(isset($data['error'])){
             wp_send_json($data);
@@ -400,7 +406,7 @@ class lottery {
         $this->load_tasks_status($_SESSION['user_data']['id'], $_POST['id_adv']);
         $data['statuses'] = $this->tasks_status_data;
         if(!empty($this->error)){
-            $data['error'][] = $this->error;
+            $data['error'][] = array('txt' => $this->error, 'code' => 0);
         }
         wp_send_json($data);
     }
@@ -420,8 +426,9 @@ class lottery {
         pg_free_result($result);
         $this->tasks_status_data = $data;
     }
-    
+    /*
     public function is_complete_ajax($post_id){
+        check_ajax_referer('security-code', 'ajax_nonce');
         if(!isset($_SESSION['user_data']['id'])
                 || empty($_SESSION['user_data']['id'])){
             $data['error'][] = 'empty user id';
@@ -436,7 +443,7 @@ class lottery {
         }
         wp_send_json($data);
     }
-    
+    */
     public function get_status(){
         return $this->status;
     }
@@ -472,14 +479,15 @@ class lottery {
     }
     
     public function get_camps_status_ajax(){
+        check_ajax_referer('security-code', 'ajax_nonce');
         $data = array();
         if(!isset($_SESSION['user_data']['id'])
                 || empty($_SESSION['user_data']['id'])){
-            $data['error'][] = 'empty user id';
+            $data['error'][] = array('txt' => 'empty user id', 'code' => -1);
         }
         if(!isset($_POST['id_adv'])
                 || empty($_POST['id_adv'])){
-            $data['error'][] = 'empty camp ids';
+            $data['error'][] = array('txt' => 'empty camp ids', 'code' => -2);
         }
         if(isset($data['error'])){
             wp_send_json($data);
@@ -488,7 +496,7 @@ class lottery {
         $this->load_camps_status($_SESSION['user_data']['id'], $_POST['id_adv']);
         $data['statuses'] = $this->camps_status_data;
         if(!empty($this->error)){
-            $data['error'][] = $this->error;
+            $data['error'][] = array('txt' => $this->error, 'code' => 0);
         }
         wp_send_json($data);
     }

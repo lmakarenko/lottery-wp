@@ -26,6 +26,7 @@ $(function(){
             data: {
                 action: 'get_camps_status',
                 id_adv: get_adv_id_for_upd(),
+                'ajax_nonce': asdfqwer
             },
             dataType: 'json',
             success: function(d){

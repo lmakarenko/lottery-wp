@@ -21,6 +21,7 @@ $(function(){
             data: {
                 action: 'get_tasks_status',
                 id_adv: id_adv,
+                'ajax_nonce': asdfqwer
             },
             dataType: 'json',
             success: function(d){
