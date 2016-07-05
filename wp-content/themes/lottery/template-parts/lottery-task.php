@@ -54,16 +54,8 @@
                         </div>
                                 <div class="row">
                                     <div class="pre-ready lottery-task-btn lottery-task-btn-start"<?php if ($is_user){ ?>  style="display:none;"<?php } ?>>
-                            <?php if ($t['jump_method']=='iframe'){ ?>
-                                    <a title="Участвовать" href="#" target="_blank" onclick="<?php if ($is_user){ ?><?php if ($t['captcha']){ ?> showRecaptcha('publickey',startIframeTask,<?php echo $t['id']; ?>); <?php } else { ?> startIframeTask(<?php echo $t['id']; ?>);<?php } ?> return false;<?php } else { ?>showDemoLogin();return false;<?php } ?>" class="button">
-                                        <div class="ready pc">Участвовать</div>
-                                    </a>
-                            <?php } elseif ($t['jump_method']=='youtube'){ ?>
-                                    <a title="Участвовать" href="#" target="_blank" onclick="<?php if ($is_user){ ?><?php if ($t['captcha']){ ?> showRecaptcha('publickey',startYoutubeTask,<?php echo $t['id']; ?>); <?php } else { ?> startYoutubeTask(<?php echo $t['id']; ?>);<?php } ?> return false;<?php } else { ?>showDemoLogin();return false;<?php } ?>" class="button">
-                                        <div class="ready pc">Участвовать</div>
-                                    </a>
-                            <?php } else { ?>
-                                <?php if ($t['need_vk_auth']){ ?>
+
+                                <?php /* if ($t['need_vk_auth']){ ?>
                                     <a href="#" title="Участвовать" onclick="<?php if ($is_user){ ?>showAuthAlert('vk');return false;<?php } else { ?>showDemoLogin();return false;<?php } ?>" class="button">
                                         <div class="ready pc">Требуется авторизация</div>
                                     </a>
@@ -71,13 +63,13 @@
                                     <a href="#" title="Участвовать" onclick="<?php if ($is_user){ ?>showAuthAlert('fb');return false;<?php } else { ?>showDemoLogin();return false;<?php } ?>" class="button">
                                         <div class="ready pc">Требуется авторизация</div>
                                     </a>
-                                <?php } else { ?>
+                                <?php } else { */?>
                                         <a title="Участвовать" href="<?php if ($is_user){ echo $GLOBALS['wasd_domain']; ?>/adv/index/jump/link/<?php echo $t['id']; } else { ?>#<?php } ?>" <?php if ($is_user){ ?>target="_blank"<?php } ?> class="button">
                                             <div class="ready pc">Участвовать</div>
                                         </a>
-                                <?php } ?>
-                            <?php } ?>
-                                                </div>
+                                <?php  //} ?>
+                                        
+                                    </div>
                                         <?php if ($is_user){ ?>
                                         <div class="pre-ready lottery-task-btn lottery-task-btn-loading">
                                             <a href="#" title="Загрузка" class="button button-loading">
