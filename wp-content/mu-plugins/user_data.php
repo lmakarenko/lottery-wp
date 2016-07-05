@@ -12,7 +12,7 @@ function lottery_clear_cache(){
     //if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
     echo 'Clearing cache';
     apc_clear_cache('user');
-    wp_mail( 'lev.makarenko.1987@gmail.com', 'test', 'on post_save' );
 }
 
-add_action( 'post_save', 'lottery_clear_cache' );
+add_action( 'save_post', 'lottery_clear_cache' );
+add_action( 'edit_post', 'lottery_clear_cache' );
