@@ -182,7 +182,6 @@ class lottery {
         $c_key = 'lottery-tasks' . ($post_id ? '-' . $post_id : '');
         if(apc_exists($c_key)){
             $this->tasks_data = apc_fetch($c_key);
-            echo '<!-- ', print_r($this->tasks_data), ' -->';
         } else {
             $this->load_tasks_data($post_id);
             if(!empty($this->tasks_data)){

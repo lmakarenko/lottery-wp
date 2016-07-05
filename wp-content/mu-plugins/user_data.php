@@ -9,8 +9,7 @@ if(isset($_SESSION['user_data'])){
 }
 
 function lottery_clear_cache(){
-    //if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
-    echo 'Clearing cache';
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
     apc_clear_cache('user');
 }
 
