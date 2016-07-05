@@ -80,7 +80,7 @@ class lottery {
                 ),*/    
                 'date_end' => array(
                         'key' => 'date_end',
-                        'type' => 'DATETIME',
+                        'type' => 'TIMESTAMP',
                         'compare' => 'EXISTS',
                 ),
             ),
