@@ -113,7 +113,7 @@
                                         <a href="<?php echo $GLOBALS['wasd_domain']; ?>/<?php if(isset($GLOBALS['user_data']['id'])) { ?>jobs<?php } else { ?>demo<?php } ?>">
                                             <div class="ditch-border">
                                                 <div class="inner-convex-background sab-nav-option">
-                                                    Tasks
+                                                    Задания
                                                 </div>
                                             </div>
                                         </a>
@@ -122,7 +122,7 @@
                                         <a href="<?php echo $GLOBALS['wasd_domain']; ?>/withdraw">
                                             <div class="ditch-border">
                                                 <div class="inner-convex-background sab-nav-option">
-                                                    Withdraw
+                                                    Вывод
                                                 </div>
                                             </div>
                                         </a>
@@ -130,7 +130,7 @@
                                     <li onclick="location.href='<?php echo $GLOBALS['wasd_domain']; ?>/discounts'" style="cursor:pointer;">
                                         <div class="ditch-border">
                                             <div class="inner-convex-background sab-nav-option">
-                                                    <span>Deals</span>
+                                                    <span>Акции</span>
                                             </div>
                                         </div>
                                     </li>
@@ -147,7 +147,7 @@
                                         <a href="<?php echo $GLOBALS['wasd_domain']; ?>/guides">
                                             <div class="ditch-border">
                                                 <div class="inner-convex-background sab-nav-option">
-                                                    Video
+                                                    Видео
                                                 </div>
                                             </div>
                                         </a>
@@ -155,7 +155,7 @@
                                     <li>
                                         <div class="ditch-border" style="cursor:pointer;">
                                             <div class="inner-convex-background sab-nav-option">
-                                                <span>Other</span>
+                                                <span>Еще</span>
                                                 <span class="number"></span>
                                             </div>
                                         </div>
@@ -164,23 +164,23 @@
                                             <div class="inner-ditch-background">
                                             <li>
                                                 <a href="<?php echo $GLOBALS['wasd_domain']; ?>/games">
-                                                    <span>Games</span>
+                                                    <span>Игры</span>
                                                 </a>
                                             </li>
                                             <li>
                                                     <a href="<?php echo $GLOBALS['wasd_domain']; ?>/api/oauth/index?c_id=2&redirect=http://forum.wasdclub.com/ucp.php">
-                                                        <span>Forum</span>
+                                                        <span>Форум</span>
                                                     </a>
                                             </li>
                                             <li onclick="location.href='<?php echo $GLOBALS['wasd_domain']; ?>/siteuser/news/list'" style="cursor:pointer;">
-                                                <span>News</span>
+                                                <span>Новости</span>
                                             </li>
                                             <li onclick="location.href='<?php echo $GLOBALS['wasd_domain']; ?>/articles'" style="cursor:pointer;">
-                                                <span>Blog</span>
+                                                <span>Блог</span>
                                                 <span class="number blue"></span>
                                             </li>
                                             <a href="<?php echo $GLOBALS['wasd_domain']; ?>/streams">
-                                                <span>Streams</span>
+                                                <span>Стримы</span>
                                             </a>
                                     </li>
                                 </div>
