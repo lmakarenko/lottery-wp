@@ -72,7 +72,7 @@ class lottery {
             'ignore_sticky_posts' => true,
             'posts_per_page' => $max_rows,
             'meta_query' => array(
-                'relation' => 'AND',
+                'relation' => 'OR',
                 'sorder' => array(
                         'key' => 'sorder',
                         'type' => 'NUMERIC',
