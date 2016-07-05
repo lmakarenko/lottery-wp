@@ -66,10 +66,9 @@
 </script>
 <script type="text/javascript" src="//yandex.st/share/share.js" charset="utf-8"></script>
 */ ?>
-
 <style>
     body {
-        background: #455A6F url("/site/skins/wasd2_sub/public/images/mail-ru-bg.jpeg") no-repeat scroll center top;
+        background: #000 url("/wp-content/uploads/2016/07/AstrolordsBack.jpg") no-repeat scroll center top;
     }
 </style>
 
