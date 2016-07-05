@@ -1,5 +1,4 @@
 <div class="ad" style="height: 120px;">
-    <?php /*
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <!-- Wasd Bottom -->
     <ins class="adsbygoogle"
@@ -9,7 +8,6 @@
     <script>
         (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
-    */ ?>
 </div>
 <div id="footer">
         <ul class="footer-nav">
