@@ -7,7 +7,7 @@
  * @since Twenty Sixteen 1.0
  */
 
-$complete_cnt = $post->lotttery_complete_cnt;
+$complete_cnt = $post->lottery_complete_cnt;
 
 ?>
 <div id="newPost" class="c-lottery">
