@@ -106,7 +106,9 @@ $(function(){
         for(i=0;i<post_status_q.length;++i){
             post_id = post_status_q[i];
             id_adv = $('.newPost[data-id="'+post_id+'"]').first().attr('data-adv');
-            id_adv_.push(id_adv);
+            if('' != $.trim(id_adv)){
+                id_adv_.push(id_adv);
+            }
         }
         return id_adv_.join(',');
     }

@@ -514,7 +514,7 @@ class lottery {
         foreach($this->posts_data as $post){
             $adv_ids .= (empty($adv_ids) ? '' : ',') . get_field('id_adv', $post->ID);
         }
-        return $adv_ids;
+        return trim($adv_ids," ,\t\n\r\0\x0B");
     }
     
     public function get_posts_ids_s(){
