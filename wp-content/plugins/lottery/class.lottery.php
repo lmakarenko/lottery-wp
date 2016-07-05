@@ -19,6 +19,8 @@ class lottery {
             return false;
         }
         
+        add_action( 'post_save', array( $this, 'clear_cache' ) );
+        
         add_action( 'template_redirect', array( $this, 'init_before_theme' ), 1 );
         add_action( 'wp_ajax_nopriv_get_tasks_status', array( $this, 'get_tasks_status_ajax' ) );
         add_action( 'wp_ajax_get_tasks_status' , array( $this, 'get_tasks_status_ajax' ) );
@@ -33,6 +35,10 @@ class lottery {
     
     function __destruct() {
         $this->pg_deinit();
+    }
+    
+    public function clear_cache(){
+        apc_clear_cache();
     }
     
     public function init_before_theme() {
@@ -54,14 +60,29 @@ class lottery {
             //echo 'Single';
             $post_id = get_the_ID();
             $adv_ids = get_field('id_adv', $post_id);
-            $this->load_tasks_data($post_id);
+            $this->load_tasks_data_wc($post_id);
+            //$this->load_tasks_data($post_id);
             if(isset($GLOBALS['user_data']['id']) && !empty($GLOBALS['user_data']['id'])){
                 $this->load_tasks_status($GLOBALS['user_data']['id'], $adv_ids);
             }
-            //$this->load_complete_cnt($adv_ids);
+            $this->load_complete_cnt($adv_ids);
         }
-        $this->load_history_data();
-        $this->load_complete_cnt_all( $this->history_data );
+        //$this->load_history_data();
+        //$this->load_complete_cnt_all( $this->history_data );
+        $this->load_history_data_wc();
+    }
+    
+    private function load_history_data_wc(){
+        $c_key = 'lottery-history';
+        if(apc_exists($c_key)){
+            $this->history_data = apc_fetch($c_key);
+        } else {
+            $this->load_history_data();
+            $this->load_complete_cnt_all( $this->history_data );
+            if(!empty($this->history_data)){
+                apc_store($c_key, $this->history_data, 86400);
+            }
+        }
     }
     
     private function load_history_data($max_rows = 30){
@@ -161,6 +182,18 @@ class lottery {
             return;
         }
         pg_close($this->db_pg);
+    }
+    
+    private function load_tasks_data_wc($post_id = false){
+        $c_key = 'lottery-tasks' . ($post_id ? '-' . $post_id : '');
+        if(apc_exists($c_key)){
+            $this->tasks_data = apc_fetch($c_key);
+        } else {
+            $this->load_tasks_data($post_id);
+            if(!empty($this->tasks_data)){
+                apc_store($c_key, $this->tasks_data, 86400);
+            }
+        }
     }
     
     private function load_tasks_data($post_id = false){
@@ -323,6 +356,18 @@ class lottery {
         wp_send_json($data);
     }
     
+    private function load_complete_cnt_wc($adv_ids, $post_id = false){
+        $cnt = false;
+        $c_key = 'lottery-complete' . ($post_id ? '-' . $post_id : '');
+        if(apc_exists($c_key)){
+            $cnt = apc_fetch($c_key);
+        } else {
+            $cnt = $this->load_complete_cnt($adv_ids);
+            apc_store($c_key, $cnt, 60);
+        }
+        return $cnt;
+    }
+    
     private function load_complete_cnt($adv_ids){
         $sql = "SELECT lottery_participants_cnt_new('{" . $adv_ids . "}'::INT[]) cnt;";
         //echo $sql;
@@ -336,6 +381,9 @@ class lottery {
     }
     
     private function load_complete_cnt_all(&$posts){
+        if(empty($posts)){
+            return false;
+        }
         foreach($posts as &$post){
             $post->lottery_complete_cnt = $this->get_complete_cnt($post->ID);
         }
@@ -381,7 +429,7 @@ class lottery {
     public function get_tasks_data(){
         if(null === $this->tasks_data
                 && null !== $this->posts_data){
-            $this->load_tasks_data();
+            $this->load_tasks_data_wc();
         }
         return $this->tasks_data;
     }
