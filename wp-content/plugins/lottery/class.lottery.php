@@ -35,6 +35,17 @@ class lottery {
         $this->pg_deinit();
     }
     
+    private function get_ending_complete_cnt_wc(&$post){
+        $c_k = 'lottery-ending-cnt';
+        if(apc_exists($c_k)){
+            $cnt = apc_fetch($c_k);
+        } else {
+            $cnt = $this->get_complete_cnt($post->ID);
+            apc_store($c_k, $cnt, 86400);
+        }
+        $post->lottery_complete_cnt = $cnt;
+    }
+    
     public function init_before_theme() {
         /*if(is_admin()){
             return false;
@@ -49,7 +60,9 @@ class lottery {
             //echo 'List';
             $this->load_posts_data();
             //$this->load_camps_status_all();
-            //$this->load_complete_cnt_all( $this->posts_data );
+            if('NOACTIVE' == $this->status){
+                $this->get_ending_complete_cnt_wc($this->posts_data[0]);
+            }
         } else if(is_single()){
             //echo 'Single';
             $post_id = get_the_ID();
