@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>  
-<meta property="og:image" content="http://www.wasdclub.com/site/skins/wasd2_main/public/images/wasd_logo.png" />
+<meta property="og:image" content="<?php echo $GLOBALS['wasd_domain']; ?>/site/skins/wasd2_main/public/images/wasd_logo.png" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="description" content="Зарабатывайте деньги online, выполняя несложные задания" />
 <meta name="keywords" content="Online,заработок,работа,сети,игры" />	
