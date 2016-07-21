@@ -246,7 +246,7 @@
                             
 <?php if($GLOBALS['user_data']){ ?>
                             
-<div style="display:none;" class="header-holder <?php if($GLOBALS['user_data']['premium']){ ?>vip-header-holder<?php } ?>>
+<div style="display:none;" class="header-holder <?php if($GLOBALS['user_data']['premium']){ ?>vip-header-holder<?php } ?>">
      
         <form action="#" class="referal-link <?php if($GLOBALS['user_data']['premium']){ ?>premium<?php } ?>">
                 <fieldset>
