@@ -68,7 +68,7 @@
 */ ?>
 <style>
     body {
-        background: #000 url("/wp-content/uploads/2016/07/AstrolordsBack.jpg") no-repeat scroll center top;
+        background: #000 url("/site/skins/wasd2_sub/public/images/panzar-bg.jpg") no-repeat scroll center top;
     }
 </style>
 
@@ -247,8 +247,6 @@
 <?php if($GLOBALS['user_data']){ ?>
                             
 <div style="display:none;" class="header-holder <?php if($GLOBALS['user_data']['premium']){ ?>vip-header-holder<?php } ?>>
-     
-    <?php txt_a($GLOBALS['user_data']); ?>
      
         <form action="#" class="referal-link <?php if($GLOBALS['user_data']['premium']){ ?>premium<?php } ?>">
                 <fieldset>
