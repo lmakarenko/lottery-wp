@@ -419,7 +419,7 @@
                         <span class="title">
                             W
                         </span>
-                        <?php echo $GLOBALS['user_data']['wsd_balance']; ?>
+                        <?php echo wcBalance(array('number' => $GLOBALS['user_data']['wsd_balance'], 'diz' => 2)); ?>
                     </div>
                 </a>
                 <div class='help_icon_text'>
@@ -434,7 +434,7 @@
                         <span class="title">
                             R
                         </span>
-                        <?php echo $GLOBALS['user_data']['balance']; ?>
+                        <?php echo wcBalance(array('number' => $GLOBALS['user_data']['balance'], 'diz' => 2)); ?>
                     </div>
                 </a>
                 <div class='help_icon_text'>
