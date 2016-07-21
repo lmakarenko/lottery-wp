@@ -55,9 +55,10 @@
 */ ?>
 <?php } ?>
 
-<?php /*
 <script type="text/javascript" src="/site/skins/wasd2_sub/public/js/share.js"></script>
 <!--[if lt IE 9]><script type="text/javascript" src="/site/skins/wasd2_sub/public/js/pie.js"></script><![endif]-->
+
+<?php /*
 
 <script src="//www.google.com/jsapi" type="text/javascript"></script>
 
