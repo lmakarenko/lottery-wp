@@ -388,7 +388,7 @@
                 <?php if($GLOBALS['user_data']['premium']){ ?>
                 <div id="vipleft"><p>VIP до:</p><p><?php echo $premium_till_date; ?></p></div>
                 <?php } else { ?>
-                <div id="vipleft" onclick="document.location.href='/premium'" style="cursor: pointer"><p>Стать V.I.P.!</p></div>
+                <div id="vipleft" onclick="document.location.href='<?php echo $GLOBALS['wasd_domain']; ?>/premium'" style="cursor: pointer"><p>Стать V.I.P.!</p></div>
                 <?php } ?>
             </div>
           <?php if(isset($GLOBALS['user_data']['task'][ $GLOBALS['user_data']['level'] ])){ ?>
@@ -410,11 +410,11 @@
 </div>
 <!---- new premium cuts END ---->
 <?php } else { ?>
-<a href="/premium"><div title="<?php if($GLOBALS['user_data']['premium']){ ?>V.I.P до <?php echo $premium_till_date; } else { ?>Стать V.I.P.!<?php } ?>" class="tt premium_block <?php if($GLOBALS['user_data']['premium']){ ?>premium_active<?php } ?>" onclick="document.location.href='/premium'"></div></a>
+<a href="<?php echo $GLOBALS['wasd_domain']; ?>/premium"><div title="<?php if($GLOBALS['user_data']['premium']){ ?>V.I.P до <?php echo $premium_till_date; } else { ?>Стать V.I.P.!<?php } ?>" class="tt premium_block <?php if($GLOBALS['user_data']['premium']){ ?>premium_active<?php } ?>" onclick="document.location.href='<?php echo $GLOBALS['wasd_domain']; ?>/premium'"></div></a>
 <?php } ?>
         <ul class="score">
             <li id="wsd_balance" class="ditch-border">
-                <a href="/pay">
+                <a href="<?php echo $GLOBALS['wasd_domain']; ?>/pay">
                     <div class="inner-ditch-background">
                         <span class="title">
                             W
@@ -429,7 +429,7 @@
                 </div>
             </li>
             <li id="balance" class="ditch-border">
-                <a href="/pay">
+                <a href="<?php echo $GLOBALS['wasd_domain']; ?>/pay">
                     <div class="inner-ditch-background">
                         <span class="title">
                             R
