@@ -320,7 +320,8 @@
     } else {
         $nickname = $GLOBALS['user_data']['email'];
     }
-    $premium_till_date = smarty_date_format($GLOBALS['user_data']['premium_till_date'], '%d.%m.%Y %H:%M');
+    //$premium_till_date = smarty_date_format($GLOBALS['user_data']['premium_till_date'], '%d.%m.%Y %H:%M');
+    $premium_till_date = $GLOBALS['user_data']['premium_till_date'];
 ?>
 <div id="user">
 <div class="rangimg <?php if($GLOBALS['user_data']['premium']){ ?>vip<?php } ?> ditch-border">
