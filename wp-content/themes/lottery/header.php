@@ -315,7 +315,7 @@
                             <div class="ditch-border">
                                 <div class="inner-ditch-background">
                                     <input type="text" class="copy-text default" id="user_ref_input" value="http://<?php echo $_SERVER['SERVER_NAME']; ?><?php if($GLOBALS['user_data']['custom_ref']){ ?>/id/<?php echo $GLOBALS['user_data']['custom_ref']; } else { ?>/x/<?php echo $GLOBALS['user_data']['id']; } ?>" />
-                                    <?php if($GLOBALS['user_data']['premium']){ ?>
+                                    <?php /*if($GLOBALS['user_data']['premium']){ ?>
                                         <a href="#" onclick="customizeRef();return false;">
                                             <svg class="customize_ref" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 48 48" height="48px" version="1.1" viewBox="0 0 48 48" width="48px" x="0px" xml:space="preserve" y="0px">
                                                 <g id="Expanded">
@@ -328,7 +328,7 @@
                                                 </g>
                                             </svg>
                                         </a>
-                                    <?php } ?>
+                                    <?php }*/ ?>
                                 </div>
                             </div>
                         </div>
