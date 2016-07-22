@@ -43,7 +43,7 @@ function smarty_date_format($string, $format = null, $default_date = '', $format
         return;
     }
     if ($formatter == 'strftime' || ($formatter == 'auto' && strpos($format, '%') !== false)) {
-        if (DS == '\\') {
+        if (DIRECTORY_SEPARATOR == '\\') {
             $_win_from = array('%D', '%h', '%n', '%r', '%R', '%t', '%T');
             $_win_to = array('%m/%d/%y', '%b', "\n", '%I:%M:%S %p', '%H:%M', "\t", '%H:%M:%S');
             if (strpos($format, '%e') !== false) {
