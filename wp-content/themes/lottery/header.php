@@ -268,7 +268,7 @@
 
                             </div>
                             
-<?php if($GLOBALS['user_data']){ ?>
+<?php if($GLOBALS['user_data'] && isset($GLOBALS['user_data']['id'])){ ?>
                             
 <div class="header-holder <?php if($GLOBALS['user_data']['premium']){ ?>vip-header-holder<?php } ?>">
      
