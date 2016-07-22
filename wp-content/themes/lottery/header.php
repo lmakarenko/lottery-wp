@@ -470,6 +470,67 @@
         </ul>
 </div>
 
+<?php if($GLOBALS['user_data']['premium']){ ?>
+
+<div id="customize_ref_dialog">
+    <div class="customize_ref_dialog_background" onclick="$('#customize_ref_dialog').fadeOut(500);">
+    </div>
+    <div class="customize_ref_dialog_form ditch-border">
+        <div>
+            <span>
+            Выбери название для своей реферальной ссылки!<br /><br />
+            http://www.wasdclub.com/id/</span><input id="custom_ref_input" type="text" value="{$user_data->custom_ref}" class="cstmz_ref_input" onkeyup="filterRef();" />
+            <br />
+            <button class="btn btn-inverse" onclick="saveCustomRef();">сохранить</button>
+
+            <a href="#" onclick="$('#customize_ref_dialog').fadeOut(500);"><div class="rd_close"></div></a>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function customizeRef() {
+        $('#customize_ref_dialog').fadeIn(200);
+    }
+    
+    $(document).keyup(function(e) {
+        if (e.keyCode == 27) { // escape key maps to keycode `27`
+           if ($('#customize_ref_dialog').css('display') == 'block')
+           $('.customize_ref_dialog_background').click();
+        }
+    });
+    
+    
+    function saveCustomRef() {
+        return true;
+	var data = {
+	    ref: $('#custom_ref_input').val()
+	};
+	
+	$.post('/siteuser/index/savecustomref',data,function(ret){
+	    if (ret.error!='') {
+		alert(ret.error);
+	    }else {
+		alert('Готово!');
+		$('#customize_ref_dialog').fadeOut(500);
+		$('#user_ref_input').val("http://www.wasdclub.com/id/"+$('#custom_ref_input').val());
+	    }
+	},'json');
+    }
+    
+    
+    function filterRef() {
+	var val = $('#custom_ref_input').val();
+	
+	val = val.replace(/[^a-z0-9_-]/gi,'').toLowerCase();
+	
+	$('#custom_ref_input').val(val);
+    }
+</script>
+
+<?php } ?>
+                            
 <?php } ?>
                             
 </div>
