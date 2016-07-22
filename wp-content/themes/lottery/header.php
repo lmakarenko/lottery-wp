@@ -479,7 +479,7 @@
         <div>
             <span>
             Выбери название для своей реферальной ссылки!<br /><br />
-            http://www.wasdclub.com/id/</span><input id="custom_ref_input" type="text" value="{$user_data->custom_ref}" class="cstmz_ref_input" onkeyup="filterRef();" />
+            http://www.wasdclub.com/id/</span><input id="custom_ref_input" type="text" value="<?php echo $GLOBALS['user_data']['custom_ref']; ?>" class="cstmz_ref_input" onkeyup="filterRef();" />
             <br />
             <button class="btn btn-inverse" onclick="saveCustomRef();">сохранить</button>
 
@@ -491,6 +491,7 @@
 
 <script>
     function customizeRef() {
+        return true;
         $('#customize_ref_dialog').fadeIn(200);
     }
     
