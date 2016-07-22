@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="description" content="Зарабатывайте деньги online, выполняя несложные задания" />
 <meta name="keywords" content="Online,заработок,работа,сети,игры" />	
-<meta name="verification" content="faddbab08fcc393180f820b60ab6efb2" />       
+<meta name="verification" content="faddbab08fcc393180f820b60ab6efb2" />
 <title>WASD</title>
 
 <link type="text/css" rel="stylesheet" href="/cms/public/css/main.css" />
