@@ -131,7 +131,12 @@
                                     <li onclick="location.href='<?php echo $GLOBALS['wasd_domain']; ?>/discounts'" style="cursor:pointer;">
                                         <div class="ditch-border">
                                             <div class="inner-convex-background sab-nav-option">
-                                                    <span>Акции</span>
+                                                <?php if(0 < (int)$GLOBALS['user_data']['unViewedDealCount']){ ?>
+                                                <span class="clr-chngn">Акции</span>
+                                                <span class="number blue"><?php echo $GLOBALS['user_data']['unViewedDealCount']; ?></span>
+                                                <?php } else { ?>
+                                                <span>Акции</span>
+                                                <?php } ?>
                                             </div>
                                         </div>
                                     </li>
@@ -156,8 +161,16 @@
                                     <li>
                                         <div class="ditch-border" style="cursor:pointer;">
                                             <div class="inner-convex-background sab-nav-option">
+                                            <?php if(0 < (int)$GLOBALS['user_data']['unViewedNewsCount']
+                                                    || 0 < (int)$GLOBALS['user_data']['unViewedBlogCount']){ ?>
+                                                <span class="clr-chngn">Еще</span>
+                                                <span class="number"> 
+                                                <?php echo (int)$GLOBALS['user_data']['unViewedNewsCount'] + (int)$GLOBALS['user_data']['unViewedBlogCount']; ?>
+                                                </span>
+                                            <?php } else { ?>
                                                 <span>Еще</span>
                                                 <span class="number"></span>
+                                            <?php } ?>
                                             </div>
                                         </div>
                                         <ul class="drop">
@@ -174,10 +187,20 @@
                                                 </a>
                                             </li>
                                             <li onclick="location.href='<?php echo $GLOBALS['wasd_domain']; ?>/siteuser/news/list'" style="cursor:pointer;">
+                                                <?php if(0 < (int)$GLOBALS['user_data']['unViewedNewsCount']){ ?>
+                                                <span class="clr-chngn">Новости</span>
+                                                <span class="number blue"><?php echo $GLOBALS['user_data']['unViewedNewsCount']; ?></span>
+                                                <?php } else { ?>
                                                 <span>Новости</span>
+                                                <?php } ?>
                                             </li>
                                             <li onclick="location.href='<?php echo $GLOBALS['wasd_domain']; ?>/articles'" style="cursor:pointer;">
+                                                <?php if(0 < (int)$GLOBALS['user_data']['unViewedBlogCount']){ ?>
+                                                <span class="clr-chngn">Блог</span>
+                                                <span class="number blue"><?php echo $GLOBALS['user_data']['unViewedBlogCount']; ?></span>
+                                                <?php } else { ?>
                                                 <span>Блог</span>
+                                                <?php } ?>
                                             </li>
                                             <li>
                                                 <a href="<?php echo $GLOBALS['wasd_domain']; ?>/streams">
