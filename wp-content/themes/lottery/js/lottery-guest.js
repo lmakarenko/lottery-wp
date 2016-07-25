@@ -16,9 +16,9 @@ $(function(){
                 console.log(d);
                 if(d.data){
                     $('#demo_login').html(d.data);
-                    $("#exit-form-back").css({"background-color": "#000000", "opacity": "0.7"});
-                    $("#exit-form-back").fadeToggle("fast");
-                    $("#demo_login").fadeToggle("fast");
+                    //$("#exit-form-back").css({"background-color": "#000000", "opacity": "0.7"});
+                    //$("#exit-form-back").fadeToggle("fast");
+                    //$("#demo_login").fadeToggle("fast");
                 }
             }
         });

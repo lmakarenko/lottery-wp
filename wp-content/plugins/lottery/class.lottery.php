@@ -678,7 +678,7 @@ class lottery {
             wp_send_json($data);
             return false;
         }
-        $data['data'] = file_get_contents($GLOBALS['wasd_domain'] . '/api/login/ajaxform');
+        $data['data'] = json_decode(file_get_contents($GLOBALS['wasd_domain'] . '/api/login/ajaxform'));
         wp_send_json($data);
     }
     
