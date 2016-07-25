@@ -46,7 +46,7 @@
 */ ?>
 <?php if(isset($GLOBALS['user_data']['id'])){ ?>
 <?php /*<script type="text/javascript" src="/site/skins/wasd2_sub/public/js/soctask_script.js"></script>*/ ?>
-<script type="application/javascript">var isGuest = false, user_id = parseInt('<?php echo $GLOBALS['user_data']['id']; ?>');</script>
+<script type="application/javascript">var isGuest = false;</script>
 <?php } else { ?>
 <script type="application/javascript" src="/wp-content/themes/lottery/lottery-guest.js"></script>
 <?php /*

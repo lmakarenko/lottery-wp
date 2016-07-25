@@ -8,7 +8,7 @@ $(function(){
     function init(){
         parse_posts_data();
         bind_posts_events();
-        if(user_id){
+        if(!isGuest){
             create_post_q();
             status_updater();
         }

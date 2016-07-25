@@ -1,3 +1,4 @@
+var isGuest = true;
 $(function(){
    
    $('.demo-login').on('click', function(e){
