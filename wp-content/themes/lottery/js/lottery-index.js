@@ -8,8 +8,10 @@ $(function(){
     function init(){
         parse_posts_data();
         bind_posts_events();
-        create_post_q();
-        status_updater();
+        if(user_id){
+            create_post_q();
+            status_updater();
+        }
     }
     
     function status_updater(){
