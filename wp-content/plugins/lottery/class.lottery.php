@@ -694,7 +694,7 @@ class lottery {
             array(
               'method'  => $p['method'],
               'header'  => "Content-Type: ". $p['content_type'] ."\r\n".
-                "Cookie: PHPSESSID=" . $_COOKIE['PHPSESSID'] . "\r\n "
+                "Cookie: PHPSESSID=" . $_COOKIE['PHPSESSID'] . "\r\n ",
                 //"Authorization: Basic ".base64_encode("$https_user:$https_password")."\r\n",
               'content' => $body,
               'timeout' => 60
