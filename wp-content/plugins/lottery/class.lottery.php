@@ -719,7 +719,7 @@ class lottery {
         if(isset($GLOBALS['user_data']['check_captcha_on_login'])){
             $d->captcha = $GLOBALS['user_data']['check_captcha_on_login'];
         }
-        $d->rurl = $_SERVER['HTTP_REFERER'];
+        $d->rurl = base64_encode($_SERVER['HTTP_REFERER']);
         return $d;
     }
     
