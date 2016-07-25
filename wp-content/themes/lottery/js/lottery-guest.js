@@ -3,6 +3,7 @@ $(function(){
    
    $('.demo-login').on('click', function(e){
         e.preventDefault();
+        return false;
         $.ajax({
             type:'post',
             url:'/wp-admin/admin-ajax.php',
