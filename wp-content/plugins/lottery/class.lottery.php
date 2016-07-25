@@ -671,6 +671,16 @@ class lottery {
         include_once('core/api.php');
     }
     
+    private function get_login_form_data_wc(){
+        $c_k = 'lottery-ajax-form-data';
+        if(apc_exists($c_k)){
+            $d = apc_fetch($c_k);
+        } else {
+            $d = json_decode(file_get_contents($GLOBALS['wasd_domain'] . '/api/login/ajaxform'));
+            apc_store($c_k, $d, 86400);
+        }
+    }
+    
     public function login_form_ajax(){
         check_ajax_referer('security-code', 'ajax_nonce');
         $data = array();
@@ -678,7 +688,7 @@ class lottery {
             wp_send_json($data);
             return false;
         }
-        $data['data'] = json_decode(file_get_contents($GLOBALS['wasd_domain'] . '/api/login/ajaxform'));
+        $data['data'] = $this->get_login_form_data_wc();
         wp_send_json($data);
     }
     
