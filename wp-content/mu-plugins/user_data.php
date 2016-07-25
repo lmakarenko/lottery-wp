@@ -1,6 +1,6 @@
 <?php
 
-$GLOBALS['wasd_domain'] = 'http://wasdclub.com';
+$GLOBALS['wasd_domain'] = 'http://www.wasdclub.com';
 
 if(isset($_SESSION['user_data'])){
     $GLOBALS['user_data'] = $_SESSION['user_data'];
