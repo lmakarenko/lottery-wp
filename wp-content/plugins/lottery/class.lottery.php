@@ -31,7 +31,7 @@ class lottery {
         add_action( 'wp_ajax_get_complete_cnt' , array( $this, 'get_complete_cnt_ajax' ) );
         
         add_action( 'wp_ajax_nopriv_login', array( $this, 'login_ajax' ) );
-        add_action( 'wp_ajax_login' , array( $this, 'login_ajax' ) );
+        add_action( 'wp_ajax_login_form' , array( $this, 'login_form_ajax' ) );
         
     }
     
@@ -667,11 +667,11 @@ class lottery {
     }
     
     public function include_before_theme(){
-        // incudes
+        // includes
         include_once('core/api.php');
     }
     
-    public function login_ajax(){
+    public function login_form_ajax(){
         check_ajax_referer('security-code', 'ajax_nonce');
         $data = array();
         if(isset($data['error'])){

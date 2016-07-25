@@ -48,16 +48,7 @@
 <?php /*<script type="text/javascript" src="/site/skins/wasd2_sub/public/js/soctask_script.js"></script>*/ ?>
 <script type="application/javascript">var isGuest = false;</script>
 <?php } else { ?>
-<script type="application/javascript">
-var isGuest = true;
-function showDemoLogin() {
-    $('#demo_login').html('');
-    $('#demo_login').html('<iframe src="<?php echo $GLOBALS['wasd_domain']; ?>/siteuser/ajax/ajaxlogin"></iframe>');
-    $("#exit-form-back").css({"background-color": "#000000", "opacity": "0.7"});
-    $("#exit-form-back").fadeToggle("fast");
-    $("#demo_login").fadeToggle("fast");
-}
-</script>
+<script type="application/javascript" src="/wp-content/themes/lottery/lottery-guest.js"></script>
 <?php /*
 <script type="text/javascript" src="/site/skins/wasd2_sub/public/js/guest.js"></script>
 <script type="text/javascript" src="/site/plugins/siteuser/public/js/main.js"></script>
@@ -264,7 +255,7 @@ function showDemoLogin() {
                                             </div>
                                         </ul>
                                     <?php } else { ?>
-                                        <a href="#" onclick="showDemoLogin(); return false;">
+                                        <a class="demo-login" href="#">
                                             <div class="ditch-border">
                                                 <div class="inner-convex-background sab-nav-option">
                                                     Вход
