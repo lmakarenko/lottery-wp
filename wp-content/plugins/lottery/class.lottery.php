@@ -30,7 +30,7 @@ class lottery {
         add_action( 'wp_ajax_nopriv_get_complete_cnt', array( $this, 'get_complete_cnt_ajax' ) );
         add_action( 'wp_ajax_get_complete_cnt' , array( $this, 'get_complete_cnt_ajax' ) );
         
-        add_action( 'wp_ajax_nopriv_login', array( $this, 'login_ajax' ) );
+        add_action( 'wp_ajax_nopriv_login_form', array( $this, 'login_form_ajax' ) );
         add_action( 'wp_ajax_login_form' , array( $this, 'login_form_ajax' ) );
         
     }
