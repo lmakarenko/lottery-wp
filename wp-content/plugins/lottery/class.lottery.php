@@ -180,8 +180,12 @@ class lottery {
         } else {
             $dsn = "host=db.wasdclub.com dbname=mr_alpha user=mr_alpha password=mr_alpha500f";
         }*/
-        $this->db_pg = pg_connect($dsn);
-        return (false !== $this->db_pg);
+        try {
+            $this->db_pg = pg_connect($dsn);
+            return true;
+        } catch(Exception $e) {
+            return false;
+        }
     }
     
     private function pg_deinit(){
