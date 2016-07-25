@@ -695,7 +695,7 @@ class lottery {
         }
         ob_start();
         $d = $this->get_login_form_data_wc();
-        include_once('inc/ajax_login_form.php');
+        //include_once('inc/ajax_login_form.php');
         $data['html'] = ob_get_clean();
         wp_send_json($data);
     }
