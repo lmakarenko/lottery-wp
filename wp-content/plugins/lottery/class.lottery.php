@@ -20,6 +20,7 @@ class lottery {
         }
         
         add_action( 'template_redirect', array( $this, 'init_before_theme' ), 1 );
+        
         add_action( 'wp_ajax_nopriv_get_tasks_status', array( $this, 'get_tasks_status_ajax' ) );
         add_action( 'wp_ajax_get_tasks_status' , array( $this, 'get_tasks_status_ajax' ) );
         
@@ -28,6 +29,9 @@ class lottery {
         
         add_action( 'wp_ajax_nopriv_get_complete_cnt', array( $this, 'get_complete_cnt_ajax' ) );
         add_action( 'wp_ajax_get_complete_cnt' , array( $this, 'get_complete_cnt_ajax' ) );
+        
+        add_action( 'wp_ajax_nopriv_login', array( $this, 'login_ajax' ) );
+        add_action( 'wp_ajax_login' , array( $this, 'login_ajax' ) );
         
     }
     
@@ -665,6 +669,17 @@ class lottery {
     public function include_before_theme(){
         // incudes
         include_once('core/api.php');
+    }
+    
+    public function login_ajax(){
+        check_ajax_referer('security-code', 'ajax_nonce');
+        $data = array();
+        if(isset($data['error'])){
+            wp_send_json($data);
+            return false;
+        }
+        $data['html'] = file_get_contents($GLOBALS['wasd_domain'] . '/api/login/ajaxform');
+        wp_send_json($data);
     }
     
 }
