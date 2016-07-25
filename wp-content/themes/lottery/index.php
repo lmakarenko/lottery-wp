@@ -38,6 +38,7 @@ endif;
 <?php get_footer(); ?>
 <!--
 <?php
+txt_a($GLOBALS['user_data']);
 /*
 txt_a($GLOBALS['user_data']);
 txt_a(lottery_get_posts());

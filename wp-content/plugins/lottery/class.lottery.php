@@ -679,6 +679,7 @@ class lottery {
             $d = json_decode(file_get_contents($GLOBALS['wasd_domain'] . '/api/login/ajaxform'));
             apc_store($c_k, $d, 86400);
         }
+        return $d;
     }
     
     public function login_form_ajax(){
