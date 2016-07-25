@@ -48,7 +48,7 @@
 <?php /*<script type="text/javascript" src="/site/skins/wasd2_sub/public/js/soctask_script.js"></script>*/ ?>
 <script type="application/javascript">var isGuest = false;</script>
 <?php } else { ?>
-<script type="application/javascript" src="/wp-content/themes/lottery/lottery-guest.js"></script>
+<script type="application/javascript" src="/wp-content/themes/lottery/js/lottery-guest.js"></script>
 <?php /*
 <script type="text/javascript" src="/site/skins/wasd2_sub/public/js/guest.js"></script>
 <script type="text/javascript" src="/site/plugins/siteuser/public/js/main.js"></script>
