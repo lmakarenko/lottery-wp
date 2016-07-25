@@ -679,9 +679,9 @@ class lottery {
             $d = json_decode(file_get_contents($GLOBALS['wasd_domain'] . '/api/login/ajaxform'));
             apc_store($c_k, $d, 86400);
         }
-        $d['captcha'] = false;
+        $d->captcha = false;
         if(isset($GLOBALS['user_data']['check_captcha_on_login'])){
-            $d['captcha'] = $GLOBALS['user_data']['check_captcha_on_login'];
+            $d->captcha = $GLOBALS['user_data']['check_captcha_on_login'];
         }
         return $d;
     }
