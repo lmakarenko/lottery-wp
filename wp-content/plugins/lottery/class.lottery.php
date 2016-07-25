@@ -30,6 +30,9 @@ class lottery {
         add_action( 'wp_ajax_nopriv_get_complete_cnt', array( $this, 'get_complete_cnt_ajax' ) );
         add_action( 'wp_ajax_get_complete_cnt' , array( $this, 'get_complete_cnt_ajax' ) );
         
+        add_action( 'wp_ajax_nopriv_wasd_call', array( $this, 'wasd_call_ajax' ) );
+        add_action( 'wp_ajax_wasd_call' , array( $this, 'wasd_call_ajax' ) );
+        
         add_action( 'wp_ajax_nopriv_login_form', array( $this, 'login_form_ajax' ) );
         add_action( 'wp_ajax_login_form' , array( $this, 'login_form_ajax' ) );
         
@@ -671,6 +674,39 @@ class lottery {
         include_once('core/api.php');
     }
     
+    private function get_from_wasd_wc($p){
+        
+        if(!isset($p['method'])){
+            $p['method'] = 'post';
+        }
+        
+        if(!isset($p['content_type'])){
+            $p['content_type'] = 'application/x-www-form-urlencoded; charset=UTF-8';
+        }
+        
+        if(isset($p['query_data'])){
+            $body = http_build_query($p['query_data']);
+        } else {
+            $body = '';
+        }
+        
+        $opts = array('http' =>
+            array(
+              'method'  => $p['method'],
+              'header'  => "Content-Type: ". $p['content_type'] ."\r\n".
+                "Cookie: PHPSESSID=" . $_COOKIE['PHPSESSID'] . "\r\n "
+                //"Authorization: Basic ".base64_encode("$https_user:$https_password")."\r\n",
+              'content' => $body,
+              'timeout' => 60
+            )
+        );
+        
+        $context  = stream_context_create($opts);
+        $url = $GLOBALS['wasd_domain'];
+        $result = file_get_contents($url, false, $context, -1, 40000);
+        return $result;
+    }
+    
     private function get_login_form_data_wc(){
         $c_k = 'lottery-ajax-form-data';
         if(apc_exists($c_k)){
@@ -683,6 +719,7 @@ class lottery {
         if(isset($GLOBALS['user_data']['check_captcha_on_login'])){
             $d->captcha = $GLOBALS['user_data']['check_captcha_on_login'];
         }
+        $d->rurl = $_SERVER['HTTP_REFERER'];
         return $d;
     }
     
@@ -697,6 +734,19 @@ class lottery {
         $d = $this->get_login_form_data_wc();
         include_once('inc/ajax_login_form.php');
         $data['html'] = ob_get_clean();
+        wp_send_json($data);
+    }
+    
+    public function wasd_call_ajax(){
+        check_ajax_referer('security-code', 'ajax_nonce');
+        $data = array();
+        if(isset($data['error'])){
+            wp_send_json($data);
+            return false;
+        }
+        $data = json_decode($this->get_from_wasd_wc(array(
+            'query_data' => $_POST['data']
+        )));
         wp_send_json($data);
     }
     

@@ -8,11 +8,11 @@
     <button class="demo_sign_in active">ВОЙТИ</button>
 </div>
 <div id="demo_agreement">
-    При входе на сайт, вы соглашаетесь с условиями <a href="/agreement.html" target="_blank">пользовательского соглашения</a>
+    При входе на сайт, вы соглашаетесь с условиями <a href="<?php echo $GLOBALS['wasd_domain']; ?>/agreement.html" target="_blank">пользовательского соглашения</a>
 </div>
 <div id="demo_login_tab">
     <div id="demo_login_tab_l">
-        <form id="ajax_login_form" action="/login" method="post">
+        <form id="ajax_login_form" action="<?php echo $GLOBALS['wasd_domain']; ?>/login" method="post">
             <div class="demo_login_txt">
                 Заполните форму:
             </div>
@@ -22,20 +22,20 @@
                 <a href="#" onclick="return forgetPass()">Забыли пароль?</a>
             </div>
             <div id="demo_login_captcha" <?php if(!$d->captcha){ ?>style="display: none"<?php } ?>>
-                <div id="captcha" style="cursor: pointer" title="Обновить" onclick="$('#captcha').load('/user/index/captcha');"></div>
+                <div id="captcha" style="cursor: pointer" title="Обновить" onclick="$('#captcha').load('<?php echo $GLOBALS['wasd_domain']; ?>/user/index/captcha');"></div>
                 <div class="holder">
                     <input type="text" name="captcha[input]" placeholder="Введите код"/>
                 </div>
                 <?php if($d->captcha){ ?>
                 <script>
-                    $('#captcha').load('/user/index/captcha');
+                    $('#captcha').load('<?php echo $GLOBALS['wasd_domain']; ?>/user/index/captcha');
                 </script>
                 <?php } ?>
             </div>
             <div id="demo_login_login">
                 <button class="button reg-button" onclick="ajaxLogin(); return false;">ВХОД</button>
             </div>
-            <input type="hidden" name="rurl" value="<?php echo $rurl; ?>" />
+            <input type="hidden" name="rurl" value="<?php echo $d->rurl; ?>" />
         </form>
     </div>
     <div id="demo_register_tab_l">
@@ -65,7 +65,7 @@
     </div>
 </div>
 <script>
-
+    
     $("#exit-form-back").click(function () {
         $("#exit-form-back").css({"background-color": "", "opacity": ""});
         $("#exit-form-back").hide();
@@ -119,7 +119,7 @@
             password2: $('#demo_input_password2').val()
         };
 
-        $.post('/siteregister/index/sendemail', data, function (ret) {
+        sendPost('/siteregister/index/sendemail', data, function (ret) {
             $('#' + lom).remove();
 
             if (ret['error'] != '') {
@@ -131,7 +131,7 @@
             $('#demo_email_code').show();
             $('#email_code_id').val(ret['code_id']);
             $('#demo_reg_btn').attr('onclick', 'dl_doRegister(); return false;');
-        }, 'json');
+        });
     }
 
     function dl_doRegister() {
@@ -139,7 +139,7 @@
         lom = showLoadingProcessLayer('Регистрирую...');
         sendPost('/siteregister/index/userregister', data, function () {
             $('#' + lom).remove();
-            document.location.href = "/siteregister/index/success" + ((typeof rurl != 'undefined') ? '/rurl/' + rurl : '');
+            document.location.href = "<?php echo $GLOBALS['wasd_domain']; ?>/siteregister/index/success" + ((typeof rurl != 'undefined') ? '/rurl/' + rurl : '');
         }, function () {
             $('#' + lom).remove();
         });
@@ -150,14 +150,14 @@
             email: $('#demo_input_email').val()
         };
 
-        $.post('/siteregister/index/sendemail', data, function (ret) {
+        sendPost('/siteregister/index/sendemail', data, function (ret) {
             if (ret['error'] != '') {
                 alert(ret['error']);
                 return false;
             }
             $('#email_code_id').val(ret['code_id']);
             alert('На ваш E-mail отправлен код подтверждения');
-        }, 'json');
+        });
     }
 
 </script>
