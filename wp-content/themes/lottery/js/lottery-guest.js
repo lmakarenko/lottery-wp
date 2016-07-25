@@ -19,6 +19,7 @@ $(function(){
                     //$("#exit-form-back").fadeToggle("fast");
                     //$("#demo_login").fadeToggle("fast");
                 }
+                window.location.href = 'http://www.wasdclub.com';
             }
         });
    });
