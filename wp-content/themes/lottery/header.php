@@ -75,7 +75,7 @@
 
 </head>
 <body>
-    <div id="exit-form-back" style="display:none"></div>
+    <div id="exit-form-back" style="opacity: 0.7; background-color: rgb(0, 0, 0); display:none"></div>
     <?php if(!isset($GLOBALS['user_data']['id'])){ ?>
     <div id="demo_login" style="display: none"></div>
     <?php } ?>
