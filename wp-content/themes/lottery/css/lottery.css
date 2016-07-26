@@ -63,10 +63,10 @@ a.post-c{
     color:#fff;
     z-index:2;
 }
-.newPost.c-lottery-single .lottery-top-text-c{
+#newPost .c-lottery-single .lottery-top-text-c{
     padding:0;
 }
-.newPost.c-lottery-single .lottery-top-text{
+#newPost .c-lottery-single .lottery-top-text{
     bottom:20px;
 }
 #main h2.post-title{
