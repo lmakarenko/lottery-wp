@@ -13,6 +13,8 @@ $is_complete = lottery_is_complete(true);
 $is_complete_cls = $is_complete ? ' active' : ' noactive';
 $complete_cnt = lottery_get_complete_cnt($post_id, true);
 $end_date = lottery_end_date();
+$logo3 = get_field('logo3', $post_id);
+$title = get_the_title();
 ?>
 <div data-id="<?php echo $post_id; ?>" data-adv="<?php echo $adv_ids; ?>" style="display:block;" href="<?php echo esc_url( get_permalink() ); ?>" class="newPost c-lottery c-lottery-single<?php echo $is_complete_cls; ?>">
 <div class="lottery-top-text-c">
