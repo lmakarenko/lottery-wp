@@ -74,12 +74,13 @@ class lottery {
             //echo 'Single';
             $post_id = get_the_ID();
             $adv_ids = get_field('id_adv', $post_id);
+            $this->load_posts_data($post_id);
+            $this->load_complete_cnt_all( $this->posts_data );
             $this->load_tasks_data_wc($post_id);
             //$this->load_tasks_data($post_id);
             if(isset($GLOBALS['user_data']['id']) && !empty($GLOBALS['user_data']['id'])){
                 $this->load_tasks_status($GLOBALS['user_data']['id'], $adv_ids);
             }
-            $this->load_complete_cnt($adv_ids);
         }
         //$this->load_history_data();
         //$this->load_complete_cnt_all( $this->history_data );
@@ -366,7 +367,7 @@ class lottery {
         $post_ids = explode(',', $_POST['id_posts']);
         foreach($post_ids as $post_id){
             $adv_ids = get_field('id_adv', $post_id);
-            $data[ $post_id ]['cnt'] = $this->load_complete_cnt($adv_ids);
+            $data[ $post_id ]['cnt'] = $this->load_complete_cnt_wc($adv_ids);
             if(!empty($this->error)){
                 $data['error'][] = array('txt' => $this->error, 'code' => 0);
             }
@@ -375,8 +376,11 @@ class lottery {
     }
     
     private function load_complete_cnt_wc($adv_ids, $post_id = false){
+        if(empty($post_id)){
+            return false;
+        }
         $cnt = false;
-        $c_key = 'lottery-complete' . ($post_id ? '-' . $post_id : '');
+        $c_key = 'lottery-complete-' . $post_id;
         if(apc_exists($c_key)){
             $cnt = apc_fetch($c_key);
         } else {
@@ -615,7 +619,7 @@ class lottery {
         } else {
             $adv_ids = get_field('id_adv', $post_id);
             if($adv_ids){
-                return $this->load_complete_cnt($adv_ids);
+                return $this->load_complete_cnt_wc($adv_ids);
             } else {
                 return false;
             }
