@@ -59,15 +59,12 @@
 <script type="text/javascript" src="/site/skins/wasd2_sub/public/js/share.js"></script>
 <!--[if lt IE 9]><script type="text/javascript" src="/site/skins/wasd2_sub/public/js/pie.js"></script><![endif]-->
 
-<?php /*
-
 <script src="//www.google.com/jsapi" type="text/javascript"></script>
-
 <script type="text/javascript">
   google.load("swfobject", "2.1");
 </script>
 <script type="text/javascript" src="//yandex.st/share/share.js" charset="utf-8"></script>
-*/ ?>
+
 <style>
     body {
         background: #000 url("/site/skins/wasd2_sub/public/images/panzar-bg.jpg") no-repeat scroll center top;
