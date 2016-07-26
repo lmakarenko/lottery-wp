@@ -95,7 +95,6 @@
         <div id="wrapper">
             <div class="w1">
             <div class="ad" style="height: 120px;">
-                <?php /*
                 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                 <!-- Wasd TOP -->
                 <ins class="adsbygoogle"
@@ -104,7 +103,7 @@
                      data-ad-slot="7115443322"></ins>
                 <script>
                     (adsbygoogle = window.adsbygoogle || []).push({});
-                </script> */ ?>
+                </script>
             </div>
                         <div id="header">
                                 <div class="nav-holder">
