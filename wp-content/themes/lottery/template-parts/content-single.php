@@ -6,15 +6,21 @@
  * @subpackage lottery
  * @since lottery 1.0
  */
-
+$is_user = isset($GLOBALS['user_data']['id']) && (int)$GLOBALS['user_data']['id'] > 0;
 $post_id = get_the_ID();
-$adv_ids = get_field('id_adv', $post_id);
-$is_complete = lottery_is_complete(true);
-$is_complete_cls = $is_complete ? ' active' : ' noactive';
-$complete_cnt = lottery_get_complete_cnt($post_id, true);
 $end_date = lottery_end_date();
 $logo3 = get_field('logo3', $post_id);
 $title = get_the_title();
+$adv_ids = get_field('id_adv', $post_id);
+if($is_user){
+    $is_complete = lottery_is_complete(true);
+    $is_complete_cls = $is_complete ? ' active' : ' noactive';
+    $complete_cnt = lottery_get_complete_cnt($post_id, true);
+} else {
+    $is_complete = false;
+    $is_complete_cls = '';
+    $complete_cnt = '';
+}
 ?>
 <div data-id="<?php echo $post_id; ?>" data-adv="<?php echo $adv_ids; ?>" style="display:block;" href="<?php echo esc_url( get_permalink() ); ?>" class="newPost c-lottery c-lottery-single<?php echo $is_complete_cls; ?>">
 <div class="lottery-top-text-c">
