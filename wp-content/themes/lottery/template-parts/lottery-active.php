@@ -8,13 +8,17 @@
  */
 $is_user = isset($GLOBALS['user_data']['id']) && (int)$GLOBALS['user_data']['id'] > 0;
 $post_id = get_the_ID();
-$is_complete = false;//lottery_is_complete(true);
-$is_complete_cls = '';//$is_user ? ($is_complete ? ' active' : ' noactive') : '';
-$complete_cnt = '';//lottery_get_complete_cnt($post_id, true);
 $end_date = lottery_end_date();
 $title = get_the_title();
 $adv_ids = get_field('id_adv', $post_id);
 $logo3 = get_field('logo3', $post_id);
+$is_complete = false;//lottery_is_complete(true);
+$complete_cnt = '';//lottery_get_complete_cnt($post_id, true);
+if($is_user){
+    $is_complete_cls = ($is_complete ? ' active' : ' noactive');
+} else {
+    $is_complete_cls = '';
+}
 
 ?>
 <a class="post-c" href="<?php echo esc_url( get_permalink() ); ?>" title="<?php echo $title; ?>">    
