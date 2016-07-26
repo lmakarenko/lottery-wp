@@ -145,3 +145,6 @@ a.post-c{
     display:none;
     z-index:1;
 }
+#newPost .c-lottery-single .lottery-overlay{
+    display:block;
+}
