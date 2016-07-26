@@ -367,7 +367,7 @@ class lottery {
         $post_ids = explode(',', $_POST['id_posts']);
         foreach($post_ids as $post_id){
             $adv_ids = get_field('id_adv', $post_id);
-            $data[ $post_id ]['cnt'] = $this->load_complete_cnt_wc($adv_ids);
+            $data[ $post_id ]['cnt'] = $this->load_complete_cnt_wc($adv_ids, $post_id);
             if(!empty($this->error)){
                 $data['error'][] = array('txt' => $this->error, 'code' => 0);
             }
@@ -619,7 +619,7 @@ class lottery {
         } else {
             $adv_ids = get_field('id_adv', $post_id);
             if($adv_ids){
-                return $this->load_complete_cnt_wc($adv_ids);
+                return $this->load_complete_cnt_wc($adv_ids, $post_id);
             } else {
                 return false;
             }
