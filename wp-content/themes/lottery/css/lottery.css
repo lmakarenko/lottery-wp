@@ -63,6 +63,9 @@ a.post-c{
     color:#fff;
     z-index:2;
 }
+.newPost.c-lottery-single .lottery-top-text{
+    bottom:0;
+}
 #main h2.post-title{
     font-weight:bold;
     font-size:28px;
