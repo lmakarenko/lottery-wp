@@ -16,7 +16,7 @@ function sendPost(url,data,success,fail) {
                 }
         },'json');
 }
-*/
+
 function sendPost_(url,data,success,fail) {
     var domain_ = document.domain, s = false;
     console.log(document.domain);
@@ -27,3 +27,5 @@ function sendPost_(url,data,success,fail) {
     console.log(document.domain);
     return s;
 }
+
+*/
