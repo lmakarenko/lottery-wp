@@ -8,7 +8,7 @@ $(function(){
     
     function init(){
         parse_tasks_data();
-        if(!isGuest){
+        if(!isGuest && !isComplete){
             status_updater();
         }
     }
