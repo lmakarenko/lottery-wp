@@ -77,6 +77,7 @@ class lottery {
             $adv_ids = get_field('id_adv', $post_id);
             $this->load_posts_data($post_id);
             $this->load_complete_cnt_all( $this->posts_data );
+            $this->load_camps_status_all();
             $this->load_tasks_data_wc($post_id);
             //$this->load_tasks_data($post_id);
             if(isset($GLOBALS['user_data']['id']) && !empty($GLOBALS['user_data']['id'])){
