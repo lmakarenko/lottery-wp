@@ -2,7 +2,7 @@ $('document').ready(function(){
     
     var checkTimeoutId = false, posts_id_s = $('#id-posts').val(), posts_id = posts_id_s.split(',');
     
-    checkCompleteCnt();
+    checkTimeoutId = setTimeout(checkCompleteCnt, 60000);
     
     function checkCompleteCnt(id_adv){
         
