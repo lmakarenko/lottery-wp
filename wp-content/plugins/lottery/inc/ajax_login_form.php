@@ -84,10 +84,10 @@
     });
 
     function ajaxLogin() {
-        $('#ajax_login_form').submit();
-        /*
+        //$('#ajax_login_form').submit();
+        
         var params = $('#ajax_login_form').serialize();
-        $.post('/siteuser/ajax/ajaxlogin', params,
+        sendPost('/siteuser/ajax/ajaxlogin', params,
                 function (response) {
                     if (!response['ok']) {
                         alert(response['error']);
@@ -104,11 +104,10 @@
                         }, 5000);
                         return false;
                     }
-                },
-                'json'
+                }
         );
         return false;
-        */
+       
     }
 
     function ajaxRegister() {
