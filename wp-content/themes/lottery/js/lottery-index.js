@@ -142,6 +142,7 @@ $(function(){
         }
         var e = $('.newPost[data-id="' + post_id + '"]').first();
         e.removeClass('noactive').addClass('active');
+        e.find('.lottery-complete-txt').first().html('Поздравляем! Вы участник розыгрыша!');
     }
     
     function set_status_noactive(post_id){
@@ -150,6 +151,7 @@ $(function(){
         }
         var e = $('.newPost[data-id="' + post_id + '"]').first();
         e.removeClass('active').addClass('noactive');
+        e.find('.lottery-complete-txt').first().html('Стань участником розыгрыша!');
     }
     
     function update_posts_statuses(){
