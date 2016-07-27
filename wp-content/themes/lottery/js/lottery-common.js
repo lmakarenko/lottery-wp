@@ -1,3 +1,4 @@
+/*
 function sendPost(url,data,success,fail) {
         var d = {};
         d['query_url'] = url;
@@ -14,4 +15,12 @@ function sendPost(url,data,success,fail) {
                         return true;
                 }
         },'json');
+}
+*/
+function sendPost_(url,data,success,fail) {
+    var domain_ = document.domain;
+    document.domain = wasd_domain;
+    var s = sendPost(url, data, success, fail);
+    document.domain = domain_;
+    return s;
 }
