@@ -706,7 +706,7 @@ class lottery {
         );
         
         $context  = stream_context_create($opts);
-        $url = $GLOBALS['wasd_domain'] . $p['url'];
+        $url = $GLOBALS['wasd_domain'] . $p['query_url'];
         $result = file_get_contents($url, false, $context, -1, 40000);
         return $result;
     }
@@ -749,8 +749,8 @@ class lottery {
             return false;
         }
         $data = json_decode($this->get_from_wasd_wc(array(
-            'url' => $_POST['data']['url'],
-            'query_data' => $_POST['data']
+            'query_url' => $_POST['query_url'],
+            'query_data' => $_POST['query_data']
         )));
         wp_send_json($data);
     }

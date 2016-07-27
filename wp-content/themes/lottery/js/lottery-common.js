@@ -1,6 +1,7 @@
 function sendPost(url,data,success,fail) {
         var d = {};
-        d['data'] = data + '&url=' + url;
+        d['query_url'] = url;
+        d['query_data'] = data;
         d['action'] = 'wasd_call';
         d['ajax_nonce'] = asdfqwer;
         return $.post('/wp-admin/admin-ajax.php',d,function(ret) {
