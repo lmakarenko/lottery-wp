@@ -706,7 +706,7 @@ class lottery {
         );
         
         $context  = stream_context_create($opts);
-        $url = $GLOBALS['wasd_domain'];
+        $url = $GLOBALS['wasd_domain'] . $p['url'];
         $result = file_get_contents($url, false, $context, -1, 40000);
         return $result;
     }
@@ -749,6 +749,7 @@ class lottery {
             return false;
         }
         $data = json_decode($this->get_from_wasd_wc(array(
+            'url' => $_POST['url'],
             'query_data' => $_POST['data']
         )));
         wp_send_json($data);
