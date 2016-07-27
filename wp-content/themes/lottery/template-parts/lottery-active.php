@@ -12,13 +12,12 @@ $end_date = lottery_end_date();
 $title = get_the_title();
 $adv_ids = get_field('id_adv', $post_id);
 $logo3 = get_field('logo3', $post_id);
+$complete_cnt = lottery_get_complete_cnt($post_id, true);
 if($is_user){
-    $is_complete = false;//lottery_is_complete(true);
-    $complete_cnt = '';//lottery_get_complete_cnt($post_id, true);
+    $is_complete = lottery_is_complete(true);
     $is_complete_cls = ($is_complete ? ' active' : ' noactive');
 } else {
     $is_complete = false;
-    $complete_cnt = '';
     $is_complete_cls = '';
 }
 

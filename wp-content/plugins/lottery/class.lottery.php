@@ -66,7 +66,8 @@ class lottery {
                 is_category('active')){
             //echo 'List';
             $this->load_posts_data();
-            //$this->load_camps_status_all();
+            $this->load_complete_cnt_all( $this->posts_data );
+            $this->load_camps_status_all();
             if('NOACTIVE' == $this->status){
                 $this->get_ending_complete_cnt_wc($this->posts_data[0]);
             }
