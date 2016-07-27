@@ -43,8 +43,8 @@
 <script type="text/javascript" src="/site/skins/wasd2_sub/public/js/jquery.jscrollpane.min.js"></script>
 <script type="text/javascript" src="/site/skins/wasd2_sub/public/js/select.js"></script>
 <script type="text/javascript" src="/site/skins/wasd2_sub/public/js/jquery.main.js"></script>
-*/ ?>
 <script type="application/javascript" src="/wp-content/themes/lottery/js/lottery-common.js"></script>
+*/ ?>
 <?php if(isset($GLOBALS['user_data']['id'])){ ?>
 <?php /*<script type="text/javascript" src="/site/skins/wasd2_sub/public/js/soctask_script.js"></script>*/ ?>
 <script type="application/javascript">var isGuest = false;</script>
