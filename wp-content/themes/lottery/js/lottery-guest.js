@@ -5,7 +5,6 @@ $(function(){
         e.preventDefault();
         window.location.href = 'http://www.wasdclub.com';
     });
-    
     /*
         $.ajax({
             type:'post',
