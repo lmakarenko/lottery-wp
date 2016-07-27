@@ -688,10 +688,11 @@ class lottery {
             $p['content_type'] = 'application/x-www-form-urlencoded; charset=UTF-8';
         }
         
-        if(isset($p['query_data'])){
+        if(isset($p['query_data']) &&
+            (is_array($p['query_data']) || is_object($p['query_data']))){
             $body = http_build_query($p['query_data']);
         } else {
-            $body = '';
+            $body = $p['query_data'];
         }
         
         $opts = array('http' =>
