@@ -10,7 +10,7 @@ $(function(){
         bind_posts_events();
         if(!isGuest){
             create_post_q();
-            status_updater();
+            taskTimeoutId = setTimeout(status_updater, 36000);
         }
     }
     

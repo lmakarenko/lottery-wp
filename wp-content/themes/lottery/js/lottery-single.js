@@ -9,7 +9,7 @@ $(function(){
     function init(){
         parse_tasks_data();
         if(!isGuest){
-            status_updater();
+            taskTimeoutId = setTimeout(status_updater, 36000);
         }
     }
     
