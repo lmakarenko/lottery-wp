@@ -17,15 +17,13 @@ function sendPost(url,data,success,fail) {
         },'json');
 }
 
-function sendPost_(url,data,success,fail) {
-    var domain_ = document.domain, s = false;
-    console.log(document.domain);
-    document.domain = wasd_domain;
-    console.log(document.domain);
-    //var s = sendPost(url, data, success, fail);
-    document.domain = domain_;
-    console.log(document.domain);
-    return s;
-}
-
 */
+
+function sendPost_(url,data,success,fail) {
+    $.getJSON(
+       wasd_domain + url,
+       function(json){
+           console.log(json);
+       }
+    );
+}
