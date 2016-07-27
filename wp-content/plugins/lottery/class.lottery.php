@@ -749,7 +749,7 @@ class lottery {
             return false;
         }
         $data = json_decode($this->get_from_wasd_wc(array(
-            'url' => $_POST['url'],
+            'url' => $_POST['data']['url'],
             'query_data' => $_POST['data']
         )));
         wp_send_json($data);
