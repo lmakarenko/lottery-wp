@@ -98,10 +98,10 @@
                         }
                     } else {
                         console.log(response);
-                        setTimeout(function(){
+                        /*setTimeout(function(){
                             //document.location.href = response['url'];
                             document.location.href = '/';
-                        }, 5000);
+                        }, 5000);*/
                         return false;
                     }
                 }
