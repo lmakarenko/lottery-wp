@@ -699,7 +699,15 @@ class lottery {
             array(
               'method'  => $p['method'],
               'header'  => "Content-Type: ". $p['content_type'] ."\r\n".
-                "Cookie: PHPSESSID=" . $_COOKIE['PHPSESSID'] . "\r\n ",
+                "Cookie: PHPSESSID=" . $_COOKIE['PHPSESSID'] . "\r\n ".
+                "Accept:application/json, text/javascript, */*; q=0.01\r\n".
+                "Accept-Encoding:gzip, deflate\r\n".
+                "Accept-Language:ru-RU,ru;q=0.8,en-US;q=0.6,en;q=0.4\r\n".
+                "Host:" . str_replace('http://', '', $GLOBALS['wasd_domain']) ."\r\n".
+                "Origin:" . $GLOBALS['wasd_domain'] ."\r\n".
+                "Referer:" . $GLOBALS['wasd_domain'] ."/\r\n".
+                "User-Agent:Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.106 Safari/537.36\r\n".
+                "X-Requested-With:XMLHttpRequest\r\n",
                 //"Authorization: Basic ".base64_encode("$https_user:$https_password")."\r\n",
               'content' => $body,
               'timeout' => 60
@@ -749,10 +757,12 @@ class lottery {
             wp_send_json($data);
             return false;
         }
-        $data = json_decode($this->get_from_wasd_wc(array(
+        $raw_data = $this->get_from_wasd_wc(array(
             'query_url' => $_POST['query_url'],
             'query_data' => $_POST['query_data']
-        )));
+        ));
+        $data = json_decode($raw_data);
+        $data['raw_data'] = $raw_data;
         wp_send_json($data);
     }
     
