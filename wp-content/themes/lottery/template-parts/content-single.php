@@ -21,6 +21,7 @@ if($is_user){
     $is_complete_cls = '';
 }
 ?>
+<script type="text/javascript">var isComplete = parseInt('<?php echo ($is_complete ? 1 : 0); ?>');</script>
 <div data-id="<?php echo $post_id; ?>" data-adv="<?php echo $adv_ids; ?>" style="display:block;" href="<?php echo esc_url( get_permalink() ); ?>" class="newPost c-lottery c-lottery-single<?php echo $is_complete_cls; ?>">
 <div class="lottery-top-text-c">
     <div class="inner clear">

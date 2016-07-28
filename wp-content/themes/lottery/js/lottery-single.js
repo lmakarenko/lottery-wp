@@ -9,7 +9,12 @@ $(function(){
     function init(){
         parse_tasks_data();
         if(!isGuest){
-            status_updater();
+            if(isComplete){
+                set_post_active();
+                set_tasks_active();
+            } else {
+                status_updater();
+            }
         }
     }
     
@@ -42,9 +47,24 @@ $(function(){
                   */
                   if(0 < task_q.length){
                     taskTimeoutId = setTimeout(status_updater, 36000);
+                  } else {
+                      set_post_active();
                   }
                 }
             }
+        });
+    }
+    
+    function set_post_active(){
+       $('.newPost').first().removeClass('noactive').adClass('active');
+       $('.lottery-complete-txt').first().html('Поздравляем! Вы участник розыгрыша!'); 
+    }
+    
+    function set_tasks_active(){
+        $('ul#lottery-task-list > li.task-c').each(function(){
+            var e = $(this), btn_cls_ = get_task_btn_cls('finished');
+            e.find('.lottery-task-btn').hide();
+            e.find('.lottery-task-btn-'+btn_cls_).first().show();
         });
     }
     
