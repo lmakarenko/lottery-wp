@@ -56,7 +56,7 @@ $(function(){
     }
     
     function set_post_active(){
-       $('.newPost').first().removeClass('noactive').adClass('active');
+       $('.newPost').first().removeClass('noactive').addClass('active');
        $('.lottery-complete-txt').first().html('Поздравляем! Вы участник розыгрыша!'); 
     }
     
