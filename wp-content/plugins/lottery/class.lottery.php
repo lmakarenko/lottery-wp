@@ -723,6 +723,7 @@ class lottery {
     }
     
     private function get_login_form_data_wc(){
+        /*
         $c_k = 'lottery-ajax-form-data';
         if(apc_exists($c_k)){
             $d = apc_fetch($c_k);
@@ -730,6 +731,8 @@ class lottery {
             $d = json_decode(file_get_contents($GLOBALS['wasd_domain'] . '/api/jsonp/loginformdata?sess=' . $_COOKIE['PHPSESSID']));
             apc_store($c_k, $d, 86400);
         }
+        */
+        $d = json_decode(file_get_contents($GLOBALS['wasd_domain'] . '/api/jsonp/loginformdata?sess=' . $_COOKIE['PHPSESSID']));
         /*$d->captcha = false;
         if(isset($GLOBALS['user_data']['check_captcha_on_login'])){
             $d->captcha = $GLOBALS['user_data']['check_captcha_on_login'];
