@@ -103,7 +103,7 @@
         var params = $('#ajax_login_form').serialize();
         sendPost_('<?php echo $GLOBALS['wasd_domain']; ?>/api/jsonp/login', params,
                 function (response) {
-                    if (!response['ok']) {
+                    if ('undefined' === response['ok'] || 0 == parseInt(response['ok'])) {
                         alert(response['error']);
                         if (response['captcha']) {
                             $('#demo_login_captcha').show();
