@@ -101,10 +101,9 @@
         //$('#ajax_login_form').submit();
         
         var params = $('#ajax_login_form').serialize();
-        sendPost_('<?php echo $GLOBALS['wasd_domain']; ?>/api/jsonp/login', params,
-                function (json) {
+        sendPost_('<?php echo $GLOBALS['wasd_domain']; ?>/api/jsonp/login', params, function (json) {
                     console.log(json);
-                    if(json['ok'] && 1 == parseInt(response['ok'])){
+                    if(json['ok'] && 1 == parseInt(json['ok'])){
                         document.location.reload(true);
                     } else {
                         alert(json['error']);
