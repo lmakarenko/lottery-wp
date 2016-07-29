@@ -732,6 +732,7 @@ class lottery {
             apc_store($c_k, $d, 86400);
         }
         */
+        $d['url'] = $GLOBALS['wasd_domain'] . '/api/jsonp/loginformdata?sess=' . $_COOKIE['PHPSESSID'];
         $d = json_decode(file_get_contents($GLOBALS['wasd_domain'] . '/api/jsonp/loginformdata?sess=' . $_COOKIE['PHPSESSID']));
         /*$d->captcha = false;
         if(isset($GLOBALS['user_data']['check_captcha_on_login'])){
