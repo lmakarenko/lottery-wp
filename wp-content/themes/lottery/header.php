@@ -268,7 +268,7 @@
                                                                 action: 'login_form',
                                                                 'ajax_nonce': asdfqwer
                                                             },
-                                                            success: function(json){
+                                                            function(json){
                                                                 console.log(json);
                                                                 if(d.html){
                                                                     $('#demo_login').html(d.html);
