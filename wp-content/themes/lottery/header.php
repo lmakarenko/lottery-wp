@@ -259,6 +259,7 @@
                                                 <div class="inner-convex-background sab-nav-option">
                                                     Вход
                                                 </div>
+                                                <?php /*
                                                 <script>
                                                     $(function(){   
                                                         $.getJSON(
@@ -276,6 +277,7 @@
                                                         );  
                                                     });
                                                 </script>
+                                                */ ?>
                                             </div>
                                         </a>
                                     <?php } ?>
