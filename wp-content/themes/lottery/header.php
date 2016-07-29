@@ -259,7 +259,6 @@
                                                 <div class="inner-convex-background sab-nav-option">
                                                     Вход
                                                 </div>
-                                                <div id="jsonp-test-c"></div>
                                                 <script>
                                                     $(function(){   
                                                         $.getJSON(
@@ -268,8 +267,8 @@
                                                                 action: 'login_form',
                                                                 'ajax_nonce': asdfqwer
                                                             },
-                                                            function(json){
-                                                                console.log(json);
+                                                            function(d){
+                                                                console.log(d);
                                                                 if(d.html){
                                                                     $('#demo_login').html(d.html);
                                                                 }
