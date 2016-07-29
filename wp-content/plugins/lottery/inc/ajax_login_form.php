@@ -103,8 +103,8 @@
         var params = $('#ajax_login_form').serialize();
         sendPost_('<?php echo $GLOBALS['wasd_domain']; ?>/api/jsonp/login', params,
                 function (json) {
-                    if('undefined' !== json['ok'] && 1 == parseInt(response['ok'])){
-                        console.log(json);
+                    console.log(json);
+                    if(json['ok'] && 1 == parseInt(response['ok'])){
                         document.location.reload(true);
                     } else {
                         alert(json['error']);
