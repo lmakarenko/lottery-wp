@@ -22,6 +22,7 @@
 <script type="text/javascript">var asdfqwer = '<?php echo $GLOBALS['ajax_nonce']; ?>', wasd_domain = '<?php echo $GLOBALS['wasd_domain']; ?>', wasd_domain_ = '<?php echo $GLOBALS['wasd_domain_']; ?>';</script>
 
 <script type="text/javascript" src="/cms/public/js/jquery/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="/cms/public/js/main.js"></script>
 <?php /*
 <script type="text/javascript" src="/cms/public/js/ajaxDialog.js"></script>
 <script type="text/javascript" src="/cms/public/js/jquery/jquery.cookie.js"></script>
@@ -30,7 +31,6 @@
 <script type="text/javascript" src="/cms/public/js/jquery/ckeditor_in_jq_dialog_patch.js"></script>
 <script type="text/javascript" src="/cms/public/js/bsDialog.js"></script>
 <script type="text/javascript" src="/cms/public/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/cms/public/js/main.js"></script>
 <script type="text/javascript" src="/cms/public/bootstrap/js/bootstrap-datepicker.js"></script>
 <script type="text/javascript" src="/site/skins/wasd2_sub/public/js/lottery-history.js"></script>
 <script type="text/javascript" src="/site/skins/wasd2_sub/public/js/lottery-user.js"></script>
@@ -268,7 +268,7 @@
                                                                 'ajax_nonce': asdfqwer
                                                             },
                                                             function(d){
-                                                                console.log(d);
+                                                                //console.log(d);
                                                                 if(d.html){
                                                                     $('#demo_login').html(d.html);
                                                                 }
