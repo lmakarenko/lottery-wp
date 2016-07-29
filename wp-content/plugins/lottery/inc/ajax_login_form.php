@@ -1,3 +1,4 @@
+<textarea style="display:none;"><?php print_r($d); ?></textarea>
 <div id="demo_login_header">
     <div id="demo_login_header_txt">
         Вы находитесь в демо-режиме. Войдите или зарегистрируйтесь.
