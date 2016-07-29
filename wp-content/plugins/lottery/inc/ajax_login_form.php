@@ -116,6 +116,7 @@
                             //document.location.href = response['url'];
                             document.location.href = '/';
                         }, 5000);*/
+                        document.location.reload(true);
                         return false;
                     }
                 }
@@ -153,7 +154,8 @@
         lom = showLoadingProcessLayer('Регистрирую...');
         sendPost_('<?php echo $GLOBALS['wasd_domain']; ?>/api/jsonp/userregister', data, function () {
             $('#' + lom).remove();
-            document.location.href = "<?php echo $GLOBALS['wasd_domain']; ?>/siteregister/index/success" + ((typeof rurl != 'undefined') ? '/rurl/' + rurl : '');
+            //document.location.href = "<?php echo $GLOBALS['wasd_domain']; ?>/siteregister/index/success" + ((typeof rurl != 'undefined') ? '/rurl/' + rurl : '');
+            document.location.reload(true);
         }, function () {
             $('#' + lom).remove();
         });
