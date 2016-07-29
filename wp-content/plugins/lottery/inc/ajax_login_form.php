@@ -28,7 +28,7 @@
                 </div>
                 <?php if($d->captcha){ ?>
                 <script>
-                    $('#captcha').load('<?php echo $GLOBALS['wasd_domain']; ?>/user/index/captcha');
+                    $('#captcha').load('<?php echo $GLOBALS['wasd_domain']; ?>/api/jsonp/captcha');
                 </script>
                 <?php } ?>
             </div>
@@ -83,17 +83,26 @@
         $('#demo_register_tab_l').toggle();
     });
 
+    function sendPost_(url,data,success,fail) {
+            if($.trim(data) != ''){
+                data += '&sess=<?php echo $_COOKIE['PHPSESSID']; ?>';
+            } else {
+                data = 'sess=<?php echo $_COOKIE['PHPSESSID']; ?>';
+            }
+            return sendPost(url,data,success,fail);
+    }
+
     function ajaxLogin() {
         //$('#ajax_login_form').submit();
         
         var params = $('#ajax_login_form').serialize();
-        sendPost_('/siteuser/ajax/ajaxlogin', params,
+        sendPost_(<?php echo $GLOBALS['wasd_domain']; ?>'/api/jsonp/login', params,
                 function (response) {
                     if (!response['ok']) {
                         alert(response['error']);
                         if (response['captcha']) {
                             $('#demo_login_captcha').show();
-                            $('#captcha').load('/user/index/captcha');
+                            $('#captcha').load('/api/jsonp/captcha');
                             $('.holder > input').val('');
                         }
                     } else {
@@ -119,7 +128,7 @@
             password2: $('#demo_input_password2').val()
         };
 
-        sendPost_('/siteregister/index/sendemail', data, function (ret) {
+        sendPost_(<?php echo $GLOBALS['wasd_domain']; ?>'/api/jsonp/sendemail', data, function (ret) {
             $('#' + lom).remove();
 
             if (ret['error'] != '') {
@@ -137,7 +146,7 @@
     function dl_doRegister() {
         var data = $('#ajax_register_form').serialize();
         lom = showLoadingProcessLayer('Регистрирую...');
-        sendPost_('/siteregister/index/userregister', data, function () {
+        sendPost_(<?php echo $GLOBALS['wasd_domain']; ?>'/api/jsonp/userregister', data, function () {
             $('#' + lom).remove();
             document.location.href = "<?php echo $GLOBALS['wasd_domain']; ?>/siteregister/index/success" + ((typeof rurl != 'undefined') ? '/rurl/' + rurl : '');
         }, function () {
@@ -150,7 +159,7 @@
             email: $('#demo_input_email').val()
         };
 
-        sendPost_('/siteregister/index/sendemail', data, function (ret) {
+        sendPost_(<?php echo $GLOBALS['wasd_domain']; ?>'/api/jsonp/sendemail', data, function (ret) {
             if (ret['error'] != '') {
                 alert(ret['error']);
                 return false;

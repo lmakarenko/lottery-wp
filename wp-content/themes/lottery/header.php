@@ -259,6 +259,28 @@
                                                 <div class="inner-convex-background sab-nav-option">
                                                     Вход
                                                 </div>
+                                                <a style="display:none;" href="#" id="jsonp_test">login</a>
+                                                <div id="jsonp-test-c"></div>
+                                                <script>
+                                                    $(function(){
+                                                        $('#jsonp_test').on('click', function(e){
+                                                            e.preventDefault();
+                                                            $.getJSON(
+                                                                '/wp-admin/admin-ajax.php',
+                                                                {
+                                                                    action: 'login_form',
+                                                                    'ajax_nonce': asdfqwer
+                                                                },
+                                                                success: function(json){
+                                                                    console.log(json);
+                                                                    if(d.html){
+                                                                        $('#demo_login').html(d.html);
+                                                                    }
+                                                                }
+                                                            );  
+                                                        });
+                                                    });
+                                                </script>
                                             </div>
                                         </a>
                                     <?php } ?>
