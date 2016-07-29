@@ -102,22 +102,17 @@
         
         var params = $('#ajax_login_form').serialize();
         sendPost_('<?php echo $GLOBALS['wasd_domain']; ?>/api/jsonp/login', params,
-                function (response) {
-                    if ('undefined' === response['ok'] || 0 == parseInt(response['ok'])) {
-                        alert(response['error']);
-                        if (response['captcha']) {
+                function (json) {
+                    if('undefined' !== json['ok'] && 1 == parseInt(response['ok'])){
+                        console.log(json);
+                        document.location.reload(true);
+                    } else {
+                        alert(json['error']);
+                        if (json['captcha']) {
                             $('#demo_login_captcha').show();
                             $('#captcha').load('<?php echo $GLOBALS['wasd_domain']; ?>/api/jsonp/captcha');
                             $('.holder > input').val('');
                         }
-                    } else {
-                        console.log(response);
-                        /*setTimeout(function(){
-                            //document.location.href = response['url'];
-                            document.location.href = '/';
-                        }, 5000);*/
-                        document.location.reload(true);
-                        return false;
                     }
                 }
         );
