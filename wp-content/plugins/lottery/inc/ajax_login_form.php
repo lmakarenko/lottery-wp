@@ -100,7 +100,7 @@
     function ajaxLogin() {
         //$('#ajax_login_form').submit();
         
-        var params = $('#ajax_login_form').serializeArray();
+        var params = $('#ajax_login_form').serialize();
         sendPost_('<?php echo $GLOBALS['wasd_domain']; ?>/api/jsonp/login', params,
                 function (response) {
                     if (!response['ok']) {
