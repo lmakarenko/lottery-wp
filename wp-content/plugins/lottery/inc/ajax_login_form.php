@@ -85,18 +85,22 @@
     });
 
     function sendPost_(url,data,success,fail) {
-            if($.trim(data) != ''){
-                data += '&sess=<?php echo $_COOKIE['PHPSESSID']; ?>';
+        if(data instanceof Object){
+            data['sess'] = PHPSESSID;
+        } else {
+            if('' != $.trim(data)){
+                data += '&sess=' + PHPSESSID;
             } else {
-                data = 'sess=<?php echo $_COOKIE['PHPSESSID']; ?>';
+                data = 'sess=' + PHPSESSID;
             }
-            return sendPost(url,data,success,fail);
+        }
+        return sendPost(url,data,success,fail);
     }
 
     function ajaxLogin() {
         //$('#ajax_login_form').submit();
         
-        var params = $('#ajax_login_form').serialize();
+        var params = $('#ajax_login_form').serializeArray();
         sendPost_('<?php echo $GLOBALS['wasd_domain']; ?>/api/jsonp/login', params,
                 function (response) {
                     if (!response['ok']) {
