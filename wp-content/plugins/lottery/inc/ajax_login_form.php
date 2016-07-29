@@ -103,7 +103,7 @@
                         alert(response['error']);
                         if (response['captcha']) {
                             $('#demo_login_captcha').show();
-                            $('#captcha').load('/api/jsonp/captcha');
+                            $('#captcha').load('<?php echo $GLOBALS['wasd_domain']; ?>/api/jsonp/captcha');
                             $('.holder > input').val('');
                         }
                     } else {
