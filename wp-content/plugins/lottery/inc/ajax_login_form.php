@@ -101,13 +101,13 @@
         //$('#ajax_login_form').submit();
         
         var params = $('#ajax_login_form').serialize();
-        sendPost_('<?php echo $GLOBALS['wasd_domain']; ?>/api/jsonp/login', params, function (json) {
-                    console.log(json);
-                    if(json['ok'] && 1 == parseInt(json['ok'])){
+        sendPost_('<?php echo $GLOBALS['wasd_domain']; ?>/api/jsonp/login', params, function (d) {
+                    console.log(d);
+                    if(d['ok'] && 1 == parseInt(d['ok'])){
                         document.location.reload(true);
                     } else {
-                        alert(json['error']);
-                        if (json['captcha']) {
+                        alert(d['error']);
+                        if (d['captcha']) {
                             $('#demo_login_captcha').show();
                             $('#captcha').load('<?php echo $GLOBALS['wasd_domain']; ?>/api/jsonp/captcha');
                             $('.holder > input').val('');
