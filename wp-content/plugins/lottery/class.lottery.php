@@ -30,9 +30,6 @@ class lottery {
         add_action( 'wp_ajax_nopriv_get_complete_cnt', array( $this, 'get_complete_cnt_ajax' ) );
         add_action( 'wp_ajax_get_complete_cnt' , array( $this, 'get_complete_cnt_ajax' ) );
         
-        add_action( 'wp_ajax_nopriv_wasd_call', array( $this, 'wasd_call_ajax' ) );
-        add_action( 'wp_ajax_wasd_call' , array( $this, 'wasd_call_ajax' ) );
-        
         add_action( 'wp_ajax_nopriv_login_form', array( $this, 'login_form_ajax' ) );
         add_action( 'wp_ajax_login_form' , array( $this, 'login_form_ajax' ) );
         
@@ -732,43 +729,22 @@ class lottery {
             apc_store($c_k, $d, 86400);
         }
         */
-        $d['url'] = $GLOBALS['wasd_domain'] . '/api/jsonp/loginformdata?sess=' . $_COOKIE['PHPSESSID'];
         $d = json_decode(file_get_contents($GLOBALS['wasd_domain'] . '/api/jsonp/loginformdata?sess=' . $_COOKIE['PHPSESSID']));
-        /*$d->captcha = false;
-        if(isset($GLOBALS['user_data']['check_captcha_on_login'])){
-            $d->captcha = $GLOBALS['user_data']['check_captcha_on_login'];
-        }*/
-        $d->rurl = base64_encode($_SERVER['HTTP_REFERER']);
         return $d;
     }
     
     public function login_form_ajax(){
         check_ajax_referer('security-code', 'ajax_nonce');
         $data = array();
-        if(isset($data['error'])){
+        $d = $this->get_login_form_data_wc();
+        if(isset($d['error'])){
+            $data['error'] = $d['error'];
             wp_send_json($data);
             return false;
         }
         ob_start();
-        $d = $this->get_login_form_data_wc();
         include_once('inc/ajax_login_form.php');
         $data['html'] = ob_get_clean();
-        wp_send_json($data);
-    }
-    
-    public function wasd_call_ajax(){
-        check_ajax_referer('security-code', 'ajax_nonce');
-        $data = array();
-        if(isset($data['error'])){
-            wp_send_json($data);
-            return false;
-        }
-        $raw_data = $this->get_from_wasd_wc(array(
-            'query_url' => $_POST['query_url'],
-            'query_data' => $_POST['query_data']
-        ));
-        $data = json_decode($raw_data);
-        $data['raw_data'] = $raw_data;
         wp_send_json($data);
     }
     
