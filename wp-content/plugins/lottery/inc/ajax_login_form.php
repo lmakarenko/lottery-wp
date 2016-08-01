@@ -83,19 +83,6 @@
         $('#demo_login_tab_l').toggle();
         $('#demo_register_tab_l').toggle();
     });
-
-    function sendPost_(url,data,success,fail) {
-        if(data instanceof Object){
-            data['sess'] = PHPSESSID;
-        } else {
-            if('' != $.trim(data)){
-                data += '&sess=' + PHPSESSID;
-            } else {
-                data = 'sess=' + PHPSESSID;
-            }
-        }
-        return sendPost(url,data,success,fail);
-    }
     
     function paramsAdd(data, k, v){
         if(data instanceof Object){
@@ -120,7 +107,7 @@
                 console.log(d);
                 if(d['ok'] && 1 == parseInt(d['ok'])){
                     console.log('OK');
-                    //document.location.reload(true);
+                    document.location.reload(true);
                 } else {
                     console.log('ERROR');
                     alert(d['error']);
@@ -144,8 +131,8 @@
             password1: $('#demo_input_password1').val(),
             password2: $('#demo_input_password2').val()
         };
-
-        sendPost_('<?php echo $GLOBALS['wasd_domain']; ?>/api/jsonp/sendemail', data, function (ret) {
+        data = paramsAdd(data, 'sess', PHPSESSID);
+        $.post('<?php echo $GLOBALS['wasd_domain']; ?>/api/jsonp/sendemail', data, function (ret) {
             $('#' + lom).remove();
 
             if (ret['error'] != '') {
@@ -162,8 +149,9 @@
 
     function dl_doRegister() {
         var data = $('#ajax_register_form').serialize();
+        data = paramsAdd(data, 'sess', PHPSESSID);
         lom = showLoadingProcessLayer('Регистрирую...');
-        sendPost_('<?php echo $GLOBALS['wasd_domain']; ?>/api/jsonp/userregister', data, function () {
+        $.post('<?php echo $GLOBALS['wasd_domain']; ?>/api/jsonp/userregister', data, function () {
             $('#' + lom).remove();
             //document.location.href = "<?php echo $GLOBALS['wasd_domain']; ?>/siteregister/index/success" + ((typeof rurl != 'undefined') ? '/rurl/' + rurl : '');
             document.location.reload(true);
@@ -176,8 +164,8 @@
         var data = {
             email: $('#demo_input_email').val()
         };
-
-        sendPost_('<?php echo $GLOBALS['wasd_domain']; ?>/api/jsonp/sendemail', data, function (ret) {
+        data = paramsAdd(data, 'sess', PHPSESSID);
+        $.post('<?php echo $GLOBALS['wasd_domain']; ?>/api/jsonp/sendemail', data, function (ret) {
             if (ret['error'] != '') {
                 alert(ret['error']);
                 return false;
