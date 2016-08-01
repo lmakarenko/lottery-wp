@@ -114,21 +114,23 @@
         //$('#ajax_login_form').submit();
         var params = $('#ajax_login_form').serialize();
         params = paramsAdd(params, 'sess', PHPSESSID);
-        sendPost('<?php echo $GLOBALS['wasd_domain']; ?>/api/jsonp/login', params, function (d) {
-                    console.log(d);
-                    if(d['ok'] && 1 == parseInt(d['ok'])){
-                        console.log('OK');
-                        //document.location.reload(true);
-                    } else {
-                        console.log('ERROR');
-                        alert(d['error']);
-                        if (d['captcha']) {
-                            $('#demo_login_captcha').show();
-                            $('#captcha').load('<?php echo $GLOBALS['wasd_domain']; ?>/api/jsonp/captcha');
-                            $('.holder > input').val('');
-                        }
+        console.log(params);
+        $.post('<?php echo $GLOBALS['wasd_domain']; ?>/api/jsonp/login', params,
+            function (d) {
+                console.log(d);
+                if(d['ok'] && 1 == parseInt(d['ok'])){
+                    console.log('OK');
+                    //document.location.reload(true);
+                } else {
+                    console.log('ERROR');
+                    alert(d['error']);
+                    if (d['captcha']) {
+                        $('#demo_login_captcha').show();
+                        $('#captcha').load('<?php echo $GLOBALS['wasd_domain']; ?>/api/jsonp/captcha');
+                        $('.holder > input').val('');
                     }
                 }
+            }
         );
         
         return false;
