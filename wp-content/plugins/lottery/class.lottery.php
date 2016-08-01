@@ -688,6 +688,7 @@ class lottery {
         }
         */
         $d = json_decode(file_get_contents($GLOBALS['wasd_domain'] . '/api/jsonp/loginformdata?sess=' . $_COOKIE['PHPSESSID']));
+        //$d['url'] = $GLOBALS['wasd_domain'] . '/api/jsonp/loginformdata?sess=' . $_COOKIE['PHPSESSID'];
         return $d;
     }
     
