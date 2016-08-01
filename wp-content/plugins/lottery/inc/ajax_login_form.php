@@ -96,16 +96,31 @@
         }
         return sendPost(url,data,success,fail);
     }
+    
+    function paramsAdd(data, k, v){
+        if(data instanceof Object){
+            data[k] = v;
+        } else {
+            if('' != $.trim(data)){
+                data += '&' + k + '=' + v;
+            } else {
+                data = k + '=' + v;
+            }
+        }
+        return data;
+    }
 
     function ajaxLogin() {
         //$('#ajax_login_form').submit();
-        
         var params = $('#ajax_login_form').serialize();
-        sendPost_('<?php echo $GLOBALS['wasd_domain']; ?>/api/jsonp/login', params, function (d) {
+        params = paramsAdd(params, 'sess', PHPSESSID);
+        sendPost('<?php echo $GLOBALS['wasd_domain']; ?>/api/jsonp/login', params, function (d) {
                     console.log(d);
                     if(d['ok'] && 1 == parseInt(d['ok'])){
-                        document.location.reload(true);
+                        console.log('OK');
+                        //document.location.reload(true);
                     } else {
+                        console.log('ERROR');
                         alert(d['error']);
                         if (d['captcha']) {
                             $('#demo_login_captcha').show();
