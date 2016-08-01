@@ -22,12 +22,12 @@
             <div class="align-right">
                 <a href="#" onclick="return forgetPass()">Забыли пароль?</a>
             </div>
-            <div id="demo_login_captcha" <?php if(!$d->captcha){ ?>style="display: none"<?php } ?>>
+            <div id="demo_login_captcha" <?php if(!$d['captcha']){ ?>style="display: none"<?php } ?>>
                 <div id="captcha" style="cursor: pointer" title="Обновить" onclick="$('#captcha').load('<?php echo $GLOBALS['wasd_domain']; ?>/user/index/captcha');"></div>
                 <div class="holder">
                     <input type="text" name="captcha[input]" placeholder="Введите код"/>
                 </div>
-                <?php if($d->captcha){ ?>
+                <?php if($d['captcha']){ ?>
                 <script>
                     $('#captcha').load('<?php echo $GLOBALS['wasd_domain']; ?>/api/jsonp/captcha');
                 </script>
@@ -36,7 +36,7 @@
             <div id="demo_login_login">
                 <button class="button reg-button" onclick="ajaxLogin(); return false;">ВХОД</button>
             </div>
-            <input type="hidden" name="rurl" value="<?php echo $d->rurl; ?>" />
+            <input type="hidden" name="rurl" value="<?php echo $d['rurl']; ?>" />
         </form>
     </div>
     <div id="demo_register_tab_l">
@@ -59,9 +59,9 @@
             Войдите через соц. сети:
         </div>
         <ul id="demo_login_social">
-            <li><a href="<?php echo $d->vkAuthUri; ?>"><img src="/site/skins/wasd2_sub/public/images/vk_small.png" width="155px" height="24px" alt="ВКонтакте" /><div>Вконтакте</div></a></li>
-            <li><a href="<?php echo $d->fbAuthUri; ?>"><img src="/site/skins/wasd2_sub/public/images/fb_small.png" width="155px" height="24px" alt="facebok" /><div>Facebook</div></a></li>
-            <li><a href="<?php echo $d->odAuthUri; ?>"><img src="/site/skins/wasd2_sub/public/images/od_small.png" width="155px" height="24px" alt="Одноклассники" /><div>Одноклассники</div></a></li>
+            <li><a href="<?php echo $d['vkAuthUri']; ?>"><img src="/site/skins/wasd2_sub/public/images/vk_small.png" width="155px" height="24px" alt="ВКонтакте" /><div>Вконтакте</div></a></li>
+            <li><a href="<?php echo $d['fbAuthUri']; ?>"><img src="/site/skins/wasd2_sub/public/images/fb_small.png" width="155px" height="24px" alt="facebok" /><div>Facebook</div></a></li>
+            <li><a href="<?php echo $d['odAuthUri']; ?>"><img src="/site/skins/wasd2_sub/public/images/od_small.png" width="155px" height="24px" alt="Одноклассники" /><div>Одноклассники</div></a></li>
         </ul>
     </div>
 </div>

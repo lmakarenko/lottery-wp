@@ -687,8 +687,12 @@ class lottery {
             apc_store($c_k, $d, 86400);
         }
         */
-        $d = json_decode(file_get_contents($GLOBALS['wasd_domain'] . '/api/jsonp/loginformdata?sess=' . $_COOKIE['PHPSESSID']));
-        //$d['url'] = $GLOBALS['wasd_domain'] . '/api/jsonp/loginformdata?sess=' . $_COOKIE['PHPSESSID'];
+        try {
+            $d = file_get_contents($GLOBALS['wasd_domain'] . '/api/jsonp/loginformdata?sess=' . $_COOKIE['PHPSESSID']);
+            $d = json_decode($d, true);
+        } catch(Exception $e){
+            $d['error'] = $e->getMessage();  
+        }
         return $d;
     }
     
@@ -701,6 +705,7 @@ class lottery {
             wp_send_json($data);
             return false;
         }
+        $d['rurl'] = isset($_REQUEST['rurl']) ? $_REQUEST['rurl'] : '';
         ob_start();
         include_once('inc/ajax_login_form.php');
         $data['html'] = ob_get_clean();

@@ -266,7 +266,8 @@
                                                             '/wp-admin/admin-ajax.php',
                                                             {
                                                                 action: 'login_form',
-                                                                'ajax_nonce': asdfqwer
+                                                                'ajax_nonce': asdfqwer,
+                                                                rurl: window.location.href
                                                             },
                                                             function(d){
                                                                 //console.log(d);
