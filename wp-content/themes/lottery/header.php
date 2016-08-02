@@ -288,8 +288,8 @@ $.getJSON(
         //console.log(d);
         if(d.html){
             $('#demo_login').html(d.html);
-            $('#exit-form-back').show();
-            $('#demo_login').show();
+            //$('#exit-form-back').show();
+            //$('#demo_login').show();
         }
     }
 );
