@@ -22,8 +22,11 @@
 <script type="text/javascript">var asdfqwer = '<?php echo $GLOBALS['ajax_nonce']; ?>', wasd_domain = '<?php echo $GLOBALS['wasd_domain']; ?>', wasd_domain_ = '<?php echo $GLOBALS['wasd_domain_']; ?>', PHPSESSID = '<?php echo isset($_COOKIE['PHPSESSID']) ? $_COOKIE['PHPSESSID'] : ''; ?>';</script>
 
 <script type="text/javascript" src="/cms/public/js/jquery/jquery-1.10.2.min.js"></script>
-<script type="text/javascript" src="/cms/public/js/main.js"></script>
+<script type="text/javascript" src="/cms/public/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/wp-content/themes/lottery/js/common.js"></script>
 <?php /*
+<script type="text/javascript" src="/site/skins/default/public/js/bsDialog.js"></script>
+<script type="text/javascript" src="/cms/public/js/main.js"></script>
 <script type="text/javascript" src="/cms/public/js/ajaxDialog.js"></script>
 <script type="text/javascript" src="/cms/public/js/jquery/jquery.cookie.js"></script>
 <script type="text/javascript" src="/cms/public/js/jquery/jquery-ui.min.js"></script>
@@ -246,9 +249,21 @@
                                                 <span>Саппорт</span>
                                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="16px" style="enable-background:new 0 0 16 16;" class="mail_svg_icon"version="1.1" viewBox="0 0 16 16" width="16px" xml:space="preserve"><path d="M8,10c-0.266,0-0.5-0.094-1-0.336L0,6v7c0,0.55,0.45,1,1,1h14c0.55,0,1-0.45,1-1V6L9,9.664C8.5,9.906,8.266,10,8,10z M15,2  H1C0.45,2,0,2.45,0,3v0.758l8,4.205l8-4.205V3C16,2.45,15.55,2,15,2z" fill="#FFFFFF"/></svg>
                                                                                                                                                                                      <li>
-                                                <a href="<?php echo $GLOBALS['wasd_domain']; ?>/siteuser/index/logout">
+                                                <a class="user-logout-btn" href="<?php echo $GLOBALS['wasd_domain']; ?>/siteuser/index/logout">
                                                     Выход
                                                 </a>
+<script type="text/javascript">
+    $('document').ready(function(){
+        $('.user-logout-btn').on('click', function(e){
+           e.preventDefault();
+           var data = {'sess': PHPSESSID};
+           $.post(wasd_domain + '/api/jsonp/logout', data, function(d){
+              console.log(d);
+              document.location.reload(true);
+           });
+        });
+    });
+</script>
                                             </li>
                                             </div>
                                             </div>
@@ -259,28 +274,26 @@
                                                 <div class="inner-convex-background sab-nav-option">
                                                     Вход
                                                 </div>
-                                                
-                                                <script>
-                                                    $(function(){   
-                                                        $.getJSON(
-                                                            '/wp-admin/admin-ajax.php',
-                                                            {
-                                                                action: 'login_form',
-                                                                'ajax_nonce': asdfqwer,
-                                                                rurl: window.location.href
-                                                            },
-                                                            function(d){
-                                                                //console.log(d);
-                                                                if(d.html){
-                                                                    $('#demo_login').html(d.html);
-                                                                }
-                                                            }
-                                                        );  
-                                                    });
-                                                </script>
-                                                
                                             </div>
                                         </a>
+<script type="text/javascript">
+$.getJSON(
+    '/wp-admin/admin-ajax.php',
+    {
+        action: 'login_form',
+        'ajax_nonce': asdfqwer,
+        rurl: window.location.href
+    },
+    function(d){
+        //console.log(d);
+        if(d.html){
+            $('#demo_login').html(d.html);
+            $('#exit-form-back').show();
+            $('#demo_login').show();
+        }
+    }
+);
+</script>
                                     <?php } ?>
                                     </li>
                                 </ul>
@@ -528,13 +541,13 @@
 	    ref: $('#custom_ref_input').val()
 	};
 	
-	$.post('/siteuser/index/savecustomref',data,function(ret){
+	$.post('<?php echo $GLOBALS['wasd_domain']; ?>/api/json/savecustomref',data,function(ret){
 	    if (ret.error!='') {
 		alert(ret.error);
 	    }else {
 		alert('Готово!');
 		$('#customize_ref_dialog').fadeOut(500);
-		$('#user_ref_input').val("http://www.wasdclub.com/id/"+$('#custom_ref_input').val());
+		$('#user_ref_input').val("<?php echo $GLOBALS['wasd_domain']; ?>/id/"+$('#custom_ref_input').val());
 	    }
 	},'json');
     }
