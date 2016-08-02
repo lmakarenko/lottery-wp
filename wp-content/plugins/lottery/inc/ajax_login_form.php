@@ -152,7 +152,8 @@ function forgetPass(){
 
 function send_lost_pass() {
     var data=$('#lost_pass_form').serializeArray();
-    data.push({'sess': PHPSESSID});
+    console.log(data);
+    data.push({'name': 'sess', 'value': PHPSESSID});
     $.post(wasd_domain + '/api/jsonp/lostpass',data,function(ret){
             if (ret['error']!='') {
                 alert(ret['error']);
