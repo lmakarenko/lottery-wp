@@ -520,8 +520,8 @@ $.getJSON(
     </div>
 </div>
 
-
-<script>
+<script type="text/javascript">
+    
     function customizeRef() {
         $('#customize_ref_dialog').fadeIn(200);
     }
@@ -532,7 +532,6 @@ $.getJSON(
            $('.customize_ref_dialog_background').click();
         }
     });
-    
     
     function saveCustomRef() {
 	var data = {
@@ -548,8 +547,8 @@ $.getJSON(
 		$('#user_ref_input').val(wasd_domain + "/id/"+$('#custom_ref_input').val());
 	    }
 	},'json');
+        return false;
     }
-    
     
     function filterRef() {
 	var val = $('#custom_ref_input').val();
@@ -558,6 +557,7 @@ $.getJSON(
 	
 	$('#custom_ref_input').val(val);
     }
+    
 </script>
 
 <?php } ?>
