@@ -23,7 +23,7 @@
                 <a class="forget-pass-btn" onclick="forgetPass(); return false;" href="#">Забыли пароль?</a>
             </div>
             <div id="demo_login_captcha" <?php if(!$d['captcha']){ ?>style="display: none"<?php } ?>>
-                <div id="captcha" style="cursor: pointer" title="Обновить" onclick="$('#captcha').load('<?php echo $GLOBALS['wasd_domain']; ?>/api/jsonp/captcha', {sess: PHPSESSID});"></div>
+                <div id="captcha" style="cursor: pointer" title="Обновить" onclick="$('#captcha').load(wasd_domain + '/api/jsonp/captcha', {sess: PHPSESSID});"></div>
                 <div class="holder">
                     <input type="text" name="captcha[input]" placeholder="Введите код"/>
                 </div>
@@ -152,7 +152,7 @@ function forgetPass(){
 
 function send_lost_pass() {
     var data=$('#lost_pass_form').serializeArray();
-    console.log(data);
+    //console.log(data);
     data.push({'name': 'sess', 'value': PHPSESSID});
     $.post(wasd_domain + '/api/jsonp/lostpass',data,function(ret){
             if (ret['error']!='') {
