@@ -71,7 +71,7 @@ function ajaxLogin() {
     //$('#ajax_login_form').submit();
     var params = $('#ajax_login_form').serialize();
     params = paramsAdd(params, 'sess', PHPSESSID);
-    console.log(params);
+    //console.log(params);
     $.post(wasd_domain + '/api/jsonp/login', params,
         function (d) {
             console.log(d);
@@ -92,7 +92,7 @@ function ajaxLogin() {
 }
 
 function ajaxRegister() {
-    lom = showLoadingProcessLayer('Минутку...');
+    //lom = showLoadingProcessLayer('Минутку...');
     var data = {
         email: $('#demo_input_email').val(),
         password1: $('#demo_input_password1').val(),
@@ -100,7 +100,7 @@ function ajaxRegister() {
     };
     data = paramsAdd(data, 'sess', PHPSESSID);
     $.post(wasd_domain + '/api/jsonp/sendemail', data, function (ret) {
-        $('#' + lom).remove();
+        //$('#' + lom).remove();
 
         if (ret['error'] != '') {
             alert(ret['error']);
@@ -117,14 +117,14 @@ function ajaxRegister() {
 function dl_doRegister() {
     var data = $('#ajax_register_form').serialize();
     data = paramsAdd(data, 'sess', PHPSESSID);
-    lom = showLoadingProcessLayer('Регистрирую...');
+    //lom = showLoadingProcessLayer('Регистрирую...');
     $.post(wasd_domain + '/api/jsonp/userregister', data, function () {
         //document.location.href = wasd_domain + "/siteregister/index/success" + ((typeof rurl != 'undefined') ? '/rurl/' + rurl : '');
         document.location.reload(true);
     }, 'json')
-    .always(function () {
+    /*.always(function () {
         $('#' + lom).remove();
-    });
+    })*/;
 }
 
 function dl_resendEmail() {
