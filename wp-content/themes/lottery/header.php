@@ -538,7 +538,7 @@ $.getJSON(
 	var data = {
 	    ref: $('#custom_ref_input').val()
 	};
-	$.post(wasd_domain + '/api/json/savecustomref',data,function(ret){
+	$.post(wasd_domain + '/api/jsonp/savecustomref',data,function(ret){
 	    if (ret.error!='') {
 		alert(ret.error);
 	    }else {
