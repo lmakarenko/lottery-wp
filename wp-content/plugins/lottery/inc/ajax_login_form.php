@@ -20,7 +20,7 @@
             <div class='demo_holder'><img src="/site/skins/wasd2_main/public/images/emailico.png"><input type="text" name="login" value="" placeholder="E-mail адресс"/></div>
             <div class='demo_holder'><img src="/site/skins/wasd2_main/public/images/passwordico.png"><input type="password" name="password" value="" placeholder="Пароль"/></div>
             <div class="align-right">
-                <a class="forget-pass-btn" href="#">Забыли пароль?</a>
+                <a class="forget-pass-btn" onclick="forgetPass(); return false;" href="#">Забыли пароль?</a>
             </div>
             <div id="demo_login_captcha" <?php if(!$d['captcha']){ ?>style="display: none"<?php } ?>>
                 <div id="captcha" style="cursor: pointer" title="Обновить" onclick="$('#captcha').load('<?php echo $GLOBALS['wasd_domain']; ?>/api/jsonp/captcha', {sess: PHPSESSID});"></div>
@@ -66,6 +66,104 @@
     </div>
 </div>
 <script type="text/javascript">
+
+function ajaxLogin() {
+    //$('#ajax_login_form').submit();
+    var params = $('#ajax_login_form').serialize();
+    params = paramsAdd(params, 'sess', PHPSESSID);
+    console.log(params);
+    $.post(wasd_domain + '/api/jsonp/login', params,
+        function (d) {
+            console.log(d);
+            if(d['ok'] && 1 == parseInt(d['ok'])){
+                console.log('OK');
+                document.location.reload(true);
+            } else {
+                console.log('ERROR');
+                alert(d['error']);
+                if (d['captcha']) {
+                    $('#demo_login_captcha').show();
+                    $('#captcha').load(wasd_domain + '/api/jsonp/captcha', {sess: PHPSESSID});
+                    $('.holder > input').val('');
+                }
+            }
+        }, 'json');
+    return false;
+}
+
+function ajaxRegister() {
+    lom = showLoadingProcessLayer('Минутку...');
+    var data = {
+        email: $('#demo_input_email').val(),
+        password1: $('#demo_input_password1').val(),
+        password2: $('#demo_input_password2').val()
+    };
+    data = paramsAdd(data, 'sess', PHPSESSID);
+    $.post(wasd_domain + '/api/jsonp/sendemail', data, function (ret) {
+        $('#' + lom).remove();
+
+        if (ret['error'] != '') {
+            alert(ret['error']);
+            return false;
+        }
+
+        alert('На ваш E-mail отправлен код подтверждения. Введите его в соответствующее поле.');
+        $('#demo_email_code').show();
+        $('#email_code_id').val(ret['code_id']);
+        $('#demo_reg_btn').attr('onclick', 'dl_doRegister(); return false;');
+    }, 'json');
+}
+
+function dl_doRegister() {
+    var data = $('#ajax_register_form').serialize();
+    data = paramsAdd(data, 'sess', PHPSESSID);
+    lom = showLoadingProcessLayer('Регистрирую...');
+    $.post(wasd_domain + '/api/jsonp/userregister', data, function () {
+        //document.location.href = wasd_domain + "/siteregister/index/success" + ((typeof rurl != 'undefined') ? '/rurl/' + rurl : '');
+        document.location.reload(true);
+    }, 'json')
+    .always(function () {
+        $('#' + lom).remove();
+    });
+}
+
+function dl_resendEmail() {
+    var data = {
+        email: $('#demo_input_email').val()
+    };
+    data = paramsAdd(data, 'sess', PHPSESSID);
+    $.post(wasd_domain + '/api/jsonp/sendemail', data, function (ret) {
+        if (ret['error'] != '') {
+            alert(ret['error']);
+            return false;
+        }
+        $('#email_code_id').val(ret['code_id']);
+        alert('На ваш E-mail отправлен код подтверждения');
+    }, 'json');
+}
+
+var fgp=false;
+
+function forgetPass(){
+    fgp=bsAjaxDialog(wasd_domain + '/api/jsonp/lostpass','Восстановление пароля',{
+            'Выслать новый пароль': 'send_lost_pass();'
+    }, {sess: PHPSESSID});
+}
+
+function send_lost_pass() {
+    var data=$('#lost_pass_form').serializeArray();
+    data.push({'sess': PHPSESSID});
+    $.post(wasd_domain + '/api/jsonp/lostpass',data,function(ret){
+            if (ret['error']!='') {
+                alert(ret['error']);
+            }else {
+                alert('На ваш email высланы инструкции для смены пароля');
+                bsDialogDestroy(fgp);
+            }
+    },'json');
+    return false;
+}
+
 $('document').ready(function(){
     
     $("#exit-form-back").click(function () {
@@ -106,104 +204,6 @@ $('document').ready(function(){
         $('#demo_register_tab_l').hide();
         $('#demo_login_tab_l').show();
     });
-
-    function ajaxLogin() {
-        //$('#ajax_login_form').submit();
-        var params = $('#ajax_login_form').serialize();
-        params = paramsAdd(params, 'sess', PHPSESSID);
-        console.log(params);
-        $.post(wasd_domain + '/api/jsonp/login', params,
-            function (d) {
-                console.log(d);
-                if(d['ok'] && 1 == parseInt(d['ok'])){
-                    console.log('OK');
-                    document.location.reload(true);
-                } else {
-                    console.log('ERROR');
-                    alert(d['error']);
-                    if (d['captcha']) {
-                        $('#demo_login_captcha').show();
-                        $('#captcha').load(wasd_domain + '/api/jsonp/captcha', {sess: PHPSESSID});
-                        $('.holder > input').val('');
-                    }
-                }
-            }, 'json');
-        return false;
-    }
-
-    function ajaxRegister() {
-        lom = showLoadingProcessLayer('Минутку...');
-        var data = {
-            email: $('#demo_input_email').val(),
-            password1: $('#demo_input_password1').val(),
-            password2: $('#demo_input_password2').val()
-        };
-        data = paramsAdd(data, 'sess', PHPSESSID);
-        $.post(wasd_domain + '/api/jsonp/sendemail', data, function (ret) {
-            $('#' + lom).remove();
-
-            if (ret['error'] != '') {
-                alert(ret['error']);
-                return false;
-            }
-
-            alert('На ваш E-mail отправлен код подтверждения. Введите его в соответствующее поле.');
-            $('#demo_email_code').show();
-            $('#email_code_id').val(ret['code_id']);
-            $('#demo_reg_btn').attr('onclick', 'dl_doRegister(); return false;');
-        }, 'json');
-    }
-
-    function dl_doRegister() {
-        var data = $('#ajax_register_form').serialize();
-        data = paramsAdd(data, 'sess', PHPSESSID);
-        lom = showLoadingProcessLayer('Регистрирую...');
-        $.post(wasd_domain + '/api/jsonp/userregister', data, function () {
-            //document.location.href = wasd_domain + "/siteregister/index/success" + ((typeof rurl != 'undefined') ? '/rurl/' + rurl : '');
-            document.location.reload(true);
-        }, 'json')
-        .always(function () {
-            $('#' + lom).remove();
-        });
-    }
-
-    function dl_resendEmail() {
-        var data = {
-            email: $('#demo_input_email').val()
-        };
-        data = paramsAdd(data, 'sess', PHPSESSID);
-        $.post(wasd_domain + '/api/jsonp/sendemail', data, function (ret) {
-            if (ret['error'] != '') {
-                alert(ret['error']);
-                return false;
-            }
-            $('#email_code_id').val(ret['code_id']);
-            alert('На ваш E-mail отправлен код подтверждения');
-        }, 'json');
-    }
-    
-    var fgp=false;
-    
-    $('.forget-pass-btn').on('click', function(e){
-        e.preventDefault();
-        fgp=bsAjaxDialog(wasd_domain + '/api/jsonp/lostpass','Восстановление пароля',{
-                'Выслать новый пароль': 'send_lost_pass();'
-        }, {sess: PHPSESSID});
-    });
-
-    function send_lost_pass() {
-        var data=$('#lost_pass_form').serializeArray();
-        data.push({'sess': PHPSESSID});
-        $.post(wasd_domain + '/api/jsonp/lostpass',data,function(ret){
-                if (ret['error']!='') {
-                    alert(ret['error']);
-                }else {
-                    alert('На ваш email высланы инструкции для смены пароля');
-                    bsDialogDestroy(fgp);
-                }
-        },'json');
-        return false;
-    }
 
 });
 </script>
