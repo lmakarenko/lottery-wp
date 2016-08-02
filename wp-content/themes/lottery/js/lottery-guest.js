@@ -2,8 +2,8 @@ var isGuest = true;
 $('document').ready(function(){
    $('.demo-login').on('click', function(e){
         e.preventDefault();
-        window.location.href = 'http://www.wasdclub.com';
-        /*
+        //window.location.href = 'http://www.wasdclub.com';
+        
         $.getJSON(
             '/wp-admin/admin-ajax.php',
             {
@@ -20,7 +20,7 @@ $('document').ready(function(){
                 }
             }
         );
-        */
+        
     });
 });
 
