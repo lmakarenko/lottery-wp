@@ -282,7 +282,11 @@
 
                             </div>
                             
-<?php if($GLOBALS['user_data'] && isset($GLOBALS['user_data']['id'])){ ?>
+<?php if($GLOBALS['user_data'] && isset($GLOBALS['user_data']['id'])){ 
+    if(!isset($GLOBALS['user_data']['custom_ref'])){
+        $GLOBALS['user_data']['custom_ref'] = false;
+    }
+?>
                             
 <div class="header-holder <?php if($GLOBALS['user_data']['premium']){ ?>vip-header-holder<?php } ?>">
      
@@ -297,27 +301,27 @@
                                             <label>Пригласи друзей - получи доп. ричики:</label>
                                             <div class="share_icons_top" style="float: left;margin: 5px 0;">
                                                 <div class="soc_one">
-                                                    <a onclick="Share.vkontakte('http://<?php echo $_SERVER['SERVER_NAME']; if($GLOBALS['user_data']['custom_ref']){ ?>/id/<?php echo $GLOBALS['user_data']['custom_ref']; } else { ?>/x/<?php echo $GLOBALS['user_data']['id']; } ?>','Сайт WasdClub.com','http://www.wasdclub.com/site/skins/wasd2_main/public/images/wasd_logo.png','Валюта для твоих любимых игр! Бесплатно! Быстро! Здесь!')">
+                                                    <a onclick="Share.vkontakte('http://<?php echo $_SERVER['SERVER_NAME']; if($GLOBALS['user_data']['custom_ref']){ ?>/id/<?php echo $GLOBALS['user_data']['custom_ref']; } else { ?>/x/<?php echo tools::dec2x($GLOBALS['user_data']['id']); } ?>','Сайт WasdClub.com','http://www.wasdclub.com/site/skins/wasd2_main/public/images/wasd_logo.png','Валюта для твоих любимых игр! Бесплатно! Быстро! Здесь!')">
                                                         <img src="/site/plugins/blog/public/images/VK.png"/>
                                                     </a>
                                                 </div>
                                                 <div class="soc_one">
-                                                    <a onclick="Share.facebook('http://<?php echo $_SERVER['SERVER_NAME']; if($GLOBALS['user_data']['custom_ref']){ ?>/id/<?php echo $GLOBALS['user_data']['custom_ref']; } else { ?>/x/<?php echo $GLOBALS['user_data']['id']; } ?>','Сайт WasdClub.com','http://www.wasdclub.com/site/skins/wasd2_main/public/images/wasd_logo.png','Валюта для твоих любимых игр! Бесплатно! Быстро! Здесь!')">
+                                                    <a onclick="Share.facebook('http://<?php echo $_SERVER['SERVER_NAME']; if($GLOBALS['user_data']['custom_ref']){ ?>/id/<?php echo $GLOBALS['user_data']['custom_ref']; } else { ?>/x/<?php echo tools::dec2x($GLOBALS['user_data']['id']); } ?>','Сайт WasdClub.com','http://www.wasdclub.com/site/skins/wasd2_main/public/images/wasd_logo.png','Валюта для твоих любимых игр! Бесплатно! Быстро! Здесь!')">
                                                         <img src="/site/plugins/blog/public/images/FB.png"/>
                                                     </a>
                                                 </div>
                                                 <div class="soc_one">
-                                                    <a onclick="Share.odnoklassniki('http://<?php echo $_SERVER['SERVER_NAME']; if($GLOBALS['user_data']['custom_ref']){ ?>/id/<?php echo $GLOBALS['user_data']['custom_ref']; } else { ?>/x/<?php echo $GLOBALS['user_data']['id']; } ?>','Сайт WasdClub.com','http://www.wasdclub.com/site/skins/wasd2_main/public/images/wasd_logo.png','Валюта для твоих любимых игр! Бесплатно! Быстро! Здесь!')">
+                                                    <a onclick="Share.odnoklassniki('http://<?php echo $_SERVER['SERVER_NAME']; if($GLOBALS['user_data']['custom_ref']){ ?>/id/<?php echo $GLOBALS['user_data']['custom_ref']; } else { ?>/x/<?php echo tools::dec2x($GLOBALS['user_data']['id']); } ?>','Сайт WasdClub.com','http://www.wasdclub.com/site/skins/wasd2_main/public/images/wasd_logo.png','Валюта для твоих любимых игр! Бесплатно! Быстро! Здесь!')">
                                                         <img src="/site/plugins/blog/public/images/Odnoklasniki.png"/>
                                                     </a>
                                                 </div>
                                                 <div class="soc_one">
-                                                    <a onclick="Share.twitter('http://<?php echo $_SERVER['SERVER_NAME']; if($GLOBALS['user_data']['custom_ref']){ ?>/id/<?php echo $GLOBALS['user_data']['custom_ref']; } else { ?>/x/<?php echo $GLOBALS['user_data']['id']; } ?>','Сайт WasdClub.com','http://www.wasdclub.com/site/skins/wasd2_main/public/images/wasd_logo.png','Валюта для твоих любимых игр! Бесплатно! Быстро! Здесь!')">
+                                                    <a onclick="Share.twitter('http://<?php echo $_SERVER['SERVER_NAME']; if($GLOBALS['user_data']['custom_ref']){ ?>/id/<?php echo $GLOBALS['user_data']['custom_ref']; } else { ?>/x/<?php echo tools::dec2x($GLOBALS['user_data']['id']); } ?>','Сайт WasdClub.com','http://www.wasdclub.com/site/skins/wasd2_main/public/images/wasd_logo.png','Валюта для твоих любимых игр! Бесплатно! Быстро! Здесь!')">
                                                         <img src="/site/plugins/blog/public/images/Twitter.png"/>
                                                     </a>
                                                 </div>
                                                 <div class="soc_one">
-                                                <a href="https://plus.google.com/share?url=http://<?php echo $_SERVER['SERVER_NAME']; if($GLOBALS['user_data']['custom_ref']){ ?>/id/<?php echo $GLOBALS['user_data']['custom_ref']; } else { ?>/x/<?php echo $GLOBALS['user_data']['id']; } ?>" onclick="javascript:window.open(this.href,  '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+                                                <a href="https://plus.google.com/share?url=http://<?php echo $_SERVER['SERVER_NAME']; if($GLOBALS['user_data']['custom_ref']){ ?>/id/<?php echo $GLOBALS['user_data']['custom_ref']; } else { ?>/x/<?php echo tools::dec2x($GLOBALS['user_data']['id']); } ?>" onclick="javascript:window.open(this.href,  '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
                                                     <img src="/site/plugins/blog/public/images/G+.png" alt="Share on Google+"/>
                                                 </a>
                                                 </div>
@@ -328,7 +332,7 @@
                             </div>
                             <div class="ditch-border">
                                 <div class="inner-ditch-background">
-                                    <input type="text" class="copy-text default" id="user_ref_input" value="http://<?php echo $_SERVER['SERVER_NAME']; ?><?php if($GLOBALS['user_data']['custom_ref']){ ?>/id/<?php echo $GLOBALS['user_data']['custom_ref']; } else { ?>/x/<?php echo $GLOBALS['user_data']['id']; } ?>" />
+                                    <input type="text" class="copy-text default" id="user_ref_input" value="http://<?php echo $_SERVER['SERVER_NAME']; ?><?php if($GLOBALS['user_data']['custom_ref']){ ?>/id/<?php echo $GLOBALS['user_data']['custom_ref']; } else { ?>/x/<?php echo tools::dec2x($GLOBALS['user_data']['id']); } ?>" />
                                     <?php /*if($GLOBALS['user_data']['premium']){ ?>
                                         <a href="#" onclick="customizeRef();return false;">
                                             <svg class="customize_ref" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 48 48" height="48px" version="1.1" viewBox="0 0 48 48" width="48px" x="0px" xml:space="preserve" y="0px">
@@ -357,7 +361,9 @@
     } else {
         $nickname = $GLOBALS['user_data']['email'];
     }
-    $premium_till_date = smarty_date_format($GLOBALS['user_data']['premium_till_date'], '%d.%m.%Y %H:%M');
+    if($GLOBALS['user_data']['premium']){
+        $premium_till_date = smarty_date_format($GLOBALS['user_data']['premium_till_date'], '%d.%m.%Y %H:%M');
+    }
 ?>
 <div id="user">
 <div class="rangimg <?php if($GLOBALS['user_data']['premium']){ ?>vip<?php } ?> ditch-border">
