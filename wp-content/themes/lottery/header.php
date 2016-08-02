@@ -538,6 +538,7 @@ $.getJSON(
 	var data = {
 	    ref: $('#custom_ref_input').val()
 	};
+        data = paramsAdd(data, 'sess', PHPSESSID);
 	$.post(wasd_domain + '/api/jsonp/savecustomref',data,function(ret){
 	    if (ret.error!='') {
 		alert(ret.error);
