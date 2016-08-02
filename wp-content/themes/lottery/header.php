@@ -523,7 +523,6 @@ $.getJSON(
 
 <script>
     function customizeRef() {
-        //return true;
         $('#customize_ref_dialog').fadeIn(200);
     }
     
@@ -536,7 +535,6 @@ $.getJSON(
     
     
     function saveCustomRef() {
-        return true;
 	var data = {
 	    ref: $('#custom_ref_input').val()
 	};
