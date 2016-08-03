@@ -151,16 +151,7 @@
                                             </div>
                                         </a>
                                     </li>
-                                    <li>
-                                        <a href="<?php echo $GLOBALS['wasd_domain']; ?>/guides">
-                                            <div class="ditch-border">
-                                                <div class="inner-convex-background sab-nav-option">
-                                                    Видео
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li onclick="location.href='/guides'" style="cursor:pointer;">
+                                    <li onclick="location.href = wasd_domain + '/guides'" style="cursor:pointer;">
                                         <div class="ditch-border" style="cursor:pointer;">
                                             <div class="inner-convex-background sab-nav-option">
                                                 <?php if(0 < (int)$GLOBALS['user_data']['unViewedGuidesCount']){ ?>
