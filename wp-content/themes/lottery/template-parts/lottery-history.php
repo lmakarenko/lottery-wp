@@ -19,7 +19,7 @@
 <?php foreach($old as $c) {
     //$date_end = new DateTime(get_field('date_end', $c->ID));
     $date_end = DateTime::createFromFormat('m-d-Y H:i:s', get_field('date_end', $c->ID));
-    $date_end = $date_end->format('d.m.Y');
+    //$date_end = $date_end->format('d.m.Y');
 ?>
     <div class="lottery-history-bg lottery-history-item">
         <div class="lottery-history-c">
