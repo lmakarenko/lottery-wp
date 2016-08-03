@@ -160,6 +160,20 @@
                                             </div>
                                         </a>
                                     </li>
+                                    <li onclick="location.href='/guides'" style="cursor:pointer;">
+                                        <div class="ditch-border" style="cursor:pointer;">
+                                            <div class="inner-convex-background sab-nav-option">
+                                                <?php if(0 < (int)$GLOBALS['user_data']['unViewedGuidesCount']){ ?>
+                                                    <span class="clr-chngn">Видео</span>
+                                                    <span class="number"> 
+                                                        <?php echo (int)$GLOBALS['user_data']['unViewedGuidesCount']; ?>
+                                                    </span>
+                                                <?php } else { ?>
+                                                    <span>Видео</span>
+                                                <?php } ?>
+                                            </div>
+                                        </div>
+                                    </li>
                                     <li>
                                         <div class="ditch-border" style="cursor:pointer;">
                                             <div class="inner-convex-background sab-nav-option">
