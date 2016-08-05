@@ -96,6 +96,17 @@ class lottery {
             if(false === $data['report']){
                 throw new Exception($this->error);
             }
+            
+            foreach($data['report'] as &$v){
+                
+                $auth_data = json_decode($v['auth_data'], true);
+                unset($v['auth_data']);
+                
+                if(isset($auth_data['uid'])){
+                    $v['uid'] = $auth_data['uid'];
+                }
+                
+            }
         
         } catch(Exception $e){
             
