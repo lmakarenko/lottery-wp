@@ -105,8 +105,8 @@ class lottery {
                         continue;
                     } else {
                         if(isset($auth_data['uid'])){
-                            $v['uid'] = $auth_data['uid'];
                             unset($v['vk_id']);
+                            $v['vk_id'] = $auth_data['uid'];
                         }
                     }
                 }

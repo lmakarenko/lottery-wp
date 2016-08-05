@@ -16,12 +16,12 @@ jQuery('document').ready(function(){
                 }
                 var l = d.report.length, i, html = '<table><tr><th>ID</th><th>VK_ID</th><th>EMAIL</th></tr>';
                 for(i=0;i<l;++i){
-                    html += '<tr><td>' + d.report[i].id + '</td><td>' + d.report[i].uid + '</td><td>' + d.report[i].email + '</td></tr>';
+                    html += '<tr><td>' + d.report[i].id + '</td><td>' + d.report[i].vk_id + '</td><td>' + d.report[i].email + '</td></tr>';
                 }
                 html += '</table>';
                 
                 jQuery('<div class="lottery-report-c-c" />').appendTo('body');
-                jQuery('<div class="lottery-report-c" />').html(html).on('click', function(){
+                jQuery('<div class="lottery-report-c" />').html(html).on('dblclick', function(){
                     jQuery('.lottery-report-c-c').remove();
                 }).appendTo('.lottery-report-c-c');
             }
