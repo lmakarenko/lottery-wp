@@ -51,7 +51,7 @@ class lottery {
  
     // SHOW THE FEATURED IMAGE
     function lottery_report_column_content($column_name, $post_ID) {
-        if ($column_name == 'lottery_report') {
+        if ($column_name == 'lottery_ctrl') {
             echo '<input value="Отчет по розыгрышу" class="lottery-report-btn" type="button" name="lottery_report" data-id="', $post_ID, '" />';
         }
     }
