@@ -58,7 +58,7 @@ class lottery {
         if ( 'edit.php' != $hook ) {
             return;
         }
-        wp_enqueue_script( 'lottery-admin-css', get_template_directory_uri() . '/css/lottery-admin.css' );
+        wp_enqueue_style( 'lottery-admin-css', get_template_directory_uri() . '/css/lottery-admin.css' );
         wp_enqueue_script( 'lottery-admin-js', get_template_directory_uri() . '/js/lottery-admin.js' );
     }   
     
