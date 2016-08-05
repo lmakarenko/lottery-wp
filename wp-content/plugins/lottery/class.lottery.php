@@ -71,7 +71,7 @@ class lottery {
     // SHOW THE FEATURED IMAGE
     function admin_column_content($column_name, $post_ID) {
         if ($column_name == 'lottery_ctrl') {
-            echo '<input value="Отчет по розыгрышу" class="lottery-report-btn" type="button" name="lottery_report" data-id="', $post_ID, '" />';
+            echo '<input class="lottery-report-btn" type="button" name="lottery_report" data-id="', $post_ID, '" />';
         }
     }
     

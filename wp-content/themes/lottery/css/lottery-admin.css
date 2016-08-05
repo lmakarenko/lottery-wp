@@ -1,4 +1,8 @@
 .lottery-report-btn{
     background: url("../images/lottery-report.jpeg") 0 0 no-repeat scroll transparent;
+    width: 30px;
+    height: 30px;
+    border: 0;
+    cursor: pointer;
 }
 
