@@ -45,14 +45,14 @@ class lottery {
     
     // ADD NEW COLUMN
     function lottery_report_column_head($defaults) {
-        $defaults['lottery_report'] = 'Отчёт';
+        $defaults['lottery_ctrl'] = 'Элементы управления';
         return $defaults;
     }
  
     // SHOW THE FEATURED IMAGE
     function lottery_report_column_content($column_name, $post_ID) {
         if ($column_name == 'lottery_report') {
-            echo '<input calss="lottery-report-btn" type="button" name="lottery_report" data-id="', $post_ID, '" />';
+            echo '<input value="Отчет по розыгрышу" class="lottery-report-btn" type="button" name="lottery_report" data-id="', $post_ID, '" />';
         }
     }
     
