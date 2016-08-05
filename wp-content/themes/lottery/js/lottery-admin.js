@@ -1,5 +1,6 @@
 jQuery('document').ready(function(){
    jQuery('.lottery-report-btn').on('click', function(e){
+        jQuery('.lottery-report-c-c').remove();
         var post_id = parseInt(jQuery(this).attr('data-id'));
         jQuery.ajax({
             type:'post',
