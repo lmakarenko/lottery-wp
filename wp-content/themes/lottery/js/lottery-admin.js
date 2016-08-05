@@ -1,7 +1,7 @@
-$('document').ready(function(){
-   $('.lottery-report-btn').on('click', function(e){
+jQuery('document').ready(function(){
+   jQuery('.lottery-report-btn').on('click', function(e){
         var post_id = parseInt($(this).attr('data-id'));
-        $.ajax({
+        jQuery.ajax({
             type:'post',
             url: ajax_url,
             data: {
