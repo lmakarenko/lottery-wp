@@ -29,7 +29,7 @@ class lottery {
             add_action( 'wp_ajax_nopriv_get_report', array( $this, 'get_report_ajax' ) );
             add_action( 'wp_ajax_get_report' , array( $this, 'get_report_ajax' ) );
             
-            return;
+            //return;
         }
         
         add_action( 'template_redirect', array( $this, 'init_before_theme' ), 1 );
