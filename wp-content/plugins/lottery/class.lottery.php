@@ -14,16 +14,25 @@ class lottery {
     private $camps_status_data = null;
     
     function __construct(){
+        
         if(!$this->pg_init()){
             $this->error = 'Ошибка подключения к БД: ' . pg_last_error();
             return false;
         }
         
-        add_action( 'template_redirect', array( $this, 'init_before_theme' ), 1 );
+        if(is_admin()){
+            // ONLY WORDPRESS DEFAULT POSTS
+            add_filter('manage_post_posts_columns', array( $this, 'admin_column_head'), 10);
+            add_action('manage_post_posts_custom_column', array( $this, 'admin_column_content'), 10, 2);
+            add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue') );
+            
+            add_action( 'wp_ajax_nopriv_get_report', array( $this, 'get_report_ajax' ) );
+            add_action( 'wp_ajax_get_report' , array( $this, 'get_report_ajax' ) );
+            
+            return;
+        }
         
-        // ONLY WORDPRESS DEFAULT POSTS
-        add_filter('manage_post_posts_columns', array( $this, 'lottery_report_column_head'), 10);
-        add_action('manage_post_posts_custom_column', array( $this, 'lottery_report_column_content'), 10, 2);
+        add_action( 'template_redirect', array( $this, 'init_before_theme' ), 1 );
         
         add_action( 'wp_ajax_nopriv_get_tasks_status', array( $this, 'get_tasks_status_ajax' ) );
         add_action( 'wp_ajax_get_tasks_status' , array( $this, 'get_tasks_status_ajax' ) );
@@ -43,18 +52,84 @@ class lottery {
         $this->pg_deinit();
     }
     
+    /* ADMIN */
+    
+    function admin_enqueue($hook) {
+        if ( 'edit.php' != $hook ) {
+            return;
+        }
+        wp_enqueue_script( 'lottery-admin-css', get_template_directory_uri() . '/css/lottery-admin.css' );
+        wp_enqueue_script( 'lottery-admin-js', get_template_directory_uri() . '/js/lottery-admin.js' );
+    }   
+    
     // ADD NEW COLUMN
-    function lottery_report_column_head($defaults) {
+    function admin_column_head($defaults) {
         $defaults['lottery_ctrl'] = 'Элементы управления';
         return $defaults;
     }
  
     // SHOW THE FEATURED IMAGE
-    function lottery_report_column_content($column_name, $post_ID) {
+    function admin_column_content($column_name, $post_ID) {
         if ($column_name == 'lottery_ctrl') {
             echo '<input value="Отчет по розыгрышу" class="lottery-report-btn" type="button" name="lottery_report" data-id="', $post_ID, '" />';
         }
     }
+    
+    function get_report_ajax(){
+       
+        try {
+            
+            $data = array();
+        
+            if(!isset($_POST['post_id'])
+                    || empty($_POST['post_id'])){
+                throw new Exception('empty post id');
+            }
+
+            $adv_id = get_field('id_adv', $post_id);
+            if(empty($adv_id)){
+                throw new Exception('empty post field adv_id');
+            }
+
+            $data['report'] = $this->get_report($adv_id, $_POST['post_id']);
+            
+            if(false === $data['report']){
+                throw new Exception($this->error);
+            }
+        
+        } catch(Exception $e){
+            
+            $data['error'] = $e->getMessage();
+            
+        }
+        wp_send_json($data);
+    }
+    
+    private function get_report($adv_id, $post_id){
+        
+        $sql = "select u.id, u.email, COALESCE(u.vk_id::text, tt.auth_data::text) vk_id
+        from users u
+        inner join adv_soc_tasks_taken tt on tt.user_id = u.id
+        inner join adv_soc_tasks t on t.id = tt.task_id
+        where 
+        t.adv_camp = ANY('{" . $adv_id . "}'::INT[])
+        and 1 = lottery_user_completed(u.id, '{" . $adv_id . "}'::INT[])";
+
+        //echo $sql;
+        $result = pg_query($this->db_pg, $sql);
+        if(false === $result){
+            $this->error = 'Ошибка запроса: ' . pg_last_error($this->db_pg);
+            return false;
+        }
+        $data = array();
+        while ($row = pg_fetch_array($result, null, PGSQL_ASSOC)) {
+            $data[] = $row;
+        }
+        pg_free_result($result);
+        return $data;
+    }
+    
+    /* ADMIN ENDS */
     
     private function get_ending_complete_cnt_wc(&$post){
         $c_k = 'lottery-ending-cnt';
