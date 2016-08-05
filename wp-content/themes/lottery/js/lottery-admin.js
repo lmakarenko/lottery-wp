@@ -16,7 +16,7 @@ jQuery('document').ready(function(){
                 }
                 var l = d.report.length, i, html = '<table>';
                 for(i=0;i<l;++i){
-                    html += '<tr><td>' + d.report[i].id + '</td><td>' + d.report[i].vk_id + '</td><td>' + d.report[i].email + '</td></tr>';
+                    html += '<tr><td>' + d.report[i].id + '</td><td>' + d.report[i].uid + '</td><td>' + d.report[i].email + '</td></tr>';
                 }
                 html += '</table>';
                 jQuery('<div/>').html(html).on('click', function(){
