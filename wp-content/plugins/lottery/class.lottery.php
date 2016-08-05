@@ -99,11 +99,16 @@ class lottery {
             
             foreach($data['report'] as &$v){
                 
-                $auth_data = json_decode($v['auth_data'], true);
-                unset($v['auth_data']);
-                
-                if(isset($auth_data['uid'])){
-                    $v['uid'] = $auth_data['uid'];
+                if(is_string($v['vk_id'])){
+                    $auth_data = json_decode($v['vk_id'], true);
+                    if(json_last_error() != JSON_ERROR_NONE){
+                        continue;
+                    } else {
+                        if(isset($auth_data['uid'])){
+                            $v['uid'] = $auth_data['uid'];
+                            unset($v['vk_id']);
+                        }
+                    }
                 }
                 
             }
