@@ -21,6 +21,10 @@ class lottery {
         
         add_action( 'template_redirect', array( $this, 'init_before_theme' ), 1 );
         
+        // ONLY WORDPRESS DEFAULT POSTS
+        add_filter('manage_post_posts_columns', array( $this, 'lottery_report_column'), 10);
+        add_action('manage_post_posts_custom_column', array( $this, 'lottery_report_column_content'), 10, 2);
+        
         add_action( 'wp_ajax_nopriv_get_tasks_status', array( $this, 'get_tasks_status_ajax' ) );
         add_action( 'wp_ajax_get_tasks_status' , array( $this, 'get_tasks_status_ajax' ) );
         
@@ -37,6 +41,19 @@ class lottery {
     
     function __destruct() {
         $this->pg_deinit();
+    }
+    
+    // ADD NEW COLUMN
+    function lottery_report_column_head($defaults) {
+        $defaults['lottery_report'] = 'Отчёт';
+        return $defaults;
+    }
+ 
+    // SHOW THE FEATURED IMAGE
+    function lottery_report_column_content($column_name, $post_ID) {
+        if ($column_name == 'lottery_report') {
+            echo '<input calss="lottery-report-btn" type="button" name="lottery_report" data-id="', $post_ID, '" />';
+        }
     }
     
     private function get_ending_complete_cnt_wc(&$post){
