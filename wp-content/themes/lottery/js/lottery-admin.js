@@ -3,7 +3,7 @@ jQuery('document').ready(function(){
         var post_id = parseInt(jQuery(this).attr('data-id'));
         jQuery.ajax({
             type:'post',
-            url: ajax_url,
+            url: '/wp-admin/admin-ajax.php',
             data: {
                 action: 'get_report',
                 post_id: post_id
