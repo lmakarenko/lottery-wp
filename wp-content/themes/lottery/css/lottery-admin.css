@@ -5,4 +5,19 @@
     border: 0;
     cursor: pointer;
 }
+.lottery-report-c-c{
+    display:block;
+    position:absolute;
+    top:20%;
+    left:30%;
+    width:800px;
+    min-height:600px;
+}
+.lottery-report-c{
+    display:block;
+    position:relative;
+    width:800px;
+    min-height:600px;
+    overflow:sroll;
+}
 

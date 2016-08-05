@@ -19,9 +19,11 @@ jQuery('document').ready(function(){
                     html += '<tr><td>' + d.report[i].id + '</td><td>' + d.report[i].uid + '</td><td>' + d.report[i].email + '</td></tr>';
                 }
                 html += '</table>';
-                jQuery('<div/>').html(html).on('click', function(){
-                    jQuery(this).remove();
-                }).appendTo('body');
+                
+                jQuery('<div class="lottery-report-c-c" />').appendTo('body');
+                jQuery('<div class="lottery-report-c" />').html(html).on('click', function(){
+                    jQuery('.lottery-report-c-c').remove();
+                }).appendTo('.lottery-report-c-c');
             }
         });
    });
