@@ -10,13 +10,13 @@ jQuery('document').ready(function(){
             },
             dataType: 'json',
             success: function(d){
-                console.log(d);
+                //console.log(d);
                 if(!d.report){
                     return false;
                 }
                 var l = d.report.length, i, html = '<table><tr><th>ID</th><th>VK_ID</th><th>EMAIL</th></tr>';
                 for(i=0;i<l;++i){
-                    html += '<tr><td>' + d.report[i].id + '</td><td>' + d.report[i].vk_id + '</td><td>' + d.report[i].email + '</td></tr>';
+                    html += '<tr><td>' + d.report[i].id + '</td><td>' + d.report[i].vk_id + '</td><td>' + (d.report[i].email ? d.report[i].email : '-') + '</td></tr>';
                 }
                 html += '</table>';
                 
