@@ -10,14 +10,26 @@
     position:absolute;
     top:20%;
     left:30%;
-    width:800px;
+    width:400px;
     min-height:600px;
 }
 .lottery-report-c{
     display:block;
     position:relative;
-    width:800px;
+    width:400px;
     min-height:600px;
-    overflow:sroll;
+    overflow:scroll;
+    background:#fff;
+    border: 1px solid #0073aa;
+    padding: 5px 10px;
+}
+.lottery-report-c table tr th{
+    font-weight:bold;
+    padding:5px;
+    text-align:center;
+}
+.lottery-report-c table tr td{
+    padding:5px;
+    text-align:left;
 }
 

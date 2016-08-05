@@ -14,7 +14,7 @@ jQuery('document').ready(function(){
                 if(!d.report){
                     return false;
                 }
-                var l = d.report.length, i, html = '<table>';
+                var l = d.report.length, i, html = '<table><tr><th>ID</th><th>VK_ID</th><th>EMAIL</th></tr>';
                 for(i=0;i<l;++i){
                     html += '<tr><td>' + d.report[i].id + '</td><td>' + d.report[i].uid + '</td><td>' + d.report[i].email + '</td></tr>';
                 }
