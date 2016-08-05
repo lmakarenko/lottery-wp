@@ -16,8 +16,8 @@ jQuery('document').ready(function(){
                     html += '<tr><td>' + d[i].id + '</td>td>' + d[i].vk_id + '</td>td>' + d[i].email + '</td></tr>';
                 }
                 html += '</table>';
-                $('<div/>').html(html).on('click', function(){
-                    $(this).remove();
+                jQuery('<div/>').html(html).on('click', function(){
+                    jQuery(this).remove();
                 }).appendTo('body');
             }
         });
