@@ -22,7 +22,7 @@ class lottery {
         add_action( 'template_redirect', array( $this, 'init_before_theme' ), 1 );
         
         // ONLY WORDPRESS DEFAULT POSTS
-        add_filter('manage_post_posts_columns', array( $this, 'lottery_report_column'), 10);
+        add_filter('manage_post_posts_columns', array( $this, 'lottery_report_column_head'), 10);
         add_action('manage_post_posts_custom_column', array( $this, 'lottery_report_column_content'), 10, 2);
         
         add_action( 'wp_ajax_nopriv_get_tasks_status', array( $this, 'get_tasks_status_ajax' ) );
