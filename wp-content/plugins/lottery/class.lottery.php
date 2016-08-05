@@ -86,7 +86,7 @@ class lottery {
                 throw new Exception('empty post id');
             }
 
-            $adv_id = get_field('id_adv', $post_id);
+            $adv_id = get_field('id_adv', $_POST['post_id']);
             if(empty($adv_id)){
                 throw new Exception('empty post field adv_id');
             }
