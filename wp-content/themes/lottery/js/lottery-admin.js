@@ -10,7 +10,7 @@ jQuery('document').ready(function(){
             },
             dataType: 'json',
             success: function(d){
-                //console.log(d);
+                console.log(d);
                 var i, html = '<table>';
                 for(i=0;i<d.length;++i){
                     html += '<tr><td>' + d[i].id + '</td>td>' + d[i].vk_id + '</td>td>' + d[i].email + '</td></tr>';
