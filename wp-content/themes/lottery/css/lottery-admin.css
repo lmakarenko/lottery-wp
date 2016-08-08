@@ -39,7 +39,8 @@
 }
 .lottery-report-cp{
     display:inline-block;
-    float:left;
+    float:right;
     cursor:pointer;
+    padding:5px;
 }
 

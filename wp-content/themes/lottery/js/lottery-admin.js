@@ -33,7 +33,7 @@ jQuery('document').ready(function(){
                 
                 jQuery('.lottery-report-cp').on('click', function(e){
                    e.preventDefault();
-                   copyToClipboard($('.lottery-report-c').html());
+                   copyToClipboard(jQuery('.lottery-report-c').html());
                 });
                 
             }
