@@ -20,7 +20,7 @@ jQuery('document').ready(function(){
                     return false;
                 }
                 var l = d.report.length, i, text = '',
-                    html = '<div class="lottery-report-cnt">Всего участников: ' + d.report_cnt + '</div><a class="lottery-report-cp">Скопировать</a><div class="clear"></div><table><thead><tr><th>ID</th><th>VK_ID</th><th>EMAIL</th></tr></thead><tbody>';
+                    html = '<div class="lottery-report-cnt">Всего участников: ' + d.report_cnt + '</div><div class="clear"></div><table><thead><tr><th>ID</th><th>VK_ID</th><th>EMAIL</th></tr></thead><tbody>';
                 for(i=0;i<l;++i){
                     html += '<tr><td>' + d.report[i].id + '</td><td>' + d.report[i].vk_id + '</td><td>' + (d.report[i].email ? d.report[i].email : '-') + '</td></tr>';
                     text += d.report[i].id + ';' + d.report[i].vk_id + ';' + (d.report[i].email ? d.report[i].email : '-') + '\r\n';
@@ -32,10 +32,11 @@ jQuery('document').ready(function(){
                     jQuery('.lottery-report-c-c').remove();
                 }).appendTo('.lottery-report-c-c');
                 
-                jQuery('.lottery-report-cp').on('click', function(e){
+                /*<a class="lottery-report-cp">Скопировать</a>
+                 * jQuery('.lottery-report-cp').on('click', function(e){
                    e.preventDefault();
                    copyToClipboard(text);
-                });
+                });*/
                 
             }
         });
