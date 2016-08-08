@@ -37,10 +37,6 @@
                                 <img class='flag' src="/site/skins/wasd2_main/public/images/en.png"/>
                                 <a href="<?php echo $GLOBALS['wasd_domain']; ?>/translate/index/set/lng/en">English</a>
                             </li>
-                            <li id="ua">
-                                <img class='flag' src="/site/skins/wasd2_main/public/images/ua.png"/>
-                                <a href="<?php echo $GLOBALS['wasd_domain']; ?>/translate/index/set/lng/ua">Українська</a>
-                            </li>
                         </ul>
                             <img class='flag' src="/site/skins/wasd2_main/public/images/ru.png"/>
                             <a href="<?php echo $GLOBALS['wasd_domain']; ?>/translate/index/set/lng/ru">Русский</a>
