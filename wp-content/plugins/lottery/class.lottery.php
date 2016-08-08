@@ -97,20 +97,26 @@ class lottery {
                 throw new Exception($this->error);
             }
             
-            foreach($data['report'] as &$v){
-                
-                if(is_string($v['vk_id'])){
-                    $auth_data = json_decode($v['vk_id'], true);
-                    if(json_last_error() != JSON_ERROR_NONE){
-                        continue;
-                    } else {
-                        if(isset($auth_data['uid'])){
-                            unset($v['vk_id']);
-                            $v['vk_id'] = $auth_data['uid'];
+            $data['report_cnt'] = count($data['report']);
+            
+            if(0 < $data['report_cnt']){
+            
+                foreach($data['report'] as &$v){
+
+                    if(is_string($v['vk_id'])){
+                        $auth_data = json_decode($v['vk_id'], true);
+                        if(json_last_error() != JSON_ERROR_NONE){
+                            continue;
+                        } else {
+                            if(isset($auth_data['uid'])){
+                                unset($v['vk_id']);
+                                $v['vk_id'] = $auth_data['uid'];
+                            }
                         }
                     }
+
                 }
-                
+            
             }
         
         } catch(Exception $e){
