@@ -32,4 +32,11 @@
     padding:5px;
     text-align:left;
 }
+.lottery-report-cnt{
+    float:left;
+}
+.lottery-report-cp{
+    display:inline-block;
+    float:left;
+}
 
