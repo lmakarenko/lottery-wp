@@ -20,7 +20,7 @@ jQuery('document').ready(function(){
                     return false;
                 }
                 var l = d.report.length, i,
-                    html = '<div class="lottery-report-cnt">' + d.report_cnt + '</div><a class="lottery-report-cp">Скопировать</a><div class="clear"></div<table><tr><th>ID</th><th>VK_ID</th><th>EMAIL</th></tr>';
+                    html = '<div class="lottery-report-cnt">' + d.report_cnt + '</div><a class="lottery-report-cp">Скопировать</a><div class="clear"></div><table><tr><th>ID</th><th>VK_ID</th><th>EMAIL</th></tr>';
                 for(i=0;i<l;++i){
                     html += '<tr><td>' + d.report[i].id + '</td><td>' + d.report[i].vk_id + '</td><td>' + (d.report[i].email ? d.report[i].email : '-') + '</td></tr>';
                 }
