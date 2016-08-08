@@ -34,9 +34,12 @@
 }
 .lottery-report-cnt{
     float:left;
+    font-weight:bold;
+    padding:5px 10px 5px;
 }
 .lottery-report-cp{
     display:inline-block;
     float:left;
+    cursor:pointer;
 }
 
