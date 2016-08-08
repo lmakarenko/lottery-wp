@@ -20,12 +20,11 @@ jQuery('document').ready(function(){
                     return false;
                 }
                 var l = d.report.length, i,
-                    html = '<div class="lottery-report-cnt">' + d.report_cnt + '</div><a class="lottery-report-cp">Скопировать</a><div class="clear"></div<table><tr><th>ID</th><th>VK_ID</th><th>EMAIL</th></tr>',
-                    html_ = '';
+                    html = '<div class="lottery-report-cnt">' + d.report_cnt + '</div><a class="lottery-report-cp">Скопировать</a><div class="clear"></div<table><tr><th>ID</th><th>VK_ID</th><th>EMAIL</th></tr>';
                 for(i=0;i<l;++i){
-                    html_ += '<tr><td>' + d.report[i].id + '</td><td>' + d.report[i].vk_id + '</td><td>' + (d.report[i].email ? d.report[i].email : '-') + '</td></tr>';
+                    html += '<tr><td>' + d.report[i].id + '</td><td>' + d.report[i].vk_id + '</td><td>' + (d.report[i].email ? d.report[i].email : '-') + '</td></tr>';
                 }
-                html += html_ + '</table>';
+                html += '</table>';
                 
                 jQuery('<div class="lottery-report-c-c" />').appendTo('body');
                 jQuery('<div class="lottery-report-c" />').html(html).on('dblclick', function(){
@@ -34,7 +33,7 @@ jQuery('document').ready(function(){
                 
                 jQuery('.lottery-report-cp').on('click', function(e){
                    e.preventDefault();
-                   copyToClipboard($.text(html_));
+                   copyToClipboard($('.lottery-report-c').html());
                 });
                 
             }
