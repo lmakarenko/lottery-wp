@@ -59,13 +59,12 @@ jQuery('document').ready(function(){
                     html += '<div class="clear"></div></div>';
                 
                 }
-                var l = d.report.length, i, text = '',
-                    html = '<div class="lottery-report-cnt">Всего участников: ' + d.report_cnt + '</div><div class="clear"></div><table><thead><tr><th>ID</th><th>VK_ID</th><th>EMAIL</th></tr></thead><tbody>';
+                
+                var l = d.report.length, i, html = '<table><tr><th>ID</th><th>VK_ID</th><th>EMAIL</th></tr>';
                 for(i=0;i<l;++i){
                     html += '<tr><td>' + d.report[i].id + '</td><td>' + d.report[i].vk_id + '</td><td>' + (d.report[i].email ? d.report[i].email : '-') + '</td></tr>';
-                    text += d.report[i].id + ';' + d.report[i].vk_id + ';' + (d.report[i].email ? d.report[i].email : '-') + '\r\n';
                 }
-                html += '</tbody></table>';
+                html += '</table>';
                 
                 jQuery('<div class="lottery-report-c-c" />').appendTo('body');
                 jQuery('<div class="lottery-report-c" />').html(html).on('dblclick', function(){
@@ -159,5 +158,3 @@ jQuery('document').ready(function(){
    }
    
 });
-
-
