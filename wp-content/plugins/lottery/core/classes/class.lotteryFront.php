@@ -1,12 +1,12 @@
 <?php
 
-if( !class_exists('lottery') ):
+if( !class_exists('lotteryFront') ):
 
-class lottery {
+require_once LOTTERY__PLUGIN_DIR . 'core/classes/class.lotteryBase.php';
+    
+class lotteryFront extends lotteryBase {
     
     private $status = null;
-    private $db_pg = null;
-    private $error = null;
     private $posts_data = null;
     private $tasks_data = null;
     private $history_data = null;
@@ -15,22 +15,7 @@ class lottery {
     
     function __construct(){
         
-        if(!$this->pg_init()){
-            $this->error = 'Ошибка подключения к БД: ' . pg_last_error();
-            return false;
-        }
-        
-        if(is_admin()){
-            // ONLY WORDPRESS DEFAULT POSTS
-            add_filter('manage_post_posts_columns', array( $this, 'admin_column_head'), 10);
-            add_action('manage_post_posts_custom_column', array( $this, 'admin_column_content'), 10, 2);
-            add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue') );
-            
-            add_action( 'wp_ajax_nopriv_get_report', array( $this, 'get_report_ajax' ) );
-            add_action( 'wp_ajax_get_report' , array( $this, 'get_report_ajax' ) );
-            
-            //return;
-        }
+        parent::__construct();
         
         add_action( 'template_redirect', array( $this, 'init_before_theme' ), 1 );
         
@@ -49,109 +34,10 @@ class lottery {
     }
     
     function __destruct() {
-        $this->pg_deinit();
-    }
-    
-    /* ADMIN */
-    
-    function admin_enqueue($hook) {
-        if ( 'edit.php' != $hook ) {
-            return;
-        }
-        wp_enqueue_style( 'lottery-admin-css', get_template_directory_uri() . '/css/lottery-admin.css' );
-        wp_enqueue_script( 'lottery-admin-js', get_template_directory_uri() . '/js/lottery-admin.js' );
-    }   
-    
-    // ADD NEW COLUMN
-    function admin_column_head($defaults) {
-        $defaults['lottery_ctrl'] = 'Элементы управления';
-        return $defaults;
-    }
- 
-    // SHOW THE FEATURED IMAGE
-    function admin_column_content($column_name, $post_ID) {
-        if ($column_name == 'lottery_ctrl') {
-            echo '<input class="lottery-report-btn" type="button" name="lottery_report" data-id="', $post_ID, '" />';
-        }
-    }
-    
-    function get_report_ajax(){
-       
-        try {
-            
-            $data = array();
         
-            if(!isset($_POST['post_id'])
-                    || empty($_POST['post_id'])){
-                throw new Exception('empty post id');
-            }
-
-            $adv_id = get_field('id_adv', $_POST['post_id']);
-            if(empty($adv_id)){
-                throw new Exception('empty post field adv_id');
-            }
-
-            $data['report'] = $this->get_report($adv_id, $_POST['post_id']);
-            
-            if(false === $data['report']){
-                throw new Exception($this->error);
-            }
-            
-            $data['report_cnt'] = count($data['report']);
-            
-            if(0 < $data['report_cnt']){
-            
-                foreach($data['report'] as &$v){
-
-                    if(is_string($v['vk_id'])){
-                        $auth_data = json_decode($v['vk_id'], true);
-                        if(json_last_error() != JSON_ERROR_NONE){
-                            continue;
-                        } else {
-                            if(isset($auth_data['uid'])){
-                                unset($v['vk_id']);
-                                $v['vk_id'] = $auth_data['uid'];
-                            }
-                        }
-                    }
-
-                }
-            
-            }
+        parent::__destruct();
         
-        } catch(Exception $e){
-            
-            $data['error'] = $e->getMessage();
-            
-        }
-        wp_send_json($data);
     }
-    
-    private function get_report($adv_id, $post_id){
-        
-        $sql = "select u.id, u.email, COALESCE(u.vk_id::text, tt.auth_data::text) vk_id
-        from users u
-        inner join adv_soc_tasks_taken tt on tt.user_id = u.id
-        inner join adv_soc_tasks t on t.id = tt.task_id
-        where 
-        t.adv_camp = ANY('{" . $adv_id . "}'::INT[])
-        and 1 = lottery_user_completed(u.id, '{" . $adv_id . "}'::INT[])";
-
-        //echo $sql;
-        $result = pg_query($this->db_pg, $sql);
-        if(false === $result){
-            $this->error = 'Ошибка запроса: ' . pg_last_error($this->db_pg);
-            return false;
-        }
-        $data = array();
-        while ($row = pg_fetch_array($result, null, PGSQL_ASSOC)) {
-            $data[] = $row;
-        }
-        pg_free_result($result);
-        return $data;
-    }
-    
-    /* ADMIN ENDS */
     
     private function get_ending_complete_cnt_wc(&$post){
         $c_k = 'lottery-ending-cnt';
@@ -165,10 +51,7 @@ class lottery {
     }
     
     public function init_before_theme() {
-        /*if(is_admin()){
-            return false;
-        }*/
-        // includes
+        
         global $ajax_nonce;
         $ajax_nonce = wp_create_nonce( "security-code" );
         
@@ -288,32 +171,6 @@ class lottery {
             )
         );
         return get_posts($arg);
-    }
-    
-    private function pg_init(){
-        if($this->db_pg){
-            return true;
-        }
-        $dsn = "host=db.wasdclub.com dbname=mediareach user=mediareach password=jshnzoSh82nsni";
-        /*
-        if(false !== mb_strpos(str_replace('www.', '', $_SERVER['SERVER_NAME']), 'wasdclub.com')){
-            $dsn = "host=db.wasdclub.com dbname=mediareach user=mediareach password=jshnzoSh82nsni";
-        } else {
-            $dsn = "host=db.wasdclub.com dbname=mr_alpha user=mr_alpha password=mr_alpha500f";
-        }*/
-        try {
-            $this->db_pg = pg_connect($dsn);
-            return true;
-        } catch(Exception $e) {
-            return false;
-        }
-    }
-    
-    private function pg_deinit(){
-        if(!$this->db_pg){
-            return;
-        }
-        pg_close($this->db_pg);
     }
     
     private function load_tasks_data_wc($post_id = false){
@@ -469,6 +326,7 @@ class lottery {
     
     public function get_complete_cnt_ajax(){
         check_ajax_referer('security-code', 'ajax_nonce');
+        $data = array();
         if(!isset($_POST['id_posts'])
                 || empty($_POST['id_posts'])){
             $data['error'][] = array('txt' => 'empty posts ids', 'code' => -1);
@@ -612,35 +470,15 @@ class lottery {
         pg_free_result($result);
         $this->tasks_status_data = $data;
     }
-    /*
-    public function is_complete_ajax($post_id){
-        check_ajax_referer('security-code', 'ajax_nonce');
-        if(!isset($_SESSION['user_data']['id'])
-                || empty($_SESSION['user_data']['id'])){
-            $data['error'][] = 'empty user id';
-        }
-        if(isset($data['error'])){
-            wp_send_json($data);
-            return false;
-        }
-        $data['status'] = $this->is_complete($post_id, $_SESSION['user_data']['id']);
-        if(!empty($this->error)){
-            $data['error'][] = $this->error;
-        }
-        wp_send_json($data);
-    }
-    */
+
     public function get_status(){
         return $this->status;
     }
     
     private function load_camps_status($user_id, $adv_ids){
-        /*$sql = "select
-                t.*, c.type camp_type
-                from lottery_camps_status(" . $user_id . ", '{" . $adv_ids . "}'::INT[]) t
-                inner join adv_camps c on c.id = t.camp_id";*/
+
         $sql = "select * from lottery_camps_status(" . $user_id . ", '{" . $adv_ids . "}'::INT[]);";
-        //echo $sql;
+
         $result = pg_query($this->db_pg, $sql);
         if(false === $result){
             $this->error = 'Ошибка запроса: ' . pg_last_error($this->db_pg);
@@ -787,20 +625,10 @@ class lottery {
     }
     
     public function include_before_theme(){
-        // includes
-        include_once('core/api.php');
+        include_once(LOTTERY__PLUGIN_DIR . 'core/api.php');
     }
         
     private function get_login_form_data_wc(){
-        /*
-        $c_k = 'lottery-ajax-form-data';
-        if(apc_exists($c_k)){
-            $d = apc_fetch($c_k);
-        } else {
-            $d = json_decode(file_get_contents($GLOBALS['wasd_domain'] . '/api/jsonp/loginformdata?sess=' . $_COOKIE['PHPSESSID']));
-            apc_store($c_k, $d, 86400);
-        }
-        */
         try {
             $d = file_get_contents($GLOBALS['wasd_domain'] . '/api/jsonp/loginformdata?sess=' . $_COOKIE['PHPSESSID']);
             $d = json_decode($d, true);
@@ -821,27 +649,27 @@ class lottery {
         }
         $d['rurl'] = isset($_REQUEST['rurl']) ? $_REQUEST['rurl'] : '';
         ob_start();
-        include_once('inc/ajax_login_form.php');
+        include_once(LOTTERY__PLUGIN_DIR . 'inc/ajax_login_form.php');
         $data['html'] = ob_get_clean();
         wp_send_json($data);
     }
     
 }
 
-function lottery()
+function lotteryFront()
 {
-    
-	if( !isset($GLOBALS['lottery']) )
-	{
-		$GLOBALS['lottery'] = new lottery();
-	}
-	
-	return $GLOBALS['lottery'];
+
+    if( !isset($GLOBALS['lotteryFront']) )
+    {
+        $GLOBALS['lotteryFront'] = new lotteryFront();
+    }
+
+    return $GLOBALS['lotteryFront'];
 }
 
 
 // initialize
-lottery();
+lotteryFront();
 
 endif; // class_exists check
 

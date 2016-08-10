@@ -24,7 +24,15 @@ define( 'LOTTERY__PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 //register_activation_hook( __FILE__, array( 'lottery', 'plugin_activation' ) );
 //register_deactivation_hook( __FILE__, array( 'lottery', 'plugin_deactivation' ) );
 
-require_once( LOTTERY__PLUGIN_DIR . 'class.lottery.php' );
+//require_once( LOTTERY__PLUGIN_DIR . 'class.lottery.php' );
+
+
+// if its not an admin area and we are not doing ajax from the front end of the site then use admin class
+if ( is_admin() && !(defined( 'DOING_AJAX' ) && DOING_AJAX  && !isset($_REQUEST['BE'])) ) {
+    require_once( LOTTERY__PLUGIN_DIR . 'core/classes/class.lotteryAdmin.php' );
+} else {// else use fron class
+    require_once( LOTTERY__PLUGIN_DIR . 'core/classes/class.lotteryFront.php' );
+}
 
 /*
 if ( is_admin() ) {
