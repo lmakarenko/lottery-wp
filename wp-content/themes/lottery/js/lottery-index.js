@@ -10,7 +10,9 @@ $(function(){
         bind_posts_events();
         if(!isGuest){
             create_post_q();
-            taskTimeoutId = setTimeout(status_updater, 36000);
+            if(0 < post_status_q.length){
+                taskTimeoutId = setTimeout(status_updater, 36000);
+            }
         }
     }
     
@@ -66,10 +68,13 @@ $(function(){
     }
     
     function create_post_q(){
-        var i, post_id;
+        var i, post_id, el;
         for(i=0;i<posts_id.length;++i){
             post_id = posts_id[i];
-            post_status_q.push(post_id);
+            el = $('.newPost[data-id="'+post_id+'"]').first();
+            if(!el.hasClass('active')){
+                post_status_q.push(post_id);
+            }
         }
     }
     
