@@ -101,7 +101,16 @@ jQuery('document').ready(function(){
                        dataType: 'json',
                        success: function(data){
                             if(data.url){
-                                window.location.href = data.url;
+                                jQuery.fileDownload(data.url, {
+                                    /*successCallback: function (url) {
+                                        alert('You just got a file download dialog or ribbon for this URL :' + url);
+                                    },*/
+                                    failCallback: function (html, url) {
+                                        alert('Your file download just failed for this URL:' + url + '\r\n' +
+                                                'Here was the resulting error HTML: \r\n' + html
+                                        );
+                                    }
+                                });
                            }
                        },
                        complete: function(){
