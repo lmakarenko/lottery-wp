@@ -71,7 +71,7 @@ class lotteryAdmin extends lotteryBase {
             }
 
             if(0 == $data['report_cnt']){
-                throw new Exception('Empty record set');
+                throw new Exception('Нет выполнивших');
             }
 
             $offset = isset($_POST['offset']) && 0 < (int)$_POST['offset'] ? (int)$_POST['offset'] : 0;

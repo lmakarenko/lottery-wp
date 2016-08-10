@@ -370,7 +370,7 @@ class lotteryFront extends lotteryBase {
             return false;
         }
         $row = pg_fetch_array($result, null, PGSQL_ASSOC);
-        return $row['cnt'];
+        return (int)$row['cnt'];
     }
     
     private function load_complete_cnt_all(&$posts){
