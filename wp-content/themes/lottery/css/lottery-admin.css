@@ -11,18 +11,30 @@
     top:20%;
     left:30%;
     width:400px;
-    min-height:600px;
+    min-height:420px;
 }
 .lottery-report-c{
     display:block;
     position:relative;
     width:400px;
-    min-height:600px;
+    min-height:420px;
     overflow:scroll;
     background:#fff;
     border: 1px solid #0073aa;
     padding: 5px 10px;
 }
+.lottery-report-c1{
+    text-align:center;
+    padding:10px;
+    font-weight:bold;
+    color:red;
+}
+.lottery-report-c table{
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+    width: 100%;
+    padding: 5px auto;
+}   
 .lottery-report-c table tr th{
     font-weight:bold;
     padding:5px;
@@ -32,4 +44,20 @@
     padding:5px;
     text-align:left;
 }
-
+.lottery-report-cnt{
+    float:left;
+    font-weight:bold;
+    padding:5px 10px 5px;
+}
+.lottery-report-cp{
+    display:inline-block;
+    float:right;
+    cursor:pointer;
+    padding:5px;
+}
+.lottery-pagination-bar{
+    padding: 5px;
+}
+.lottery-pagination-bar a{
+    display:inline;
+}
