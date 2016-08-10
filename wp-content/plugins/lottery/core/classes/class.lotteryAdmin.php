@@ -119,13 +119,13 @@ class lotteryAdmin extends lotteryBase {
                 if(!mkdir($dir_)){
                     throw new Exception('error creating directory ' . $dir_);
                 }
-                $processUser = posix_getpwuid(posix_geteuid());
+                /*$processUser = posix_getpwuid(posix_geteuid());
                 if(!chown($dir_, $processUser['name'])){
                     throw new Exception('error chown ' . $processUser['name'] . ' for directory ' . $dir_);
                 }
                 if(!chmod($dir_, 0777)){
                     throw new Exception('error chmod 0777 for directory ' . $dir_);
-                }
+                }*/
             }
             
             $fname = 'report_' . $_POST['post_id'] . '.csv';

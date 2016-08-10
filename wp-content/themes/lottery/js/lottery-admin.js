@@ -37,7 +37,7 @@ jQuery('document').ready(function(){
                     var limit = 10, l = d.report.length, i,
                         pages_cnt = (d.report_cnt < limit ? 1 : Math.ceil(d.report_cnt / limit));
 
-                    html = '<div class="lottery-report-cnt">Всего участников: ' + d.report_cnt + '</div><a class="lottery-report-cp">Скачать в .csv</a><div class="clear"></div>';
+                    html = '<div id="lottery-report-row-left" class="row row-left">&lsaquo;</div><div id="lottery-report-row-right" class="row row-right">&rsaquo;</div><div class="lottery-report-cnt">Всего участников: ' + d.report_cnt + '</div><a class="lottery-report-cp">Скачать в .csv</a><div class="clear"></div>';
                     html += '<table><thead><tr><th>ID</th><th>VK_ID</th><th>EMAIL</th></tr></thead><tbody>';              
 
                     for(i=0;i<l;++i){
@@ -64,6 +64,23 @@ jQuery('document').ready(function(){
                 jQuery('<div class="lottery-report-c" />').html(html).on('dblclick', function(){
                     jQuery('.lottery-report-c-c').remove();
                 }).appendTo('.lottery-report-c-c');               
+                
+                jQuery('#lottery-report-row-left').on('click', function(e){
+                   e.preventDefault();
+                   var i = parseInt(jQuery('.lottery-pagination-bar a.sel').attr('data-i')), i_ = i - 1;
+                   if(1 > i_){
+                       i_ = pages_cnt;
+                   }
+                   jQuery('.lottery-pagination-bar a[data-i="' + i_ + '"]').click();
+                });
+                jQuery('#lottery-report-row-right').on('click', function(e){
+                   e.preventDefault();
+                   var i = parseInt(jQuery('.lottery-pagination-bar a.sel').attr('data-i')), i_ = i + 1;
+                   if(i_ > pages_cnt){
+                       i_ = 1;
+                   }
+                   jQuery('.lottery-pagination-bar a[data-i="' + i_ + '"]').click();
+                });
                 
                 jQuery('.lottery-report-cp').on('click', function(e){
                    e.preventDefault();
@@ -109,6 +126,7 @@ jQuery('document').ready(function(){
                    var i = parseInt($this.attr('data-i'));
                    jQuery('.lottery-pagination-bar a.sel').removeClass('sel');
                    $this.addClass('sel');
+                   
                    jQuery.ajax({
                        type: 'post',
                        url: '/wp-admin/admin-ajax.php',

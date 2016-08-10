@@ -21,7 +21,7 @@
     overflow:scroll;
     background:#fff;
     border: 1px solid #0073aa;
-    padding: 5px 10px;
+    padding: 5px 40px;
 }
 .lottery-report-c1{
     text-align:center;
@@ -60,4 +60,29 @@
 }
 .lottery-pagination-bar a{
     display:inline;
+}
+.lottery-pagination-bar a.sel{
+    color:#000;
+    font-weight:bold;
+}
+.row{
+    display:block;
+    position:absolute;
+    width:24px;
+    height:32px;
+    font-size:65px;
+    font-weight:bold;
+    padding:2px;
+    margin-top:200px;
+    cursor:pointer;
+    border:1px solid #efefef;
+    color:#0073aa;
+}
+.row-left{
+    left:0;
+    margin-left:5px;
+}
+.row-right{
+    right:0;
+    margin-right:5px;
 }
