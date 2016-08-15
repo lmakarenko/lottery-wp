@@ -1,8 +1,6 @@
 <?php
 
 if( !class_exists('lotteryFront') ):
-
-require_once LOTTERY__PLUGIN_DIR . 'core/classes/class.lotteryBase.php';
     
 class lotteryFront extends lotteryBase {
     
@@ -18,6 +16,8 @@ class lotteryFront extends lotteryBase {
         parent::__construct();
         
         add_action( 'template_redirect', array( $this, 'init_before_theme' ), 1 );
+        
+        //add_action( 'wp_enqueue_scripts', array( $this, 'front_enqueue') );
         
         add_action( 'wp_ajax_nopriv_get_tasks_status', array( $this, 'get_tasks_status_ajax' ) );
         add_action( 'wp_ajax_get_tasks_status' , array( $this, 'get_tasks_status_ajax' ) );
@@ -38,7 +38,24 @@ class lotteryFront extends lotteryBase {
         parent::__destruct();
         
     }
-    
+    /*
+    function front_enqueue(){
+        
+        $template_dir_uri = get_template_directory_uri();
+        
+        wp_enqueue_style( 'cms_main.css', '/cms/public/css/main.css' );
+        wp_enqueue_style( 'cms_bootstrap.min.css', '/cms/public/bootstrap/css/bootstrap.min.css' );
+        wp_enqueue_style( 'wasd2_sub_all.css', '/site/skins/wasd2_sub/public/css/all.css' );
+        wp_enqueue_style( 'wasd2_sub_lottery.css', '/site/skins/wasd2_sub/public/css/lottery.css' );
+        wp_enqueue_style( 'lottery.css', $template_dir_uri . '/css/lottery.css' );
+        
+        wp_enqueue_script( 'cms_jquery-1.10.2.min.js', '/cms/public/js/jquery/jquery-1.10.2.min.js' );
+        wp_enqueue_script( 'cms_bootstrap.min.js', '/cms/public/bootstrap/js/bootstrap.min.js' );
+        wp_enqueue_script( 'wasd2_sub_share.js', '/site/skins/wasd2_sub/public/js/share.js' );
+        wp_enqueue_script( 'lottery-admin-js', $template_dir_uri . '/js/common.js' );
+        
+    }
+    */
     private function get_ending_complete_cnt_wc(&$post){
         $c_k = 'lottery-ending-cnt';
         if(apc_exists($c_k)){

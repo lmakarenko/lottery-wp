@@ -1,27 +1,48 @@
-.lottery-report-btn{
-    background: url("../images/lottery-report.jpeg") 0 0 no-repeat scroll transparent;
+.lottery-btn{
+    display:block;
+    float:left;
     width: 30px;
     height: 30px;
     border: 0;
     cursor: pointer;
+    float:left;
+}
+.lottery-report-btn{
+    background: url("../images/lottery-report.jpeg") 0 0 no-repeat scroll transparent;
+}
+.lottery-promo-btn{
+    background: url("../images/lottery-promo.jpg") 0 0 no-repeat scroll transparent;
+    width: 48px;
+    height: 29px;
+}
+.lottery-overlay{
+    display:none;
+    width: 100%;
+    position: fixed;
+    height: 100%;
+    background: rgba(128, 128, 128, 0.43);
+    z-index: 10000;
+    left: 0px;
+    top: 0px;
 }
 .lottery-report-c-c{
     display:block;
-    position:absolute;
-    top:20%;
-    left:30%;
-    width:400px;
+    position:fixed;
+    top:110px;
+    left:190px;
+    width:800px;
     min-height:420px;
+    z-index: 10001;
 }
 .lottery-report-c{
     display:block;
     position:relative;
-    width:400px;
+    width:800px;
     min-height:420px;
     overflow:scroll;
     background:#fff;
-    border: 1px solid #0073aa;
-    padding: 5px 40px;
+    border: 2px solid #0073aa;
+    padding: 15px 60px 10px 60px;
 }
 .lottery-report-c1{
     text-align:center;
@@ -33,12 +54,13 @@
     border-top: 1px solid #000;
     border-bottom: 1px solid #000;
     width: 100%;
-    padding: 5px auto;
+    padding: 5px 0;
 }   
 .lottery-report-c table tr th{
     font-weight:bold;
     padding:5px;
     text-align:center;
+    background: #ccc;
 }
 .lottery-report-c table tr td{
     padding:5px;
@@ -73,16 +95,16 @@
     font-size:65px;
     font-weight:bold;
     padding:2px;
-    margin-top:200px;
+    margin-top:190px;
     cursor:pointer;
     border:1px solid #efefef;
     color:#0073aa;
 }
 .row-left{
     left:0;
-    margin-left:5px;
+    margin-left:20px;
 }
 .row-right{
     right:0;
-    margin-right:5px;
+    margin-right:10px;
 }

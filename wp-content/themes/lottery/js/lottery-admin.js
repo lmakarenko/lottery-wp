@@ -1,16 +1,19 @@
-jQuery('document').ready(function(){
+(function($){
+    
+$('document').ready(function(){
    
-   var loading = false;
+   var loading = false,
+       overlay_e = $('<div class="lottery-overlay" />').on('click', function(){
+           $('.lottery-report-c-c').remove();
+           overlay_e.hide();
+       }).appendTo('body');
    
-   jQuery('.lottery-report-btn').on('click', function(e){
-        
+   $('.lottery-report-btn').on('click', function(){
         if(loading) return;
-        
         loading = true;
-        
-        jQuery('.lottery-report-c-c').remove();
-        var post_id = parseInt(jQuery(this).attr('data-id'));
-        jQuery.ajax({
+        $('.lottery-report-c-c').remove();
+        var post_id = parseInt($(this).attr('data-id'));
+        $.ajax({
             type:'post',
             url: '/wp-admin/admin-ajax.php',
             data: {
@@ -60,36 +63,35 @@ jQuery('document').ready(function(){
                 
                 }
                 
-                jQuery('<div class="lottery-report-c-c" />').appendTo('body');
-                jQuery('<div class="lottery-report-c" />').html(html).on('dblclick', function(){
-                    jQuery('.lottery-report-c-c').remove();
-                }).appendTo('.lottery-report-c-c');               
+                overlay_e.show();
+                $('<div class="lottery-report-c-c" />').appendTo('body');
+                $('<div class="lottery-report-c" />').html(html).appendTo('.lottery-report-c-c');               
                 
-                jQuery('#lottery-report-row-left').on('click', function(e){
+                $('#lottery-report-row-left').on('click', function(e){
                    e.preventDefault();
-                   var i = parseInt(jQuery('.lottery-pagination-bar a.sel').attr('data-i')), i_ = i - 1;
+                   var i = parseInt($('.lottery-pagination-bar a.sel').attr('data-i')), i_ = i - 1;
                    if(1 > i_){
                        i_ = pages_cnt;
                    }
-                   jQuery('.lottery-pagination-bar a[data-i="' + i_ + '"]').click();
+                   $('.lottery-pagination-bar a[data-i="' + i_ + '"]').click();
                 });
-                jQuery('#lottery-report-row-right').on('click', function(e){
+                $('#lottery-report-row-right').on('click', function(e){
                    e.preventDefault();
-                   var i = parseInt(jQuery('.lottery-pagination-bar a.sel').attr('data-i')), i_ = i + 1;
+                   var i = parseInt($('.lottery-pagination-bar a.sel').attr('data-i')), i_ = i + 1;
                    if(i_ > pages_cnt){
                        i_ = 1;
                    }
-                   jQuery('.lottery-pagination-bar a[data-i="' + i_ + '"]').click();
+                   $('.lottery-pagination-bar a[data-i="' + i_ + '"]').click();
                 });
                 
-                jQuery('.lottery-report-cp').on('click', function(e){
+                $('.lottery-report-cp').on('click', function(e){
                    e.preventDefault();
                    
                    if(loading) return;
                    
                    loading = true;
                    
-                   jQuery.ajax({
+                   $.ajax({
                        type: 'post',
                        url: '/wp-admin/admin-ajax.php',
                        data: {
@@ -101,7 +103,7 @@ jQuery('document').ready(function(){
                        dataType: 'json',
                        success: function(data){
                             if(data.url){
-                                jQuery.fileDownload(data.url, {
+                                $.fileDownload(data.url, {
                                     /*successCallback: function (url) {
                                         alert('You just got a file download dialog or ribbon for this URL :' + url);
                                     },*/
@@ -119,22 +121,22 @@ jQuery('document').ready(function(){
                    });
                 });
                 
-                jQuery('.lottery-pagination-bar a').on('click', function(e){
+                $('.lottery-pagination-bar a').on('click', function(e){
                    e.preventDefault();
                    
                    if(loading) return;
                    
-                   var $this = jQuery(this);
+                   var $this = $(this);
                    
                    if($this.hasClass('sel')) return;
                    
                    loading = true;
                    
                    var i = parseInt($this.attr('data-i'));
-                   jQuery('.lottery-pagination-bar a.sel').removeClass('sel');
+                   $('.lottery-pagination-bar a.sel').removeClass('sel');
                    $this.addClass('sel');
                    
-                   jQuery.ajax({
+                   $.ajax({
                        type: 'post',
                        url: '/wp-admin/admin-ajax.php',
                        data: {
@@ -152,7 +154,7 @@ jQuery('document').ready(function(){
                                 html += '<td>' + report_vk_id(d.report[i].vk_id) + '</td>';
                                 html += '<td>' + (d.report[i].email ? report_email(d.report[i].email) : '-') + '</td></tr>';
                             }
-                            jQuery('.lottery-report-c table tbody').html(html);
+                            $('.lottery-report-c table tbody').html(html);
                            }
                        },
                        complete: function(){
@@ -167,7 +169,36 @@ jQuery('document').ready(function(){
             }
         });
    });
-   
+   /*
+   $('.lottery-promo-btn').on('click', function(){
+        if(loading) return;
+        loading = true;
+        $('.lottery-report-c-c').remove();
+        var post_id = parseInt($(this).attr('data-id'));
+        $.ajax({
+            type:'post',
+            url: '/wp-admin/admin-ajax.php',
+            data: {
+                action: 'get_promo',
+                post_id: post_id,
+                BE: 1
+            },
+            dataType: 'json',
+            success: function(d){
+                
+                var html = '';
+                
+                overlay_e.show();
+                $('<div class="lottery-report-c-c" />').appendTo('body');
+                $('<div class="lottery-report-c" />').html(html).appendTo('.lottery-report-c-c');
+                
+            },
+            complete: function(){
+                loading = false;
+            }
+        });
+   });
+   */
    function report_vk_id(vk_id){
        return '<a target="_blank" href="http://vk.com/id' + vk_id + '">' + vk_id + '</a>';
    }
@@ -177,3 +208,5 @@ jQuery('document').ready(function(){
    }
    
 });
+
+})(jQuery);

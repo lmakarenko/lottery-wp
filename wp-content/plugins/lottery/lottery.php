@@ -26,6 +26,7 @@ define( 'LOTTERY__PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 
 //require_once( LOTTERY__PLUGIN_DIR . 'class.lottery.php' );
 
+require_once LOTTERY__PLUGIN_DIR . 'core/classes/class.lotteryBase.php';
 
 // if its not an admin area and we are not doing ajax from the front end of the site then use admin class
 if ( is_admin() && !(defined( 'DOING_AJAX' ) && DOING_AJAX  && !isset($_REQUEST['BE'])) ) {
