@@ -265,7 +265,10 @@
            $.post(wasd_domain + '/api/jsonp/logout', data, function(d){
               console.log(d);
               document.location.reload(true);
-           });
+           })
+           .fail(function(){
+                document.location.reload(true);
+            });
         });
     });
 </script>
