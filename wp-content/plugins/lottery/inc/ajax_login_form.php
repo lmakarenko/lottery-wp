@@ -72,9 +72,8 @@ function ajaxLogin() {
     var params = $('#ajax_login_form').serialize();
     params = paramsAdd(params, 'sess', PHPSESSID);
     //console.log(params);
-    $.get(wasd_domain + '/api/jsonp/login', params,
-        function (d) {
-            console.log(d);
+    $.post(wasd_domain + '/api/jsonp/login', params, null, 'json')
+        .always(function(d) {
             if(d['ok'] && 1 == parseInt(d['ok'])){
                 console.log('OK');
                 document.location.reload(true);
@@ -87,7 +86,7 @@ function ajaxLogin() {
                     $('.holder > input').val('');
                 }
             }
-        }, 'json');
+        });
     return false;
 }
 
@@ -99,7 +98,7 @@ function ajaxRegister() {
         password2: $('#demo_input_password2').val()
     };
     data = paramsAdd(data, 'sess', PHPSESSID);
-    $.get(wasd_domain + '/api/jsonp/sendemail', data, function (ret) {
+    $.post(wasd_domain + '/api/jsonp/sendemail', data, function (ret) {
         //$('#' + lom).remove();
 
         if (ret['error'] != '') {
@@ -118,7 +117,7 @@ function dl_doRegister() {
     var data = $('#ajax_register_form').serialize();
     data = paramsAdd(data, 'sess', PHPSESSID);
     //lom = showLoadingProcessLayer('Регистрирую...');
-    $.get(wasd_domain + '/api/jsonp/userregister', data, function () {
+    $.post(wasd_domain + '/api/jsonp/userregister', data, function () {
         //document.location.href = wasd_domain + "/siteregister/index/success" + ((typeof rurl != 'undefined') ? '/rurl/' + rurl : '');
         document.location.reload(true);
     }, 'json')
@@ -132,7 +131,7 @@ function dl_resendEmail() {
         email: $('#demo_input_email').val()
     };
     data = paramsAdd(data, 'sess', PHPSESSID);
-    $.get(wasd_domain + '/api/jsonp/sendemail', data, function (ret) {
+    $.post(wasd_domain + '/api/jsonp/sendemail', data, function (ret) {
         if (ret['error'] != '') {
             alert(ret['error']);
             return false;
@@ -154,7 +153,7 @@ function send_lost_pass() {
     var data=$('#lost_pass_form').serializeArray();
     //console.log(data);
     data.push({'name': 'sess', 'value': PHPSESSID});
-    $.get(wasd_domain + '/api/jsonp/lostpass',data,function(ret){
+    $.post(wasd_domain + '/api/jsonp/lostpass',data,function(ret){
             if (ret['error']!='') {
                 alert(ret['error']);
             }else {
