@@ -20,13 +20,17 @@ if ( 'ACTIVE' == lottery_get_status() && 0 < count($posts) ) :
 <script type="text/javascript" src="/wp-content/themes/lottery/js/lottery-index.js"></script>
 <?php
 else :
-
-    setup_postdata( $GLOBALS['post'] =& $posts[0] );
-    include(locate_template( 'template-parts/lottery-ending.php' ));
-
-    setup_postdata( $GLOBALS['post'] =& $posts[1] );
-    include(locate_template( 'template-parts/lottery-future.php' ));
-
+    
+    if(isset($post[0])){
+        setup_postdata( $GLOBALS['post'] =& $posts[0] );
+        include(locate_template( 'template-parts/lottery-ending.php' ));
+    }
+    
+    if(isset($post[1])){
+        setup_postdata( $GLOBALS['post'] =& $posts[1] );
+        include(locate_template( 'template-parts/lottery-future.php' ));
+    }
+    
 endif;
 
 ?>
