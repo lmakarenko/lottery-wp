@@ -72,8 +72,9 @@ function ajaxLogin() {
     var params = $('#ajax_login_form').serialize();
     params = paramsAdd(params, 'sess', PHPSESSID);
     //console.log(params);
-    $.post(wasd_domain + '/api/jsonp/login', params, null, 'json')
-        .always(function(d) {
+    $.post(wasd_domain + '/api/jsonp/login', params,
+        function (d) {
+            console.log(d);
             if(d['ok'] && 1 == parseInt(d['ok'])){
                 console.log('OK');
                 document.location.reload(true);
@@ -86,7 +87,7 @@ function ajaxLogin() {
                     $('.holder > input').val('');
                 }
             }
-        });
+        }, 'json');
     return false;
 }
 
