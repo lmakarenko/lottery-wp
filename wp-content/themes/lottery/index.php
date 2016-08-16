@@ -17,6 +17,7 @@ if ( 'ACTIVE' == lottery_get_status() && 0 < count($posts) ) :
 ?>
 <input type="hidden" id="id-posts" name="id_posts" value="<?php echo lottery_get_posts_ids_s(); ?>" />
 <input type="hidden" id="id-adv" name="id_adv" value="<?php echo lottery_get_adv_ids_s(); ?>" />
+<script type="text/javascript" src="/wp-content/themes/lottery/js/lottery-common.js"></script>
 <script type="text/javascript" src="/wp-content/themes/lottery/js/lottery-index.js"></script>
 <?php
 else :
