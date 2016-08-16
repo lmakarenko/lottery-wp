@@ -21,12 +21,12 @@ if ( 'ACTIVE' == lottery_get_status() && 0 < count($posts) ) :
 <?php
 else :
     
-    if(isset($post[0])){
+    if(isset($posts[0])){
         setup_postdata( $GLOBALS['post'] =& $posts[0] );
         include(locate_template( 'template-parts/lottery-ending.php' ));
     }
     
-    if(isset($post[1])){
+    if(isset($posts[1])){
         setup_postdata( $GLOBALS['post'] =& $posts[1] );
         include(locate_template( 'template-parts/lottery-future.php' ));
     }
