@@ -87,7 +87,10 @@ function ajaxLogin() {
                     $('.holder > input').val('');
                 }
             }
-        }, 'json');
+        }, 'json')
+        .fail(function(){
+            document.location.reload(true);
+        });
     return false;
 }
 
