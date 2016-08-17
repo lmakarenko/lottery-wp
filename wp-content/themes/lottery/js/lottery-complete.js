@@ -1,4 +1,4 @@
-$('document').ready(function(){
+ $('document').ready(function(){
     
     var checkTimeoutId = false, posts_id_s = $('#id-posts').val(), posts_id = posts_id_s.split(',');
     
@@ -41,5 +41,3 @@ $('document').ready(function(){
     }
     
 });
-
-
