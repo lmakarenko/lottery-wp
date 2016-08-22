@@ -71,7 +71,7 @@
 */ ?>
 <style>
     body {
-        background: #000 url("/wp-content/uploads/2016/08/BlessBack.jpg") no-repeat scroll center top;
+        background: #000 url("/site/skins/wasd2_sub/public/images/BlessBack.jpg") no-repeat scroll center top;
     }
 </style>
 
