@@ -10,6 +10,9 @@
     height: 336px;
     position: relative;
 }
+#lottery-outer-c div.title-h{
+    margin-bottom:10px;
+}
 
 .post-content ul{
     margin-left:0;
@@ -63,10 +66,15 @@ a.post-c{
     color:#fff;
     z-index:2;
 }
-#newPost .c-lottery-single .lottery-top-text-c{
+
+.newPost.c-lottery-noactive{
+    padding-bottom:10px;
+}
+
+.newPost.c-lottery-single .lottery-top-text-c{
     padding:0;
 }
-#newPost .c-lottery-single .lottery-top-text{
+.newPost.c-lottery-single .lottery-top-text{
     bottom:20px;
 }
 #main h2.post-title{
@@ -145,6 +153,6 @@ a.post-c{
     display:none;
     z-index:1;
 }
-#newPost .c-lottery-single .lottery-overlay{
+.newPost.c-lottery-single .lottery-overlay{
     display:block;
 }
