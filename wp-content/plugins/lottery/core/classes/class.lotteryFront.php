@@ -170,10 +170,11 @@ class lotteryFront extends lotteryBase {
     }
     
     private function load_noactive_posts(){
+        $d = array();
         $arg = array(
             'post_type' => 'post',
             'post_status' => 'publish',
-            'category_name' => 'ending,future',
+            'category_name' => 'ending',
             'ignore_sticky_posts' => true,
             'meta_query' => array(
                 'relation' => 'AND',
@@ -187,7 +188,17 @@ class lotteryFront extends lotteryBase {
                 'sorder' => 'ASC',
             )
         );
-        return get_posts($arg);
+        $posts = get_posts($arg);
+        if(isset($posts[0])){
+            $d[0] = $posts[0];
+            unset($posts);
+        }
+        $arg['category_name'] = 'future';
+        $posts = get_posts($arg);
+        if(isset($posts[0])){
+            $d[1] = $posts[0];
+        }
+        return $d;
     }
     
     private function load_tasks_data_wc($post_id = false){
