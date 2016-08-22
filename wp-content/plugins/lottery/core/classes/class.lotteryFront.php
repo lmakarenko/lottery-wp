@@ -79,7 +79,7 @@ class lotteryFront extends lotteryBase {
             $this->load_posts_data();
             $this->load_complete_cnt_all( $this->posts_data );
             $this->load_camps_status_all();
-            if('NOACTIVE' == $this->status){
+            if('NOACTIVE' == $this->status && isset($this->posts_data['ending'])){
                 $this->get_ending_complete_cnt_wc($this->posts_data[0]);
             }
         } else if(is_single()){
