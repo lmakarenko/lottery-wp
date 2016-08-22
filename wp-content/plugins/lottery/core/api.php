@@ -39,6 +39,14 @@ function lottery_end_date($post_id = false){
     return $date_end;
 }
 
+function lottery_start_date($post_id = false){
+    if(!$post_id){
+        $post_id = get_the_ID();
+    }
+    $date_start = get_field('date_start', $post_id);
+    return $date_start;
+}
+
 function lottery_get_adv_ids_s(){
     return lotteryFront()->get_adv_ids_s();
 }
