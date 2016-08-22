@@ -22,13 +22,13 @@ if ( 'ACTIVE' == lottery_get_status() && 0 < count($posts) ) :
 <?php
 else :
     
-    if(isset($posts[0])){
-        setup_postdata( $GLOBALS['post'] =& $posts[0] );
+    if(isset($posts['ending'])){
+        setup_postdata( $GLOBALS['post'] =& $posts['ending'] );
         include(locate_template( 'template-parts/lottery-ending.php' ));
     }
     
-    if(isset($posts[1])){
-        setup_postdata( $GLOBALS['post'] =& $posts[1] );
+    if(isset($posts['future'])){
+        setup_postdata( $GLOBALS['post'] =& $posts['future'] );
         include(locate_template( 'template-parts/lottery-future.php' ));
     }
     
@@ -48,5 +48,6 @@ txt_a(lottery_get_posts());
 //txt_a(lottery_get_tasks_data());
 txt_a(lottery_get_tasks_status());
 */
+txt_a(lottery_get_posts());
 ?>
 -->

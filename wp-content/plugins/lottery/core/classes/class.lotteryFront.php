@@ -196,7 +196,7 @@ class lotteryFront extends lotteryBase {
         $arg['category_name'] = 'future';
         $posts = get_posts($arg);
         if(isset($posts[0])){
-            $d[1] = $posts[0];
+            $d['future'] = $posts[0];
         }
         return $d;
     }
