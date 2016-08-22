@@ -12,17 +12,8 @@ $start_date = lottery_start_date();
 $title = get_the_title();
 $adv_ids = get_field('id_adv', $post_id);
 $logo3 = get_field('logo3', $post_id);
-$complete_cnt = lottery_get_complete_cnt($post_id, true);
-if($is_user){
-    $is_complete = lottery_is_complete(true);
-    $is_complete_cls = ($is_complete ? ' active' : ' noactive');
-} else {
-    $is_complete = false;
-    $is_complete_cls = '';
-}
-
 ?>
-<div data-id="<?php echo $post_id; ?>" data-adv="<?php echo $adv_ids; ?>" style="display:block;" class="newPost c-lottery c-lottery-single c-lottery-noactive<?php echo $is_complete_cls; ?>">
+<div data-id="<?php echo $post_id; ?>" data-adv="<?php echo $adv_ids; ?>" style="display:block;" class="newPost c-lottery c-lottery-single c-lottery-noactive">
 <div class="lottery-top-text-c">
     <div class="inner clear">
         <div class="lottery-overlay" data-id="<?php echo $post_id; ?>"></div>
