@@ -377,11 +377,16 @@ class lotteryAdmin extends lotteryBase {
             return false;
         }
         
-        while ($row = pg_fetch_array($result, null, PGSQL_ASSOC)) {
+        while ($row = pg_fetch_assoc($result)) {
             $this->filter_row_data($row, array(
                 'vk_id' => 'http://vk.com/id{vk_id}'
             ));
-            fputcsv($fp, $row, ';');
+            fputcsv($fp, array(
+                $row['id'],
+                $row['email'],
+                $row['vk_id'],
+                $row['last_ip']
+            ), ';');
         }
         
         fclose($fp);
