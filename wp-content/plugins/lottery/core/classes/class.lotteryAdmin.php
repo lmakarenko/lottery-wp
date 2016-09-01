@@ -351,8 +351,8 @@ class lotteryAdmin extends lotteryBase {
     
     private function create_report($adv_id, $post_id, $dir){
               
-        $sql = "select user_id id, email, vk_id from ( 
-        select distinct on (u.id) user_id, u.email, COALESCE(u.vk_id::text, tt.auth_data::text) vk_id, tt.start_time
+        $sql = "select user_id id, email, vk_id, last_ip from ( 
+        select distinct on (u.id) user_id, u.email, COALESCE(u.vk_id::text, tt.auth_data::text) vk_id, tt.start_time, u.last_ip
         from users u
         inner join adv_soc_tasks_taken tt on tt.user_id = u.id
         inner join adv_soc_tasks t on t.id = tt.task_id
