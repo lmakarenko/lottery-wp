@@ -56,12 +56,13 @@
                 </div>
                 <span class="copy">&copy; 2010-2016 MediaReach LLC</span>
         </div>
+        <?php/*
         <div class="download-block">
         <a href="<?php echo $GLOBALS['wasd_domain']; ?>/apps.html">Скачать WasdAgent</a>
         </div>
         <div>Доступно для:
                 <img src="/site/plugins/coins/public/images/pcandr.png"/>
-        </div>
+        </div>*/?>
 </div>
         </div>
 
