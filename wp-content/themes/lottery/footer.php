@@ -1,4 +1,4 @@
-<?php /*<div class="ad" style="height: 120px;">
+<div class="ad" style="height: 120px;">
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <!-- Wasd Bottom -->
     <ins class="adsbygoogle"
@@ -9,10 +9,11 @@
         (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
 </div>
-*/ ?>
+<?php /*
 <div style="text-align:center;padding-bottom:20px">
 <script src='http://sites.popmog.com/sat/25435?width=728&height=90' type='text/javascript'></script>
 </div>
+*/ ?>
 <div id="footer">
         <ul class="footer-nav">
                 <li><a href="<?php echo $GLOBALS['wasd_domain']; ?>/courses.html">КУРСЫ ВЫВОДА РИЧИКОВ</a></li>
