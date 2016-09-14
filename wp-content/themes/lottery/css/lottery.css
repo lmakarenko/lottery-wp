@@ -40,7 +40,8 @@ a.post-c{
     margin: 20px auto 0;
 }
 #newPost .lottery-top-text-c{
-    padding: 0 0 20px; 
+    /*padding: 0 0 20px; */
+    padding:0;
 }
 .title-h {
     background-image: url("/site/skins/wasd2_sub/public/images/lottery/2title.png");
