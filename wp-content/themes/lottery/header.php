@@ -499,7 +499,6 @@
 </div>
 
 <?php /*if($GLOBALS['user_data']['premium']){ ?>
-
 <div id="customize_ref_dialog">
     <div class="customize_ref_dialog_background" onclick="$('#customize_ref_dialog').fadeOut(500);">
     </div>
@@ -510,12 +509,10 @@
             http://www.wasdclub.com/id/</span><input id="custom_ref_input" type="text" value="<?php echo $GLOBALS['user_data']['custom_ref']; ?>" class="cstmz_ref_input" onkeyup="filterRef();" />
             <br />
             <button class="btn btn-inverse" onclick="saveCustomRef();">сохранить</button>
-
             <a href="#" onclick="$('#customize_ref_dialog').fadeOut(500);"><div class="rd_close"></div></a>
         </div>
     </div>
 </div>
-
 <script type="text/javascript">
     
     function customizeRef() {
@@ -556,7 +553,6 @@
     }
     
 </script>
-
 <?php }*/ ?>
                             
 <?php } ?>
