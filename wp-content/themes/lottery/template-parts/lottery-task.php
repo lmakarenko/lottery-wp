@@ -12,7 +12,7 @@
                                 <p><?php echo $t['text']; ?></p>
                         </div>
                                 <div class="row">
-                                            <div class="pre-ready lottery-task-btn lottery-task-btn-start" <?php if ($is_user){ ?>style="display:none;"<?php } ?>>
+                                            <div class="pre-ready lottery-task-btn lottery-task-btn-start<?php if (!$is_user){ ?> demo-login<?php } ?>" <?php if ($is_user){ ?>style="display:none;"<?php } ?>>
                                                     <a title="Участвовать" href="<?php if ($is_user){ ?><?php echo $GLOBALS['wasd_domain']; ?>/soctask/user/starttask/id/<?php echo $t['id']; ?><?php } else { echo $GLOBALS['wasd_domain']; } ?>" <?php if ($is_user){ ?>target="_blank"<?php } ?> class="button">
                                                             <div class="ready pc">Участвовать</div>
                                                     </a>
@@ -53,7 +53,7 @@
                                 <p><?php echo $t['text']; ?></p>
                         </div>
                                 <div class="row">
-                                    <div class="pre-ready lottery-task-btn lottery-task-btn-start"<?php if ($is_user){ ?>  style="display:none;"<?php } ?>>
+                                    <div class="pre-ready lottery-task-btn lottery-task-btn-start<?php if (!$is_user){ ?> demo-login<?php } ?>"<?php if ($is_user){ ?>  style="display:none;"<?php } ?>>
 
                                 <?php /* if ($t['need_vk_auth']){ ?>
                                     <a href="#" title="Участвовать" onclick="<?php if ($is_user){ ?>showAuthAlert('vk');return false;<?php } else { ?>showDemoLogin();return false;<?php } ?>" class="button">
