@@ -656,9 +656,9 @@ class lotteryFront extends lotteryBase {
         include_once(LOTTERY__PLUGIN_DIR . 'core/api.php');
     }
         
-    private function get_login_form_data_wc(){
+    private function get_login_form_data_wc($p = array()){
         try {
-            $d = file_get_contents($GLOBALS['wasd_domain'] . '/api/jsonp/loginformdata?sess=' . $_COOKIE['PHPSESSID']);
+            $d = file_get_contents($GLOBALS['wasd_domain'] . '/api/jsonp/loginformdata?sess=' . $p['sess'] . '&rurl=' . $p['rurl']);
             $d = json_decode($d, true);
         } catch(Exception $e){
             $d['error'] = $e->getMessage();  
@@ -669,13 +669,16 @@ class lotteryFront extends lotteryBase {
     public function login_form_ajax(){
         check_ajax_referer('security-code', 'ajax_nonce');
         $data = array();
-        $d = $this->get_login_form_data_wc();
+        $d = $this->get_login_form_data_wc(array(
+            'sess' => $_COOKIE['PHPSESSID'],
+            'rurl' => $_REQUEST['rurl']
+        ));
         if(isset($d['error'])){
             $data['error'] = $d['error'];
             wp_send_json($data);
             return false;
         }
-        $d['rurl'] = isset($_REQUEST['rurl']) ? $_REQUEST['rurl'] : '';
+        $d['rurl'] = $_REQUEST['rurl'];
         ob_start();
         include_once(LOTTERY__PLUGIN_DIR . 'inc/ajax_login_form.php');
         $data['html'] = ob_get_clean();
