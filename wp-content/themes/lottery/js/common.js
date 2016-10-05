@@ -56,3 +56,12 @@ function bsDialogDestroy(did) {
     $("#"+did).modal("hide");
     $("#"+did).remove();
 }
+
+$('document').ready(function(){
+    var post_bg = $.trim($('#post-bg').val());
+    if('' != post_bg){
+        $('body').css({
+            'background': '#000 url("' + post_bg + '") no-repeat scroll center top'
+        });
+    }
+});
