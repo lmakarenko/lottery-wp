@@ -21,6 +21,14 @@ if($is_user){
     $is_complete_cls = '';
 }
 
+$post_bg = get_field('background', $post_id);
+if($post_bg){
+    $post_bg = str_replace('http://' . $_SERVER['SERVER_NAME'], '', $post_bg);
+?>
+    <input type="hidden" id="post-bg" value="<?php echo $post_bg; ?>" />
+<?php
+}
+
 if($is_user){
 ?>
 <script type="text/javascript">var isComplete = parseInt('<?php echo ($is_complete ? 1 : 0); ?>');</script>
