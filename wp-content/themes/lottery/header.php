@@ -71,7 +71,7 @@
 */ ?>
 <style>
     body {
-        background: #000 url("/wp-content/uploads/2016/09/Prime_msi.jpg") no-repeat scroll center top;
+        background: #000 url("/wp-content/uploads/2016/10/Back2.jpg") no-repeat scroll center top;
     }
 </style>
 
