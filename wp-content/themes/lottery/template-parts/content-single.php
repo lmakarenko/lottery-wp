@@ -28,7 +28,6 @@ if($is_user){
 <div data-id="<?php echo $post_id; ?>" data-adv="<?php echo $adv_ids; ?>" style="display:block;" class="newPost c-lottery c-lottery-single<?php echo $is_complete_cls; ?>">
 <div class="lottery-top-text-c">
     <div class="inner clear">
-        <div class="lottery-overlay" data-id="<?php echo $post_id; ?>"></div>
         <div class="lottery-corener"></div>
         <img src="<?php echo $logo3; ?>" class="lottery-bg" />
         <div class="lottery-top-text lottery-inner-content" data-id="<?php echo $post_id; ?>">
