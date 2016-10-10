@@ -70,8 +70,20 @@
 <script type="text/javascript" src="//yandex.st/share/share.js" charset="utf-8"></script>
 */ ?>
 <style>
+<?php
+    if(is_single()){
+	$post_bg = get_field('background', get_the_ID());
+	if($post_bg){
+		$post_bg = str_replace('http://' . $_SERVER['SERVER_NAME'], '', $post_bg);
+	} else {
+		$post_bg = '/wp-content/uploads/2016/10/Back2.jpg';//get_main_bg();
+	}
+    } else {
+	$post_bg = '/wp-content/uploads/2016/10/Back2.jpg';//get_main_bg();
+    }
+?>
     body {
-        background: #000 url("/wp-content/uploads/2016/10/Back2.jpg") no-repeat scroll center top;
+        background: #000 url("<?php echo $post_bg; ?>") no-repeat scroll center top;
     }
 </style>
 

@@ -22,7 +22,7 @@ if($is_user){
 }
 
 ?>
-<a class="post-c" href="<?php echo esc_url( get_permalink() ); ?>" title="<?php echo $title; ?>">    
+<a class="post-c" href="<?php echo esc_url( get_permalink() ); ?>">    
 <div data-id="<?php echo $post_id; ?>" data-adv="<?php echo $adv_ids; ?>" style="display:block;" href="<?php echo esc_url( get_permalink() ); ?>" class="newPost c-lottery<?php echo $is_complete_cls; ?>">
 <div class="lottery-top-text-c">
     <div class="inner clear">
@@ -38,14 +38,40 @@ if($is_user){
             </div>
             <div class="lottery-complete-c" data-id="<?php echo $post_id; ?>">
                 <div>
-                    <div class="fl lottery-complete-txt"><?php if($is_complete){ ?>Поздравляем! Вы участник розыгрыша!<?php } else { ?>Стань участником розыгрыша!<?php } ?></div>
-                    <div class="lottery-complete">
+                    <div class="fl help_icon">
+                        <?php if($is_complete){ ?>
+                        <div class="lottery-complete-txt">Поздравляем! Вы участник розыгрыша!</div>
+                        <div class="help_icon_text">
+                            <div class="help_icon_label">
+                            Ожидайте окончания розыгрыша
+                            </div>
+                        </div>
+                        <?php } else { ?>
+                        <div class="lottery-complete-txt">Стань участником розыгрыша!</div>
+                        <div class="help_icon_text">
+                            <div class="help_icon_label">
+                            Примите участие в розыгрыше
+                            </div>
+                        </div>
+                        <?php } ?>
+                    </div>
+                    <div class="lottery-complete help_icon">
                         <span class="lottery-complete-cnt pic"></span>
                         <span class="lottery-complete-cnt-n" data-id="<?php echo $post_id; ?>"><?php echo $complete_cnt; ?></span>
+                        <div class="help_icon_text">
+                            <div class="help_icon_label">
+                            Колличество участников
+                            </div>
+                        </div>
                     </div>
-                    <div class="lottery-complete">
+                    <div class="lottery-complete help_icon">
                         <span class="lottery-complete-date pic"></span>
                         <span class="lottery-complete-date-n"><?php echo $end_date; ?></span>
+                        <div class="help_icon_text">
+                            <div class="help_icon_label">
+                            Дата и время окончания конкурса
+                            </div>
+                        </div>
                     </div>
                     <div class="clear"></div>
                 </div>
