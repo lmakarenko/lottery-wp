@@ -164,6 +164,7 @@ a.post-c{
 .help_icon{
     position: relative;
     z-index: 99999;
+    cursor:pointer;
 }
 .help_icon:hover .help_icon_text{
     max-width: 500px;
