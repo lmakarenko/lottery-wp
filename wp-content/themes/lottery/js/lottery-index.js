@@ -79,11 +79,13 @@ $(function(){
     }
     
     function bind_posts_events(){
-        var i, post_id, el;
+        var i, post_id, post_url, el;
         for(i=0;i<posts_id.length;++i){
             post_id = posts_id[i];
-            el = $('.newPost[data-id="'+post_id+'"]').first().parent()
-                .on('mouseenter', {'post_id': post_id}, function(e){
+            el = $('.newPost[data-id="'+post_id+'"]').first().parent();
+			post_url = el.attr('data-url');
+            el
+				.on('mouseenter', {'post_id': post_id}, function(e){
                     if(animating){
                         return;
                     }
@@ -102,7 +104,10 @@ $(function(){
                        animating = false;
                     });
                     $('.lottery-overlay[data-id="'+post_id+'"]').first().hide();
-                });
+                })
+				.on('click', {'post_url': post_url}, function(e){
+					location.href = e.data.post_url;
+				});
         }
     }
     

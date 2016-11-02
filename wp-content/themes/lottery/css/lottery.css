@@ -24,11 +24,12 @@
 .lottery-outer-c{
     padding:10px 13px 0 13px;
 }
-a.post-c{
+.post-c{
     display: block;
     margin: 20px auto;
     padding: 0;
     width: 870px;
+	cursor:pointer;
 }
 
 .newPost .post-content strong{
@@ -38,6 +39,7 @@ a.post-c{
 
 #newPost .post-c{
     margin: 20px auto 0;
+	cursor:auto;
 }
 #newPost .lottery-top-text-c{
     /*padding: 0 0 20px; */

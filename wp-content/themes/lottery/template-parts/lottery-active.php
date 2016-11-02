@@ -22,7 +22,7 @@ if($is_user){
 }
 
 ?>
-<a class="post-c" href="<?php echo esc_url( get_permalink() ); ?>">    
+<div class="post-c" data-url="<?php echo esc_url( get_permalink() ); ?>">    
 <div data-id="<?php echo $post_id; ?>" data-adv="<?php echo $adv_ids; ?>" style="display:block;" href="<?php echo esc_url( get_permalink() ); ?>" class="newPost c-lottery<?php echo $is_complete_cls; ?>">
 <div class="lottery-top-text-c">
     <div class="inner clear">
@@ -81,4 +81,4 @@ if($is_user){
     </div>
 </div>
 </div>
-</a>
+</div>

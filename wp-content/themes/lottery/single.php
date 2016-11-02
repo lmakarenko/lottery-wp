@@ -18,11 +18,11 @@ if(0 < count($posts)){
 ?>
         <div id="newPost" class="c-lottery">
             <div class="title-h">розыгрыш</div>
-            <a class="post-c">
+            <div class="post-c">
             <?php 
                 include(locate_template( 'template-parts/content-single.php' ));
             ?>
-            </a>    
+            </div>    
             <div class="lottery-text">
                 <h2>Для участия необходимо выполнить следующие задания:</h2>
                 <!--Контент-->
