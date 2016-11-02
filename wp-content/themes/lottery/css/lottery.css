@@ -24,11 +24,12 @@
 .lottery-outer-c{
     padding:10px 13px 0 13px;
 }
-a.post-c{
+.post-c{
     display: block;
     margin: 20px auto;
     padding: 0;
     width: 870px;
+	cursor:pointer;
 }
 
 .newPost .post-content strong{
@@ -38,6 +39,7 @@ a.post-c{
 
 #newPost .post-c{
     margin: 20px auto 0;
+	cursor:auto;
 }
 #newPost .lottery-top-text-c{
     /*padding: 0 0 20px; */
@@ -159,4 +161,30 @@ a.post-c{
 }
 .newPost.c-lottery-single .lottery-overlay{
     display:block;
+}
+
+.help_icon{
+    position: relative;
+    z-index: 99999;
+    cursor:pointer;
+}
+.help_icon:hover .help_icon_text{
+    max-width: 500px;
+    transition: max-width 0.25s ease-in, opacity 0.25s ease-in;
+    opacity:1;
+}
+.help_icon_text{
+    position: absolute;
+    max-width: 0px;      
+    transition: max-width 0.15s ease-out, opacity 0.25s ease-in;      
+    overflow: hidden;      text-overflow: ellipsis;      white-space: nowrap;
+    right: 35px;
+    background: #3D3D3D;
+    border-radius: 3px;      font-weight: 100;      
+    cursor: default;
+    opacity:0;
+}
+.help_icon_label{
+    padding: 3px 6px;
+    border: 1px solid grey;
 }
