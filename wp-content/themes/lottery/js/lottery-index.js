@@ -106,7 +106,10 @@ $(function(){
                     $('.lottery-overlay[data-id="'+post_id+'"]').first().hide();
                 })
 				.on('click', {'post_url': post_url}, function(e){
-					location.href = e.data.post_url;
+					var target = $(e.target);
+					if(!target.is('a')){
+						location.href = e.data.post_url;
+					}
 				});
         }
     }
@@ -181,4 +184,3 @@ $(function(){
     }
     
 });
-
