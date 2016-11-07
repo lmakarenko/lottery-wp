@@ -121,12 +121,12 @@ $(function(){
         return mt;
     }
    
-   $(document).on('click', '.lottery-task-btn-alert', function(){
+   $(document).on('click', '.vk-error-alert', function(){
         var $this = $(this),
             e_c = $('.exit-form-back1').first(),
-            e_ = $('.lottery-history-alert1').first();
+            e_ = $('.exit-form-back1 .lottery-history-alert1').first();
         e_c.on('click', function(e){
-            $('.lottery-history-alert1').first().fadeOut(0, 'swing', function(){
+            $('.exit-form-back1 .lottery-history-alert1').first().fadeOut(0, 'swing', function(){
                 $('.exit-form-back1').first().hide();
             }).off('scroll');
         });
@@ -143,9 +143,39 @@ $(function(){
         e_.fadeIn(600, 'swing', function(){
         });
    });
+   $(document).on('click', '.lottery-task-btn-alert', function(){
+       var $this = $(this),
+            e_c = $('.exit-form-back2').first(),
+            e_ = $('.exit-form-back2 .lottery-history-alert1').first();
+        e_c.on('click', function(e){
+            $('.exit-form-back2 .lottery-history-alert1').first().fadeOut(0, 'swing', function(){
+                $('.exit-form-back2').first().hide();
+            }).off('scroll');
+        });
+
+        e_c.css({'height': $(document).height() + 'px'});
+        e_.css({'margin-top': calcScrollTop_() + 'px'}).on('click', function(e){
+            e.stopPropagation();
+        });
+        e_c.show();
+        $(window).on('scroll', {'el': e_}, function(e){
+            e.data.el.css({'margin-top': calcScrollTop_() + 'px'});
+        });
+
+        e_.fadeIn(600, 'swing', function(){
+        });
+   });
+    
 });
 </script>
 <div class="exit-form-back exit-form-back1">
+    <div class="lottery-history-alert lottery-history-alert1">
+        <div class="lottery-history-alert1-inner">
+В данный момент авторизация через VK недоступна, ведутся тех. работы. Для восстановления доступа обратитесь, пожалуйста, в тех. поддержку <a href="http://www.wasdclub.com/support">www.wasdclub.com/support</a>, указав свою реферальную ссылку или ID в VK, либо ожидайте восстановления авторизации.
+        </div>
+    </div>
+</div>
+<div class="exit-form-back exit-form-back2">
     <div class="lottery-history-alert lottery-history-alert1">
         <div class="lottery-history-alert1-inner">
 Уважаемые пользователи. На данный момент выполнение задания невозможно из-за технического сбоя. Мы усиленно работаем над устранением ошибки. Данный розыгрыш будет продлен на время технических работ. 07.11.16г.

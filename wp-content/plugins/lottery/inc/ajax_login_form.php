@@ -60,7 +60,7 @@
         </div>
         <ul id="demo_login_social">
             <?php /*<li><a href="<?php echo $d['vkAuthUri']; ?>"><img src="/site/skins/wasd2_sub/public/images/vk_small.png" width="155px" height="24px" alt="ВКонтакте" /><div>Вконтакте</div></a></li>*/ ?>
-            <li><a class="lottery-task-btn-alert" href="#"><img src="/site/skins/wasd2_sub/public/images/vk_small.png" width="155px" height="24px" alt="ВКонтакте" /><div>Вконтакте</div></a></li>
+            <li><a class="vk-error-alert" href="#"><img src="/site/skins/wasd2_sub/public/images/vk_small.png" width="155px" height="24px" alt="ВКонтакте" /><div>Вконтакте</div></a></li>
             <li><a href="<?php echo $d['fbAuthUri']; ?>"><img src="/site/skins/wasd2_sub/public/images/fb_small.png" width="155px" height="24px" alt="facebok" /><div>Facebook</div></a></li>
             <li><a href="<?php echo $d['odAuthUri']; ?>"><img src="/site/skins/wasd2_sub/public/images/od_small.png" width="155px" height="24px" alt="Одноклассники" /><div>Одноклассники</div></a></li>
         </ul>
