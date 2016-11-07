@@ -92,6 +92,15 @@
     };
 </script>
 */ ?>
+
+<div class="exit-form-back exit-form-back1">
+    <div class="lottery-history-alert lottery-history-alert1">
+        <div class="lottery-history-alert1-inner">
+            В данный момент авторизация через VK недоступна, ведутся тех. работы. Для восстановления доступа обратитесь, пожалуйста, в тех. поддержку <a href="http://www.wasdclub.com/support">www.wasdclub.com/support</a>, либо ожидайте восстановления авторизации.
+        </div>
+    </div>
+</div>
+
 <a id="to_top" href='#'>
 <div class="to_top_arrows"></div>
 <div class="to_top_arrows"></div>
