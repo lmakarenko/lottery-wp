@@ -122,14 +122,12 @@ $(function(){
     }
    
    $('document').on('click', '.lottery-task-btn-alert', function(){
-        anim_complete = false;
         var $this = $(this),
             e_c = $('.exit-form-back1').first(),
             e_ = $('.lottery-history-alert1').first();
         e_c.on('click', function(e){
             $('.lottery-history-alert1').first().fadeOut(0, 'swing', function(){
                 $('.exit-form-back1').first().hide();
-                anim_complete = true;
             }).off('scroll');
         });
 
@@ -143,7 +141,6 @@ $(function(){
         });
 
         e_.fadeIn(600, 'swing', function(){
-            anim_complete = true;
         });
    });
 });
