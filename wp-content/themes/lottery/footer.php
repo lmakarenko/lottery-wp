@@ -121,7 +121,7 @@ $(function(){
         return mt;
     }
    
-   $('.lottery-task-btn-alert').on('click', function(){
+   $('document').on('click', '.lottery-task-btn-alert', function(){
         anim_complete = false;
         var $this = $(this),
             e_c = $('.exit-form-back1').first(),
