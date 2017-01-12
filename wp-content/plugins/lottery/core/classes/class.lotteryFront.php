@@ -732,7 +732,7 @@ class lotteryFront extends lotteryBase {
         
     private function get_login_form_data_wc($p = array()){
         try {
-            $d = file_get_contents($GLOBALS['wasd_domain'] . '/api/jsonp/loginformdata?sess=' . $p['sess'] . '&rurl=' . $p['rurl']);
+            $d = file_get_contents('http://zeta.wasdclub.com/api/jsonp/loginformdata?sess=' . $p['sess'] . '&rurl=' . $p['rurl']);
             $d = json_decode($d, true);
         } catch(Exception $e){
             $d['error'] = $e->getMessage();  
