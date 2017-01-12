@@ -31,6 +31,9 @@ class lotteryFront extends lotteryBase {
         add_action( 'wp_ajax_nopriv_login_form', array( $this, 'login_form_ajax' ) );
         add_action( 'wp_ajax_login_form' , array( $this, 'login_form_ajax' ) );
         
+        add_action( 'wp_ajax_nopriv_history_items_get', array( $this, 'history_items_get_ajax' ) );
+        add_action( 'wp_ajax_history_items_get' , array( $this, 'history_items_get_ajax' ) );
+        
     }
     
     function __destruct() {
@@ -97,18 +100,33 @@ class lotteryFront extends lotteryBase {
         }
         //$this->load_history_data();
         //$this->load_complete_cnt_all( $this->history_data );
-        $this->load_history_data_wc();
+        //$this->load_history_data_wc();
+    }
+    
+    public function print_history(){
+        $history_cnt = $this->history_items_cnt();
+        if(1 > $history_cnt){
+            return;
+        }
+        include(locate_template( 'template-parts/lottery-history.php' ));
+    }
+    
+    public function history_items_cnt(){
+        //$cat = get_term_by('name', 'history', 'category');
+        $cat = get_category_by_slug('history');
+        if ($cat)
+            return $cat->category_count;
     }
     
     private function load_history_data_wc(){
         $c_key = 'lottery-history';
-        if(apc_exists($c_key)){
-            $this->history_data = apc_fetch($c_key);
+        if(apcu_exists($c_key)){
+            $this->history_data = apcu_fetch($c_key);
         } else {
             $this->load_history_data();
             $this->load_complete_cnt_all( $this->history_data );
             if(!empty($this->history_data)){
-                apc_store($c_key, $this->history_data, 86400);
+                apcu_store($c_key, $this->history_data, 86400);
             }
         }
     }
@@ -139,6 +157,71 @@ class lotteryFront extends lotteryBase {
             )
         );
         $this->history_data = get_posts($arg);
+    }
+    
+    public function history_items_get_ajax(){
+        check_ajax_referer('security-code', 'ajax_nonce');
+        $data = array();
+        if(!isset($_POST['offset']) || 0 > (int)$_POST['offset']){
+            $data['error'][] = array('txt' => 'wrong offset', 'code' => -1);
+        }
+        if(!isset($_POST['limit']) || 1 > $_POST['limit']){
+            $data['error'][] = array('txt' => 'wrong posts_per_page', 'code' => -1);
+        }
+        if(isset($data['error'])){
+            wp_send_json($data);
+            return false;
+        }
+        $data['items'] = $this->history_items_load_wc(array(
+            'offset' => $_POST['offset'],
+            'posts_per_page' => $_POST['limit']
+        ));
+        wp_send_json($data);
+    }
+    
+    private function history_items_load_wc($p){
+        $c_key = 'lottery-history-items-' . $p['offset'] . '-'. $p['posts_per_page'];
+        /*if(apcu_exists($c_key)){
+            $data = apcu_fetch($c_key);
+        } else {*/
+            $data = $this->history_items_load($p);
+            foreach($data as &$v){
+                $v->logo1 = get_field('logo1', $v->ID);
+                $v->logo3 = get_field('logo3', $v->ID);
+                $v->logo4 = get_field('logo4', $v->ID);
+                $v->yt_iframe_history = trim(get_field('yt-iframe-history', $v->ID));
+                $v->descr_ending = get_field('descr-ending', $v->ID);
+                $v->date_end = new DateTime(get_field('date_end', $v->ID));
+                $v->date_end = $v->date_end->format('d.m.Y');
+            }
+            $this->load_complete_cnt_all( $data );
+            if(!empty($data)){
+                apcu_store($c_key, $data, 86400);
+            }
+        //}
+        return $data;
+    }
+    
+    private function history_items_load($p){
+        $arg = array(
+            'post_type' => 'post',
+            'post_status' => 'publish',
+            'category_name' => 'history',
+            'ignore_sticky_posts' => true,
+            'posts_per_page' => $p['posts_per_page'],
+            'offset' => $p['offset'],
+            'meta_query' => array(   
+                'date_end' => array(
+                        'key' => 'date_end',
+                        'type' => 'TIMESTAMP',
+                        'compare' => 'EXISTS',
+                ),
+            ),
+            'orderby' => array(
+                'date_end' => 'DESC',
+            )
+        );
+        return get_posts($arg);
     }
     
     private function load_active_posts($max_rows = 30){
@@ -643,15 +726,7 @@ class lotteryFront extends lotteryBase {
             }
         }
     }
-    
-    public function print_history(){
-        if(empty($this->history_data)){
-            return;
-        }
-        $old = &$this->history_data;
-        include(locate_template( 'template-parts/lottery-history.php' ));
-    }
-    
+      
     public function include_before_theme(){
         include_once(LOTTERY__PLUGIN_DIR . 'core/api.php');
     }
@@ -700,4 +775,3 @@ function lotteryFront()
 lotteryFront();
 
 endif; // class_exists check
-
