@@ -153,18 +153,18 @@ $('document').ready(function(){
         if(!anim_complete){
             return;
         }
-        var limit = i_c - i_c_loaded;
+        var e = $(this), limit = i_c - i_c_loaded;
         if(!i_loaded_all && limit > 0){
             items_load({
                'offset': i_c_loaded,
                'limit': limit,
                'callback': function(){
                    i_loaded_all = true;
-                   dot_click_v($(this));
+                   dot_click_v(e);
                }
             });
         } else {
-            dot_click_v($(this));
+            dot_click_v(e);
         }
     }
     
