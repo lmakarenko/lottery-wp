@@ -120,13 +120,13 @@ class lotteryFront extends lotteryBase {
     
     private function load_history_data_wc(){
         $c_key = 'lottery-history';
-        if(apcu_exists($c_key)){
-            $this->history_data = apcu_fetch($c_key);
+        if(apc_exists($c_key)){
+            $this->history_data = apc_fetch($c_key);
         } else {
             $this->load_history_data();
             $this->load_complete_cnt_all( $this->history_data );
             if(!empty($this->history_data)){
-                apcu_store($c_key, $this->history_data, 86400);
+                apc_store($c_key, $this->history_data, 86400);
             }
         }
     }
@@ -181,8 +181,8 @@ class lotteryFront extends lotteryBase {
     
     private function history_items_load_wc($p){
         $c_key = 'lottery-history-items-' . $p['offset'] . '-'. $p['posts_per_page'];
-        /*if(apcu_exists($c_key)){
-            $data = apcu_fetch($c_key);
+        /*if(apc_exists($c_key)){
+            $data = apc_fetch($c_key);
         } else {*/
             $data = $this->history_items_load($p);
             foreach($data as &$v){
@@ -196,7 +196,7 @@ class lotteryFront extends lotteryBase {
             }
             $this->load_complete_cnt_all( $data );
             if(!empty($data)){
-                apcu_store($c_key, $data, 86400);
+                apc_store($c_key, $data, 86400);
             }
         //}
         return $data;
