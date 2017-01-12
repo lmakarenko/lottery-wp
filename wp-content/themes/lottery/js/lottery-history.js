@@ -13,7 +13,7 @@ $('document').ready(function(){
         e_r_l = $('#lottery-history-row-l'),
         e_r_r = $('#lottery-history-row-r'),
         i_loaded_all = false,
-        i_c_loaded = 6;
+        i_c_loaded = 3;
     
     function check_(){
         var e_ = $('.lottery-history-t[data-i="' + i_sel + '"]');
