@@ -69,7 +69,10 @@ $('document').ready(function(){
                if(d.items){
                 items_add(d.items);
                }
-               items_load_finish();
+               if($('#lottery-old .lottery-history-item').length >= i_c){
+                i_loaded_all = true;
+               }
+               $('.lottery-history-btn').on('click', details_btn_click);
                if(p['callback']){
                    p['callback']();
                }
@@ -153,17 +156,17 @@ $('document').ready(function(){
         if(!anim_complete){
             return;
         }
-        var limit = i_c - i_c_loaded;
+        var e_ = $(this), limit = i_c - i_c_loaded;
         if(!i_loaded_all && limit > 0){
             items_load({
                'offset': i_c_loaded,
                'limit': limit,
                'callback': function(){
-                   dot_click_v($(this));
+                   dot_click_v(e_);
                }
             });
         } else {
-            dot_click_v($(this));
+            dot_click_v(e_);
         }
     }
     
@@ -199,18 +202,13 @@ $('document').ready(function(){
             e_c.appendTo('body').show();
             /*var e__ = $('.lottery-history-alert-inner-2[data-id="'+id+'"]').first();
             e__.html( e__.html() );*/
-            $(window).off('scroll').on('scroll', {'el': e_}, function(e){
+            $(window).on('scroll', {'el': e_}, function(e){
                 e.data.el.css({'margin-top': calcScrollTop_() + 'px'});
             });
         }
         e_.fadeIn(600, 'swing', function(){
             anim_complete = true;
         });
-    }
-    
-    function items_load_finish(){
-        i_loaded_all = true;
-        init_v();
     }
     
     function init_v(){
@@ -220,9 +218,9 @@ $('document').ready(function(){
             $('#lottery-history-row-l').show();
             $('#lottery-history-row-r').show();
 
-            e_r_r.off('click').on('click', right_row_click);
+            e_r_r.on('click', right_row_click);
 
-            e_r_l.off('click').on('click', left_row_click);
+            e_r_l.on('click', left_row_click);
 
         }
 
@@ -232,14 +230,14 @@ $('document').ready(function(){
             for(i=0;i<d_c;++i){
                 e_d_i = $('<div data-i="' + (i * i_c_v + 1) + '" class="lottery-history-t"></div>');
                 e_d_i.appendTo(e_d);
-                e_d_i.off('click').on('click', dot_click)
-                .off('mouseout').on('mouseout', function(){
+                e_d_i.on('click', dot_click)
+                .on('mouseout', function(){
                     var i_ = parseInt($(this).attr('data-i'));
                     if(i_ != i_sel){
                         $(this).removeClass('lottery-history-t1');
                     }
                 })
-                .off('mouseover').on('mouseover', function(){
+                .on('mouseover', function(){
                     var i_ = parseInt($(this).attr('data-i'));
                     if(i_ != i_sel){
                         $(this).addClass('lottery-history-t1');
@@ -269,7 +267,7 @@ $('document').ready(function(){
            'offset': 0,
            'limit': i_c_loaded,
            'callback': function(){
-               i_loaded_all = false;
+               init_v();
            }
         });
     }
