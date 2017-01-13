@@ -24,7 +24,7 @@
         <div class="lottery-history-alert" data-id="<%= ID %>">
             <img class="lottery-bg" src="<%= logo3 %>" />
             <div class="lottery-history-alert-inner-1 fl">
-                <div style="background:url(<%= logo4 %>') 0 0 no-repeat scroll;">
+                <div style="background:url('<%= logo4 %>') 0 0 no-repeat scroll;">
                     <div><%= descr_ending %></div>
                 </div>
             </div>
