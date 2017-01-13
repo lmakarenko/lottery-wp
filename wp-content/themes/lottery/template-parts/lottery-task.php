@@ -13,15 +13,10 @@
                         </div>
                                 <div class="row">
                                             <div class="lottery-task-btn-alert pre-ready lottery-task-btn lottery-task-btn-start<?php if (!$is_user){ ?> demo-login<?php } ?>" <?php if ($is_user){ ?>style="display:none;"<?php } ?>>
-                                                    <a title="Участвовать" href="#" class="button">
-                                                            <div class="ready pc">Участвовать</div>
-                                                    </a>
-                                            </div>
-                                            <?php /*<div class="lottery-task-btn-alert pre-ready lottery-task-btn lottery-task-btn-start<?php if (!$is_user){ ?> demo-login<?php } ?>" <?php if ($is_user){ ?>style="display:none;"<?php } ?>>
                                                     <a title="Участвовать" href="<?php if ($is_user){ ?><?php echo $GLOBALS['wasd_domain']; ?>/soctask/user/starttask/id/<?php echo $t['id']; ?><?php } else { echo $GLOBALS['wasd_domain']; } ?>" <?php if ($is_user){ ?>target="_blank"<?php } ?> class="button">
                                                             <div class="ready pc">Участвовать</div>
                                                     </a>
-                                            </div>*/ ?>
+                                            </div>
                                             <?php if ($is_user){ ?>
                                             <div class="pre-ready lottery-task-btn lottery-task-btn-loading">
                                                 <a href="#" title="Загрузка" class="button button-loading">
