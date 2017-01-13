@@ -23,6 +23,7 @@
 
 <script type="text/javascript" src="/cms/public/js/jquery/jquery-1.10.2.min.js"></script>
 <script type="text/javascript" src="/cms/public/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/wp-content/themes/lottery/js/underscore-min.js"></script>
 <script type="text/javascript" src="/wp-content/themes/lottery/js/common.js"></script>
 <?php /*
 <script type="text/javascript" src="/site/skins/default/public/js/bsDialog.js"></script>

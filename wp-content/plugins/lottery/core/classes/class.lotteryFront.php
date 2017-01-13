@@ -31,6 +31,9 @@ class lotteryFront extends lotteryBase {
         add_action( 'wp_ajax_nopriv_login_form', array( $this, 'login_form_ajax' ) );
         add_action( 'wp_ajax_login_form' , array( $this, 'login_form_ajax' ) );
         
+        add_action( 'wp_ajax_nopriv_history_items_get', array( $this, 'history_items_get_ajax' ) );
+        add_action( 'wp_ajax_history_items_get' , array( $this, 'history_items_get_ajax' ) );
+        
     }
     
     function __destruct() {
@@ -97,7 +100,7 @@ class lotteryFront extends lotteryBase {
         }
         //$this->load_history_data();
         //$this->load_complete_cnt_all( $this->history_data );
-        $this->load_history_data_wc();
+        //$this->load_history_data_wc();
     }
     
     private function load_history_data_wc(){
@@ -645,11 +648,82 @@ class lotteryFront extends lotteryBase {
     }
     
     public function print_history(){
-        if(empty($this->history_data)){
+        $history_cnt = $this->history_items_cnt();
+        if(1 > $history_cnt){
             return;
         }
-        $old = &$this->history_data;
         include(locate_template( 'template-parts/lottery-history.php' ));
+    }
+    
+    public function history_items_cnt(){
+        $cat = get_category_by_slug('history');
+        if ($cat)
+            return $cat->category_count;
+    }
+    
+    public function history_items_get_ajax(){
+        check_ajax_referer('security-code', 'ajax_nonce');
+        $data = array();
+        if(!isset($_POST['offset']) || 0 > (int)$_POST['offset']){
+            $data['error'][] = array('txt' => 'wrong offset', 'code' => -1);
+        }
+        if(!isset($_POST['limit']) || 1 > $_POST['limit']){
+            $data['error'][] = array('txt' => 'wrong posts_per_page', 'code' => -1);
+        }
+        if(isset($data['error'])){
+            wp_send_json($data);
+            return false;
+        }
+        $data['items'] = $this->history_items_load_wc(array(
+            'offset' => $_POST['offset'],
+            'posts_per_page' => $_POST['limit']
+        ));
+        wp_send_json($data);
+    }
+    
+    private function history_items_load_wc($p){
+        $c_key = 'lottery-history-items-' . $p['offset'] . '-'. $p['posts_per_page'];
+        if(apc_exists($c_key)){
+            $data = apc_fetch($c_key);
+        } else {
+            $data = $this->history_items_load($p);
+            foreach($data as &$v){
+                $v->logo1 = get_field('logo1', $v->ID);
+                $v->logo3 = get_field('logo3', $v->ID);
+                $v->logo4 = get_field('logo4', $v->ID);
+                $v->yt_iframe_history = trim(get_field('yt-iframe-history', $v->ID));
+                $v->descr_ending = get_field('descr-ending', $v->ID);
+                $v->date_end = new DateTime(get_field('date_end', $v->ID));
+                $v->date_end = $v->date_end->format('d.m.Y');
+            }
+            $this->load_complete_cnt_all( $data );
+            if(!empty($data)){
+                apc_store($c_key, $data, 86400);
+            }
+        }
+        return $data;
+    }
+    
+    private function history_items_load($p){
+        $arg = array(
+            'post_type' => 'post',
+            'post_status' => 'publish',
+            'category_name' => 'history',
+            'ignore_sticky_posts' => true,
+            'posts_per_page' => $p['posts_per_page'],
+            'offset' => $p['offset'],
+            'meta_query' => array(   
+                'date_end' => array(
+                        'key' => 'date_end',
+                        'type' => 'TIMESTAMP',
+                        'compare' => 'EXISTS',
+                ),
+            ),
+            'orderby' => array(
+                'date_end' => 'DESC',
+            )
+        );
+        return get_posts($arg);
     }
     
     public function include_before_theme(){
@@ -658,7 +732,7 @@ class lotteryFront extends lotteryBase {
         
     private function get_login_form_data_wc($p = array()){
         try {
-            $d = file_get_contents($GLOBALS['wasd_domain'] . '/api/jsonp/loginformdata?sess=' . $p['sess'] . '&rurl=' . $p['rurl']);
+            $d = file_get_contents('http://zeta.wasdclub.com/api/jsonp/loginformdata?sess=' . $p['sess'] . '&rurl=' . $p['rurl']);
             $d = json_decode($d, true);
         } catch(Exception $e){
             $d['error'] = $e->getMessage();  
@@ -703,4 +777,3 @@ function lotteryFront()
 lotteryFront();
 
 endif; // class_exists check
-
