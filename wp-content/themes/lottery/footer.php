@@ -17,10 +17,7 @@
 <div id="footer">
         <ul class="footer-nav">
                 <li><a href="<?php echo $GLOBALS['wasd_domain']; ?>/courses.html">КУРСЫ ВЫВОДА РИЧИКОВ</a></li>
-
                 <li><a href="<?php echo $GLOBALS['wasd_domain']; ?>/charity.html">БЛАГОТВОРИТЕЛЬНОСТЬ</a></li>
-                <li><a href="<?php echo $GLOBALS['wasd_domain']; ?>/advguest/index/index">РЕКЛАМОДАТЕЛЯМ</a></li>
-                <li><a href="<?php echo $GLOBALS['wasd_domain']; ?>/developers.html">РАЗРАБОТЧИКАМ</a></li>
                 <li><a href="<?php echo $GLOBALS['wasd_domain']; ?>/agreement.html">ПОЛЬЗОВАТЕЛЬСКОЕ СОГЛАШЕНИЕ</a></li>
                 <li><a href="<?php echo $GLOBALS['wasd_domain']; ?>/policy.html">ПОЛИТИКА КОНФИДЕНЦИАЛЬНОСТИ</a></li>
         </ul>
